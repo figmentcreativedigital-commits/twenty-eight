@@ -26,6 +26,7 @@ const config: Config = {
         line: 'var(--color-line)',
         gold: 'var(--color-gold)',
         'gold-deep': 'var(--color-gold-deep)',
+        eyebrow: 'var(--color-eyebrow)',
       },
       fontFamily: {
         serif: ['var(--font-serif)', 'Georgia', 'Cambria', 'serif'],
@@ -33,10 +34,10 @@ const config: Config = {
       },
       fontSize: {
         // Editorial display scale
-        'display-xl': ['clamp(3rem, 7vw, 6.5rem)', { lineHeight: '1.02', letterSpacing: '-0.01em' }],
-        'display-lg': ['clamp(2.5rem, 5.5vw, 5rem)', { lineHeight: '1.05', letterSpacing: '-0.01em' }],
-        'display-md': ['clamp(2rem, 4vw, 3.5rem)', { lineHeight: '1.08', letterSpacing: '-0.005em' }],
-        'display-sm': ['clamp(1.65rem, 3vw, 2.5rem)', { lineHeight: '1.12' }],
+        'display-xl': ['clamp(3.25rem, 7.4vw, 7rem)', { lineHeight: '0.98', letterSpacing: '-0.018em' }],
+        'display-lg': ['clamp(2.6rem, 5.6vw, 5.25rem)', { lineHeight: '1.01', letterSpacing: '-0.015em' }],
+        'display-md': ['clamp(2rem, 4vw, 3.5rem)', { lineHeight: '1.06', letterSpacing: '-0.01em' }],
+        'display-sm': ['clamp(1.65rem, 3vw, 2.5rem)', { lineHeight: '1.1', letterSpacing: '-0.005em' }],
       },
       letterSpacing: {
         eyebrow: '0.22em',
@@ -50,6 +51,7 @@ const config: Config = {
       spacing: {
         section: 'clamp(5rem, 12vh, 9rem)',
         'section-sm': 'clamp(3.5rem, 8vh, 6rem)',
+        'section-lg': 'clamp(7rem, 16vh, 12rem)',
       },
       borderRadius: {
         card: '2px',

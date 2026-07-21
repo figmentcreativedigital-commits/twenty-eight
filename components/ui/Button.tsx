@@ -34,16 +34,16 @@ type ActionButtonProps = CommonProps & {
 type ButtonProps = LinkButtonProps | ActionButtonProps;
 
 const base =
-  'inline-flex items-center justify-center gap-2.5 font-sans text-[0.8rem] uppercase tracking-wide transition-all duration-400 ease-editorial focus-visible:outline-gold-deep disabled:cursor-not-allowed disabled:opacity-60';
+  'group inline-flex items-center justify-center gap-2.5 font-sans text-[0.8rem] uppercase tracking-[0.09em] transition-all duration-400 ease-editorial focus-visible:outline-gold-deep disabled:cursor-not-allowed disabled:opacity-60 hover:tracking-[0.12em]';
 
 const variants: Record<Variant, string> = {
   primary:
-    'bg-ink text-ivory px-8 py-4 hover:bg-charcoal hover:-translate-y-px',
+    'bg-ink text-ivory px-9 py-4 shadow-[0_1px_0_rgba(0,0,0,0)] hover:bg-charcoal hover:-translate-y-0.5 hover:shadow-lift',
   secondary:
-    'border border-charcoal/40 text-charcoal px-8 py-4 hover:border-gold-deep hover:text-gold-deep',
+    'border border-charcoal/30 text-charcoal px-9 py-4 hover:border-gold-deep hover:text-gold-deep hover:bg-charcoal/[0.03]',
   ghost:
-    'border border-ivory/50 text-ivory px-8 py-4 hover:border-gold hover:text-gold',
-  quiet: 'link-underline !text-[0.78rem]',
+    'border border-ivory/40 text-ivory px-9 py-4 hover:border-gold hover:text-gold hover:bg-ivory/[0.06]',
+  quiet: 'link-underline !text-[0.78rem] !tracking-wide hover:!tracking-wide',
 };
 
 export function Button(props: ButtonProps) {
