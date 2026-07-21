@@ -54,7 +54,7 @@ export function Hero({
         {/* legibility scrim */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/40 to-ink/25"
+          className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/55 to-ink/30"
         />
       </div>
 
@@ -66,7 +66,7 @@ export function Hero({
           )}
         >
           {eyebrow ? (
-            <p className="mb-6 font-sans text-[0.72rem] uppercase tracking-eyebrow text-ivory/75">
+            <p className="mb-6 font-sans text-[0.72rem] uppercase tracking-eyebrow text-ivory">
               {eyebrow}
             </p>
           ) : null}
@@ -82,7 +82,7 @@ export function Hero({
           {supporting ? (
             <p
               className={cn(
-                'mt-8 max-w-xl font-sans text-lg leading-relaxed text-ivory/85',
+                'mt-8 max-w-xl font-sans text-lg leading-relaxed text-ivory',
                 align === 'center' && 'mx-auto'
               )}
             >

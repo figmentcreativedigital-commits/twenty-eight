@@ -20,6 +20,7 @@ export function ProviderPage({ provider }: { provider: Provider }) {
         secondaryCta={{ label: 'The Collective', href: '/collective' }}
         imageAlt={`${provider.name} — ${provider.discipline}`}
         imageCaption={provider.heroImageNote}
+        imageSrc={provider.image}
         size="tall"
       />
 
@@ -43,6 +44,7 @@ export function ProviderPage({ provider }: { provider: Provider }) {
             <ImageFrame
               alt={`Editorial detail for ${provider.name}`}
               caption={provider.heroImageNote}
+              src={provider.image}
               tone="sand"
               ratio="4/5"
             />

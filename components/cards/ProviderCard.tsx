@@ -30,6 +30,7 @@ export function ProviderCard({
           <ImageFrame
             alt={`${provider.name} — ${provider.discipline}`}
             caption={provider.heroImageNote}
+            src={provider.image}
             tone={tone}
             ratio="3/4"
           />

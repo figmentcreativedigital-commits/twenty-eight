@@ -30,6 +30,8 @@ export type Provider = {
   selectedServices: string[];
   /** Art-direction note for the provider hero image slot. */
   heroImageNote: string;
+  /** Photo used for this provider's hero, card, and editorial slots. */
+  image: string;
   /** External booking link, if supplied by the client. Empty = no dead link. */
   bookingUrl: string;
   /** Existing brand site, for reference/handoff (not linked publicly unless confirmed). */
@@ -39,6 +41,7 @@ export type Provider = {
 export const providers: Provider[] = [
   {
     slug: 'yulia-gerchik-studio',
+    image: '/images/28-placeholder-a.jpeg',
     name: 'Yulia Gerchik Studio',
     specialtyLabel: 'Beauty & Skin',
     discipline: 'Refined beauty, brows, and skin artistry',
@@ -81,6 +84,7 @@ export const providers: Provider[] = [
   },
   {
     slug: 'nyc-dental-smiles',
+    image: '/images/28-placeholder-h.jpeg',
     name: 'New York City Dental Smiles',
     specialtyLabel: 'Smile Aesthetics',
     discipline: 'Cosmetic, restorative, and smile-focused dentistry',
@@ -122,6 +126,7 @@ export const providers: Provider[] = [
   },
   {
     slug: 'dr-avia-nano',
+    image: '/images/28-placeholder-c.jpeg',
     name: 'Dr. Avia Nano',
     specialtyLabel: 'Advanced Skin Health',
     discipline: 'Aesthetic medicine, dermatology, and longevity',

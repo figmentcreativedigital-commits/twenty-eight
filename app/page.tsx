@@ -29,6 +29,7 @@ export default function HomePage() {
         secondaryCta={hero.secondaryCta}
         imageAlt="A warm, softly lit treatment and consultation space in 28's Tribeca destination — stone, plaster, and natural light."
         imageCaption={hero.imageNote}
+        imageSrc="/images/28-placeholder-g.jpeg"
       />
 
       {/* Introducing 28 — centered editorial statement */}
@@ -58,6 +59,7 @@ export default function HomePage() {
         body={the28Difference.body}
         imageAlt="An editorial still life of refined materials — ceramics and skincare textures on warm stone."
         imageCaption="ART DIRECTION: Editorial detail — ceramics, skincare texture, travertine, silk ribbon."
+        imageSrc="/images/28-placeholder-c.jpeg"
         imageTone="sand"
         imageRatio="4/5"
       />
@@ -159,6 +161,7 @@ export default function HomePage() {
         body={[membershipIntro.lede, membershipIntro.philosophy[0]]}
         imageAlt="A refined membership card and appointment materials in taupe and champagne gold on linen."
         imageCaption="ART DIRECTION: Membership materials — taupe cards, champagne foil, silk ribbon (reference the provided packaging images)."
+        imageSrc="/images/28-placeholder-b.jpeg"
         imageTone="taupe"
         imageRatio="4/5"
         reverse
@@ -175,6 +178,7 @@ export default function HomePage() {
         ]}
         imageAlt="A serene treatment room with a sculptural chaise, sheer curtains, and warm plaster walls."
         imageCaption="ART DIRECTION: Treatment room — sculptural chaise, sheer light, warm plaster (reference the provided interior image)."
+        imageSrc="/images/28-placeholder-f.jpeg"
         imageTone="stone"
         imageRatio="5/6"
         cta={{ label: 'Plan Your Visit', href: '/the-space' }}

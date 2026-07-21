@@ -34,6 +34,7 @@ export default function TheSpacePage() {
         secondaryCta={{ label: 'The Collective', href: '/collective' }}
         imageAlt="The arrival and reception moment at 28 — stone, plaster, sculptural lighting, and soft natural light."
         imageCaption={spaceHero.imageNote}
+        imageSrc={spaceHero.image}
         size="full"
       />
 
@@ -62,6 +63,7 @@ export default function TheSpacePage() {
               <ImageFrame
                 alt={`${moment.title} — ${moment.description}`}
                 caption={moment.imageNote}
+                src={moment.image}
                 tone={tones[i % tones.length]}
                 ratio={i % 2 === 0 ? '4/5' : '5/4'}
               />

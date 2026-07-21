@@ -54,7 +54,7 @@ export function SiteHeader() {
           scrolled ? 'max-h-0 opacity-0' : 'max-h-12 opacity-100'
         )}
       >
-        <p className="mx-auto max-w-shell px-6 py-2.5 text-center font-sans text-[0.66rem] uppercase tracking-eyebrow text-ivory/80">
+        <p className="mx-auto max-w-shell px-6 py-2.5 text-center font-sans text-[0.66rem] uppercase tracking-eyebrow text-ivory">
           A new destination for beauty, wellness &amp; longevity — Tribeca, New York
         </p>
       </div>

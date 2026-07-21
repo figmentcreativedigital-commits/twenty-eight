@@ -26,6 +26,7 @@ export default function SignatureExperiencesPage() {
         secondaryCta={{ label: 'The Collective', href: '/collective' }}
         imageAlt="A refined editorial still life representing a curated, multi-part experience across the 28 collective."
         imageCaption="ART DIRECTION: Curated flat-lay — appointment cards, ribbon, ceramics, skincare on stone."
+        imageSrc="/images/28-placeholder-c.jpeg"
         size="tall"
       />
 
@@ -63,6 +64,7 @@ export default function SignatureExperiencesPage() {
                   <ImageFrame
                     alt={`${exp.name} — a curated 28 experience`}
                     caption={`ART DIRECTION: Editorial imagery evoking "${exp.name}".`}
+                    src={exp.image}
                     tone={tones[i % tones.length]}
                     ratio="5/6"
                   />
