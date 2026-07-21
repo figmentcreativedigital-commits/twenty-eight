@@ -65,7 +65,7 @@ export function SiteHeader() {
           'transition-all duration-400 ease-editorial',
           solid
             ? 'border-b border-line bg-ivory/95 backdrop-blur-md shadow-[0_1px_30px_-20px_rgba(61,58,55,0.6)]'
-            : 'border-b border-transparent bg-transparent'
+            : 'border-b border-transparent bg-transparent [text-shadow:0_1px_10px_rgba(20,18,16,0.5)]'
         )}
       >
         <div className="mx-auto flex max-w-shell items-center justify-between px-6 py-4 sm:px-8 lg:px-12">
@@ -96,7 +96,7 @@ export function SiteHeader() {
                 'hidden border px-6 py-3 font-sans text-[0.74rem] uppercase tracking-wide transition-all duration-400 sm:inline-flex',
                 solid
                   ? 'border-charcoal/40 text-charcoal hover:border-gold-deep hover:text-gold-deep'
-                  : 'border-ivory/50 text-ivory hover:border-gold hover:text-gold'
+                  : 'border-ivory/60 text-ivory bg-ink/15 backdrop-blur-sm hover:border-gold hover:text-gold hover:bg-ink/30'
               )}
             >
               Book a Consultation

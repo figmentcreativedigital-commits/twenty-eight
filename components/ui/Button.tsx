@@ -42,7 +42,7 @@ const variants: Record<Variant, string> = {
   secondary:
     'border border-charcoal/30 text-charcoal px-9 py-4 hover:border-gold-deep hover:text-gold-deep hover:bg-charcoal/[0.03]',
   ghost:
-    'border border-ivory/40 text-ivory px-9 py-4 hover:border-gold hover:text-gold hover:bg-ivory/[0.06]',
+    'border border-ivory/60 text-ivory bg-ink/15 backdrop-blur-sm px-9 py-4 hover:border-gold hover:text-gold hover:bg-ink/30',
   quiet: 'link-underline !text-[0.78rem] !tracking-wide hover:!tracking-wide',
 };
 
