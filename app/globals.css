@@ -7,25 +7,28 @@
    Palette from the client creative brief.
    ───────────────────────────────────────────────────────────── */
 :root {
-  --color-ivory: #f7f4f0; /* base background */
-  --color-sand: #e9e2db;
-  --color-stone: #d8d0ca;
-  --color-mushroom: #c3b6ab;
-  --color-taupe: #b8aca3;
-  --color-charcoal: #3d3a37; /* primary text */
-  --color-ink: #2b2926; /* strongest text */
-  --color-muted: #6b625a; /* secondary text — passes AA on ivory */
-  --color-line: #ddd5cd; /* hairline rules */
-  --color-gold: #b49b6c; /* brushed champagne — accents/lines only */
-  --color-gold-deep: #9c8353; /* gold hover / active on dark or as line */
-  --color-eyebrow: #7c6430; /* deep bronze — small eyebrow text on LIGHT bg (5.15:1, AA) */
+  /* Stored as space-separated RGB channels so Tailwind opacity modifiers
+     (e.g. bg-ink/40, from-ink/90, text-ivory/80) resolve correctly via
+     rgb(var(--color-x) / <alpha-value>) in tailwind.config.ts. */
+  --color-ivory: 247 244 240; /* #f7f4f0 base background */
+  --color-sand: 233 226 219; /* #e9e2db */
+  --color-stone: 216 208 202; /* #d8d0ca */
+  --color-mushroom: 195 182 171; /* #c3b6ab */
+  --color-taupe: 184 172 163; /* #b8aca3 */
+  --color-charcoal: 61 58 55; /* #3d3a37 primary text */
+  --color-ink: 43 41 38; /* #2b2926 strongest text */
+  --color-muted: 107 98 90; /* #6b625a secondary text — passes AA on ivory */
+  --color-line: 221 213 205; /* #ddd5cd hairline rules */
+  --color-gold: 180 155 108; /* #b49b6c brushed champagne — accents/lines only */
+  --color-gold-deep: 156 131 83; /* #9c8353 gold hover / active on dark or as line */
+  --color-eyebrow: 124 100 48; /* #7c6430 deep bronze — small eyebrow text on LIGHT bg (5.15:1, AA) */
 
   /* --font-serif / --font-sans are injected on <html> by next/font/local
      (see app/layout.tsx). Generic fallbacks are applied below. */
 }
 
 * {
-  border-color: var(--color-line);
+  border-color: rgb(var(--color-line));
 }
 
 html {
@@ -34,8 +37,8 @@ html {
 }
 
 body {
-  background-color: var(--color-ivory);
-  color: var(--color-charcoal);
+  background-color: rgb(var(--color-ivory));
+  color: rgb(var(--color-charcoal));
   font-family: var(--font-sans), system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-size: 1.0625rem; /* 17px — a warmer, more generous editorial read */
   line-height: 1.7;
@@ -59,22 +62,22 @@ p {
 
 /* Selection */
 ::selection {
-  background-color: var(--color-mushroom);
-  color: var(--color-ink);
+  background-color: rgb(var(--color-mushroom));
+  color: rgb(var(--color-ink));
 }
 
 /* Headline defaults */
 h1, h2, h3, h4 {
   font-family: var(--font-serif), Georgia, 'Times New Roman', serif;
   font-weight: 400;
-  color: var(--color-ink);
+  color: rgb(var(--color-ink));
 }
 
 /* ─── Reusable class layer ─── */
 @layer components {
   .eyebrow {
     @apply font-sans text-[0.72rem] uppercase tracking-eyebrow;
-    color: var(--color-eyebrow);
+    color: rgb(var(--color-eyebrow));
     font-weight: 500;
   }
 
@@ -114,7 +117,7 @@ h1, h2, h3, h4 {
 
 /* Focus — visible, elegant, accessible */
 :focus-visible {
-  outline: 2px solid var(--color-gold-deep);
+  outline: 2px solid rgb(var(--color-gold-deep));
   outline-offset: 3px;
   border-radius: 1px;
 }

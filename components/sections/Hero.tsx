@@ -60,7 +60,7 @@ export function Hero({
             Three cooperating layers keep the nav, copy, and buttons readable
             without visibly darkening the photograph. */}
         {/* 1) Even tint — tames near-white images across the whole frame. */}
-        <div aria-hidden="true" className="absolute inset-0 bg-ink/[0.35]" />
+        <div aria-hidden="true" className="absolute inset-0 bg-ink/35" />
         {/* 2) Bottom anchor — seats the headline, supporting copy, and buttons;
                carries weight up through the middle where the display type sits. */}
         <div
