@@ -59,17 +59,18 @@ export function Hero({
         {/* Legibility system — tuned for white type over bright photography.
             Three cooperating layers keep the nav, copy, and buttons readable
             without visibly darkening the photograph. */}
-        {/* 1) Even tint — tames near-white images uniformly. */}
-        <div aria-hidden="true" className="absolute inset-0 bg-ink/[0.27]" />
-        {/* 2) Bottom anchor — seats the eyebrow, headline, supporting, buttons. */}
+        {/* 1) Even tint — tames near-white images across the whole frame. */}
+        <div aria-hidden="true" className="absolute inset-0 bg-ink/[0.35]" />
+        {/* 2) Bottom anchor — seats the headline, supporting copy, and buttons;
+               carries weight up through the middle where the display type sits. */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/40 to-transparent"
+          className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/60 to-ink/10"
         />
         {/* 3) Top veil — seats the fixed navigation on every hero page. */}
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-60 bg-gradient-to-b from-ink/[0.82] via-ink/45 to-transparent"
+          className="absolute inset-x-0 top-0 h-60 bg-gradient-to-b from-ink/85 via-ink/50 to-transparent"
         />
       </div>
 
