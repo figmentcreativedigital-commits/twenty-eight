@@ -47,7 +47,8 @@ body {
 
 /* Serif display: opentype refinement for architectural presence */
 h1, h2, h3, h4 {
-  font-feature-settings: 'kern', 'liga', 'dlig', 'calt';
+  font-feature-settings: 'kern', 'liga', 'calt';
+  font-variant-ligatures: common-ligatures no-discretionary-ligatures no-historical-ligatures;
   text-wrap: balance;
 }
 
