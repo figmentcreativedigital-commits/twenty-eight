@@ -74,14 +74,27 @@ export function SiteHeader() {
             solid ? 'py-3' : 'py-5'
           )}
         >
-          {/* Over the hero the full vertical lockup has room; once the bar
-              collapses, TRIBECA would fall below legible size, so we switch to
-              the reduced "28" mark. */}
-          <Wordmark
-            variant={solid ? 'mark' : 'lockup'}
-            tone={solid ? 'ink' : 'ivory'}
-            className={solid ? 'h-9' : 'h-16'}
-          />
+          {/* Over the hero: the full vertical lockup, in ivory, with room to
+              breathe. Once the bar collapses to ivory, we swap to the
+              horizontal "28 | TRIBECA" lockup — it fits the short bar height
+              while keeping TRIBECA legible, which the vertical stack can't. */}
+          <Link
+            href="/"
+            aria-label="28 Tribeca — Wellness & Aesthetics. Return to homepage."
+            className="inline-flex items-center focus-visible:outline-gold-deep"
+          >
+            {solid ? (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                src="/logo/28-horizontal.png"
+                alt=""
+                aria-hidden="true"
+                className="h-9 w-auto select-none"
+              />
+            ) : (
+              <Wordmark variant="lockup" tone="ivory" asLink={false} className="h-16" />
+            )}
+          </Link>
 
           {/* Desktop nav */}
           <nav aria-label="Primary" className="hidden items-center gap-9 lg:flex">
