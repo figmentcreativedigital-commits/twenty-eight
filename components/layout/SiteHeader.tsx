@@ -65,11 +65,23 @@ export function SiteHeader() {
           'transition-all duration-400 ease-editorial',
           solid
             ? 'border-b border-line bg-ivory/95 backdrop-blur-md shadow-[0_1px_30px_-20px_rgba(61,58,55,0.6)]'
-            : 'border-b border-transparent bg-transparent [text-shadow:0_1px_10px_rgba(20,18,16,0.5)]'
+            : 'border-b border-transparent bg-transparent'
         )}
       >
-        <div className="mx-auto flex max-w-shell items-center justify-between px-6 py-4 sm:px-8 lg:px-12">
-          <Wordmark tone={solid ? 'ink' : 'ivory'} />
+        <div
+          className={cn(
+            'mx-auto flex max-w-shell items-center justify-between px-6 transition-all duration-500 ease-editorial sm:px-8 lg:px-12',
+            solid ? 'py-3' : 'py-5'
+          )}
+        >
+          {/* Over the hero the full vertical lockup has room; once the bar
+              collapses, TRIBECA would fall below legible size, so we switch to
+              the reduced "28" mark. */}
+          <Wordmark
+            variant={solid ? 'mark' : 'lockup'}
+            tone={solid ? 'ink' : 'ivory'}
+            className={solid ? 'h-9' : 'h-16'}
+          />
 
           {/* Desktop nav */}
           <nav aria-label="Primary" className="hidden items-center gap-9 lg:flex">
@@ -96,7 +108,7 @@ export function SiteHeader() {
                 'hidden border px-6 py-3 font-sans text-[0.74rem] uppercase tracking-wide transition-all duration-400 sm:inline-flex',
                 solid
                   ? 'border-charcoal/40 text-charcoal hover:border-gold-deep hover:text-gold-deep'
-                  : 'border-ivory/60 text-ivory bg-ink/15 backdrop-blur-sm hover:border-gold hover:text-gold hover:bg-ink/30'
+                  : 'border-ivory/50 text-ivory hover:border-gold hover:text-gold'
               )}
             >
               Book a Consultation
@@ -143,7 +155,7 @@ export function SiteHeader() {
         className="fixed inset-0 top-0 z-40 flex flex-col bg-ivory lg:hidden"
       >
         <div className="flex items-center justify-between border-b border-line px-6 py-4">
-          <Wordmark tone="ink" />
+          <Wordmark variant="mark" tone="ink" className="h-9" />
           <button
             ref={closeBtnRef}
             type="button"

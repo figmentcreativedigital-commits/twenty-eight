@@ -46,7 +46,7 @@ export default function MembershipPage() {
         secondaryCta={{ label: 'The Collective', href: '/collective' }}
         imageAlt="A refined 28 membership card in taupe and champagne gold, resting on linen with a silk ribbon."
         imageCaption="ART DIRECTION: Membership card + materials — taupe, champagne foil, silk ribbon (reference provided packaging)."
-        imageSrc="/images/28-placeholder-b.jpeg"
+        imageSrc="/images/membership.png"
         size="tall"
       />
 

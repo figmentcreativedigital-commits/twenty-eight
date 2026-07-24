@@ -7,21 +7,18 @@
    Palette from the client creative brief.
    ───────────────────────────────────────────────────────────── */
 :root {
-  /* Stored as space-separated RGB channels so Tailwind opacity modifiers
-     (e.g. bg-ink/40, from-ink/90, text-ivory/80) resolve correctly via
-     rgb(var(--color-x) / <alpha-value>) in tailwind.config.ts. */
-  --color-ivory: 247 244 240; /* #f7f4f0 base background */
-  --color-sand: 233 226 219; /* #e9e2db */
-  --color-stone: 216 208 202; /* #d8d0ca */
-  --color-mushroom: 195 182 171; /* #c3b6ab */
-  --color-taupe: 184 172 163; /* #b8aca3 */
-  --color-charcoal: 61 58 55; /* #3d3a37 primary text */
-  --color-ink: 43 41 38; /* #2b2926 strongest text */
-  --color-muted: 107 98 90; /* #6b625a secondary text — passes AA on ivory */
-  --color-line: 221 213 205; /* #ddd5cd hairline rules */
-  --color-gold: 180 155 108; /* #b49b6c brushed champagne — accents/lines only */
-  --color-gold-deep: 156 131 83; /* #9c8353 gold hover / active on dark or as line */
-  --color-eyebrow: 124 100 48; /* #7c6430 deep bronze — small eyebrow text on LIGHT bg (5.15:1, AA) */
+  --color-ivory: 247 244 240; /* base background */
+  --color-sand: 233 226 219;
+  --color-stone: 216 208 202;
+  --color-mushroom: 195 182 171;
+  --color-taupe: 184 172 163;
+  --color-charcoal: 61 58 55; /* primary text */
+  --color-ink: 43 41 38; /* strongest text */
+  --color-muted: 107 98 90; /* secondary text — passes AA on ivory */
+  --color-line: 221 213 205; /* hairline rules */
+  --color-gold: 180 155 108; /* brushed champagne — accents/lines only */
+  --color-gold-deep: 156 131 83; /* gold hover / active on dark or as line */
+  --color-eyebrow: 124 100 48; /* deep bronze — small eyebrow text on LIGHT bg (5.15:1, AA) */
 
   /* --font-serif / --font-sans are injected on <html> by next/font/local
      (see app/layout.tsx). Generic fallbacks are applied below. */
@@ -50,8 +47,7 @@ body {
 
 /* Serif display: opentype refinement for architectural presence */
 h1, h2, h3, h4 {
-  font-feature-settings: 'kern', 'liga', 'calt';
-  font-variant-ligatures: common-ligatures no-discretionary-ligatures no-historical-ligatures;
+  font-feature-settings: 'kern', 'liga', 'dlig', 'calt';
   text-wrap: balance;
 }
 

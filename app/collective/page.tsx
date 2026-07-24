@@ -25,7 +25,7 @@ export default function CollectivePage() {
         secondaryCta={{ label: 'Signature Experiences', href: '/signature-experiences' }}
         imageAlt="An editorial arrangement of refined tools and materials representing the three disciplines of the 28 collective."
         imageCaption="ART DIRECTION: Editorial grouping — beauty tools, ceramics, skincare textures on linen."
-        imageSrc="/images/28-placeholder-b.jpeg"
+        imageSrc="/images/28-placeholder-g.jpeg"
         size="tall"
       />
 

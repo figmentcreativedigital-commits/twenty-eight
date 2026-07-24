@@ -11,7 +11,6 @@ export const spaceHero = {
     'The 28 experience begins the moment you arrive — calm, refined, private, and elevated. More a luxury hospitality experience than a clinical environment.',
   imageNote:
     'ART DIRECTION: Cinematic full-bleed of the arrival / reception moment. Stone, plaster, warm neutral upholstery, sculptural lighting.',
-  image: '/images/28-placeholder-d.jpeg',
 };
 
 export const spaceStory = {
@@ -22,31 +21,27 @@ export const spaceStory = {
 };
 
 /** Interior / experience moments, each a full editorial image slot. */
-export const spaceMoments: { title: string; description: string; imageNote: string; image: string }[] = [
+export const spaceMoments: { title: string; description: string; imageNote: string }[] = [
   {
     title: 'Arrival',
-    image: '/images/28-placeholder-d.jpeg',
     description:
       'Warm, calm, private, and highly polished — closer to entering a boutique hotel than a clinic.',
     imageNote: 'ART DIRECTION: Reception detail — stone counter, fresh branches, soft light.',
   },
   {
     title: 'Consultation',
-    image: '/images/28-placeholder-g.jpeg',
     description:
       'Private spaces designed for a considered conversation about your goals, with no sense of hurry.',
     imageNote: 'ART DIRECTION: Intimate seating vignette — upholstery, ceramics, paper goods.',
   },
   {
     title: 'Treatment Rooms',
-    image: '/images/28-placeholder-h.jpeg',
     description:
       'Uncluttered, residential in feel, and appointed with refined materials and quiet detail.',
     imageNote: 'ART DIRECTION: Treatment room — sculptural chaise, sheer curtains, warm plaster (reference the provided interior image).',
   },
   {
     title: 'Materials & Ritual',
-    image: '/images/28-placeholder-c.jpeg',
     description:
       'Travertine, linen, ceramics, brushed metal, and champagne detailing — the tactile sense of luxury that defines 28.',
     imageNote: 'ART DIRECTION: Product ritual / packaging detail on travertine with silk ribbon.',

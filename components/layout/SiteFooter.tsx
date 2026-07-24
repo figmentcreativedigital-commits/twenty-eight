@@ -12,8 +12,8 @@ export function SiteFooter() {
         {/* Top — brand + invitation */}
         <div className="flex flex-col gap-10 border-b border-ivory/10 pb-14 md:flex-row md:items-end md:justify-between">
           <div className="max-w-md">
-            <Wordmark tone="ivory" withDescriptor />
-            <p className="mt-6 font-serif text-2xl leading-snug text-ivory/90 md:text-3xl">
+            <Wordmark variant="lockup" tone="ivory" asLink={false} className="h-40" />
+            <p className="mt-8 font-serif text-2xl leading-snug text-ivory/90 md:text-3xl">
               {site.tagline}
             </p>
           </div>

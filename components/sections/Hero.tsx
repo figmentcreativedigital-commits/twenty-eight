@@ -4,11 +4,6 @@ import { cn } from '@/lib/utils';
 
 type Cta = { label: string; href: string };
 
-/** Subtle dual shadow — a crisp edge plus a soft halo — keeps white display
- *  type legible where it crosses the brightest parts of a photograph. */
-const heroTextShadow =
-  '0 1px 2px rgba(20,18,16,0.38), 0 4px 44px rgba(20,18,16,0.32)';
-
 type HeroProps = {
   eyebrow?: string;
   /** Use \n to control line breaks in the display headline. */
@@ -56,21 +51,10 @@ export function Hero({
           className="h-full w-full"
           priority
         />
-        {/* Legibility system — tuned for white type over bright photography.
-            Three cooperating layers keep the nav, copy, and buttons readable
-            without visibly darkening the photograph. */}
-        {/* 1) Even tint — tames near-white images across the whole frame. */}
-        <div aria-hidden="true" className="absolute inset-0 bg-ink/35" />
-        {/* 2) Bottom anchor — seats the headline, supporting copy, and buttons;
-               carries weight up through the middle where the display type sits. */}
+        {/* legibility scrim */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/60 to-ink/10"
-        />
-        {/* 3) Top veil — seats the fixed navigation on every hero page. */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-60 bg-gradient-to-b from-ink/85 via-ink/50 to-transparent"
+          className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/40 to-ink/25"
         />
       </div>
 
@@ -82,18 +66,12 @@ export function Hero({
           )}
         >
           {eyebrow ? (
-            <p
-              className="mb-6 font-sans text-[0.72rem] uppercase tracking-eyebrow text-ivory"
-              style={{ textShadow: heroTextShadow }}
-            >
+            <p className="mb-6 font-sans text-[0.72rem] uppercase tracking-eyebrow text-ivory">
               {eyebrow}
             </p>
           ) : null}
 
-          <h1
-            className="text-balance font-serif text-display-xl text-ivory"
-            style={{ textShadow: heroTextShadow }}
-          >
+          <h1 className="text-balance font-serif text-display-xl text-ivory">
             {headline.split('\n').map((line, i) => (
               <span key={i} className="block">
                 {line}
@@ -107,7 +85,6 @@ export function Hero({
                 'mt-8 max-w-xl font-sans text-lg leading-relaxed text-ivory',
                 align === 'center' && 'mx-auto'
               )}
-              style={{ textShadow: heroTextShadow }}
             >
               {supporting}
             </p>

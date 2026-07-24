@@ -18,14 +18,11 @@ export type Experience = {
   disciplines: string[];
   /** How the consultation approach works. */
   approach: string;
-  /** Editorial photo for this experience's image slot. */
-  image: string;
 };
 
 export const experiences: Experience[] = [
   {
     slug: 'signature-28-experience',
-    image: '/images/28-placeholder-c.jpeg',
     name: 'The Signature 28 Experience',
     summary:
       'A comprehensive consultation across the collective, resulting in a personalized roadmap.',
@@ -39,7 +36,6 @@ export const experiences: Experience[] = [
   },
   {
     slug: 'executive-refresh',
-    image: '/images/28-placeholder-e.jpeg',
     name: 'The Executive Refresh',
     summary:
       'A discreet, efficient experience for looking polished, rested, and confident.',
@@ -53,7 +49,6 @@ export const experiences: Experience[] = [
   },
   {
     slug: 'wedding-edit',
-    image: '/images/28-placeholder-a.jpeg',
     name: 'The Wedding Edit',
     summary:
       'A calm, curated pre-event experience for glowing skin, a confident smile, and refined beauty.',
@@ -67,7 +62,6 @@ export const experiences: Experience[] = [
   },
   {
     slug: 'longevity-collection',
-    image: '/images/28-placeholder-b.jpeg',
     name: 'The Longevity Collection',
     summary:
       'An ongoing plan centered on skin health, peptides, regenerative wellness, and maintenance.',
@@ -81,7 +75,6 @@ export const experiences: Experience[] = [
   },
   {
     slug: 'smile-skin-transformation',
-    image: '/images/28-placeholder-h.jpeg',
     name: 'The Smile + Skin Transformation',
     summary:
       'A coordinated experience combining smile enhancement and skin refinement.',
@@ -95,7 +88,6 @@ export const experiences: Experience[] = [
   },
   {
     slug: 'custom-concierge-plan',
-    image: '/images/28-placeholder-f.jpeg',
     name: 'Custom Concierge Plan',
     summary:
       'A bespoke path built around your goals, schedule, lifestyle, and desired level of care.',

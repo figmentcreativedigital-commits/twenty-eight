@@ -93,7 +93,7 @@ export function ImageFrame({
         </div>
       )}
 
-      {caption && !src ? (
+      {caption ? (
         <figcaption
           className={cn(
             'absolute bottom-0 left-0 right-0 px-4 py-3 font-sans text-[0.62rem] leading-snug tracking-wide',

@@ -23,6 +23,14 @@ export const metadata: Metadata = {
 
 const tones = ['stone', 'sand', 'mushroom', 'taupe'] as const;
 
+/* Placeholder photography — swap for final commissioned images. */
+const spaceImages = [
+  '/images/28-placeholder-g.jpeg',
+  '/images/28-placeholder-e.jpeg',
+  '/images/28-placeholder-d.jpeg',
+  '/images/derm.png',
+];
+
 export default function TheSpacePage() {
   return (
     <>
@@ -34,7 +42,7 @@ export default function TheSpacePage() {
         secondaryCta={{ label: 'The Collective', href: '/collective' }}
         imageAlt="The arrival and reception moment at 28 — stone, plaster, sculptural lighting, and soft natural light."
         imageCaption={spaceHero.imageNote}
-        imageSrc={spaceHero.image}
+        imageSrc="/images/28-placeholder-f.jpeg"
         size="full"
       />
 
@@ -63,7 +71,7 @@ export default function TheSpacePage() {
               <ImageFrame
                 alt={`${moment.title} — ${moment.description}`}
                 caption={moment.imageNote}
-                src={moment.image}
+                src={spaceImages[i % spaceImages.length]}
                 tone={tones[i % tones.length]}
                 ratio={i % 2 === 0 ? '4/5' : '5/4'}
               />

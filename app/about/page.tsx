@@ -24,7 +24,7 @@ export default function AboutPage() {
         secondaryCta={{ label: 'Book a Consultation', href: '/consultation' }}
         imageAlt="A serene, architectural interior detail from 28's Tribeca destination in warm stone and plaster."
         imageCaption="ART DIRECTION: Architectural interior — arch, plaster, sculptural lighting, warm stone."
-        imageSrc="/images/28-placeholder-e.jpeg"
+        imageSrc="/images/28-placeholder-f.jpeg"
         size="tall"
       />
 
@@ -54,7 +54,7 @@ export default function AboutPage() {
         body={the28Difference.body}
         imageAlt="An editorial still life of ceramics and skincare textures on warm stone."
         imageCaption="ART DIRECTION: Editorial detail — ceramics, skincare texture, travertine."
-        imageSrc="/images/28-placeholder-c.jpeg"
+        imageSrc="/images/yulia.png"
         imageTone="sand"
         imageRatio="4/5"
       />
