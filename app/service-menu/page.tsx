@@ -75,7 +75,10 @@ export default function ServiceMenuPage() {
               <p className="mt-6 max-w-prose font-sans text-lg leading-relaxed text-muted">
                 {menu.intro}
               </p>
-              <div className="mt-8">
+              <div className="mt-8 flex flex-wrap items-center gap-6">
+                <Button href={`/booking/${menu.slug}`} variant="secondary">
+                  Book with {menu.shortName}
+                </Button>
                 <Button href={`/collective/${menu.slug}`} variant="quiet">
                   About {menu.shortName} &rarr;
                 </Button>

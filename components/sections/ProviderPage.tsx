@@ -16,8 +16,8 @@ export function ProviderPage({ provider }: { provider: Provider }) {
         eyebrow={`The Collective — ${provider.specialtyLabel}`}
         headline={provider.headline}
         supporting={provider.discipline}
-        primaryCta={{ label: 'Request a Consultation', href: '/consultation' }}
-        secondaryCta={{ label: 'The Collective', href: '/collective' }}
+        primaryCta={{ label: `Book with ${provider.shortName}`, href: `/booking/${provider.slug}` }}
+        secondaryCta={{ label: 'Request a Consultation', href: '/consultation' }}
         imageAlt={`${provider.name} — ${provider.discipline}`}
         imageCaption={provider.heroImageNote}
         imageSrc={provider.image}
@@ -173,8 +173,8 @@ export function ProviderPage({ provider }: { provider: Provider }) {
         eyebrow="Begin"
         headline={`Begin with ${provider.shortName}.`}
         body="Request a consultation and a member of our team will help you plan the right next step — with this provider, or across the collective."
-        primaryCta={{ label: 'Request a Consultation', href: '/consultation' }}
-        secondaryCta={{ label: 'Explore Membership', href: '/membership' }}
+        primaryCta={{ label: `Book with ${provider.shortName}`, href: `/booking/${provider.slug}` }}
+        secondaryCta={{ label: 'Request a Consultation', href: '/consultation' }}
       />
     </>
   );

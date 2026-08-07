@@ -40,6 +40,7 @@ export const footerNav: { heading: string; links: NavLink[] }[] = [
   {
     heading: 'Visit',
     links: [
+      { label: 'Book an Appointment', href: '/booking' },
       { label: 'Book a Consultation', href: '/consultation' },
       { label: 'Plan Your Visit', href: '/the-space' },
     ],

@@ -34,8 +34,22 @@ export type Provider = {
   heroImageNote: string;
   /** Placeholder photography. Swap for final commissioned images. */
   image: string;
-  /** External booking link, if supplied by the client. Empty = no dead link. */
-  bookingUrl: string;
+  /**
+   * Booking hand-off. Confirmed 2026-07-20: booking is a REDIRECT to each
+   * provider's own platform, not an on-site or integrated booking system.
+   * Yulia: "when they click on booking, it's gonna be sent to another site."
+   *
+   * `url` empty = platform not yet supplied. The UI degrades to a consultation
+   * request rather than rendering a dead link.
+   */
+  booking: {
+    /** Platform name shown to the client before they leave the site. */
+    platform: string;
+    /** Destination. EMPTY UNTIL SUPPLIED BY THE PROVIDER — never guess a URL. */
+    url: string;
+    /** What to expect once they arrive. */
+    note: string;
+  };
   /** Existing brand site, for reference/handoff (not linked publicly unless confirmed). */
   referenceUrl?: string;
 };
@@ -85,7 +99,11 @@ export const providers: Provider[] = [
     heroImageNote:
       'ART DIRECTION: Editorial beauty detail — refined treatment tools styled on linen and ceramic, warm natural light. No smiling-at-camera portraits. Reference the provided tools inspiration image.',
     image: '/images/yulia.png',
-    bookingUrl: '', // NEEDS CLIENT CONFIRMATION
+    booking: {
+      platform: 'Mindbody',
+      url: '', // NEEDS CLIENT CONFIRMATION — Mindbody booking link
+      note: 'Booking for Yulia Gerchik Studio is handled through Mindbody, where you can choose a treatment, pick a time, and create a profile if it is your first visit.',
+    },
     referenceUrl: 'https://yuliagerchikstudio.com',
   },
   {
@@ -129,7 +147,11 @@ export const providers: Provider[] = [
     heroImageNote:
       'ART DIRECTION: Editorial, hospitality-led — no clinical blue, no tooth iconography. Warm treatment-room detail, refined materials, soft light. Reference the ceramic-dish inspiration image.',
     image: '/images/dental.png',
-    bookingUrl: '', // NEEDS CLIENT CONFIRMATION
+    booking: {
+      platform: 'the practice scheduling system',
+      url: '', // NEEDS CLIENT CONFIRMATION — NDS platform not yet identified
+      note: 'Booking for New York City Dental Smiles is handled through the practice’s own scheduling system.',
+    },
   },
   {
     slug: 'dr-evia-nano',
@@ -179,7 +201,11 @@ export const providers: Provider[] = [
     // leftover from the incorrect dermatology positioning. Path left intact
     // so the build doesn't break before the file itself is renamed.
     image: '/images/derm.png',
-    bookingUrl: '', // NEEDS CLIENT CONFIRMATION
+    booking: {
+      platform: 'Eviaesthetics',
+      url: '', // NEEDS CLIENT CONFIRMATION — Dr. Nano's booking link
+      note: 'Consultations with Dr. Nano are booked through her practice, Eviaesthetics. A private consultation is credited toward your first treatment.',
+    },
     // Medical-accuracy note: present as medical aesthetics / wellness medicine
     // only — NOT dermatology, NOT general medical care. Confirmed by the client
     // 2026-07-20. Weight loss, peptides, and IV infusions are regulated
