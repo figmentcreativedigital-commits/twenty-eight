@@ -43,10 +43,10 @@ export const providers: Provider[] = [
     slug: 'yulia-gerchik-studio',
     name: 'Yulia Gerchik Studio',
     specialtyLabel: 'Beauty & Skin',
-    discipline: 'Refined beauty, brows, and skin artistry',
+    discipline: 'Refined beauty, skin, body, and aesthetic artistry',
     headline: 'Beauty, refined through artistry and expertise.',
     cardStatement:
-      'A destination for refined beauty services, brows, skin, and aesthetic treatments designed to enhance natural features with precision and artistry.',
+      'A destination for refined beauty services, skin, body, and aesthetic treatments designed to enhance natural features with precision and artistry.',
     intro: [
       'Yulia Gerchik Studio brings an elevated beauty perspective to 28, offering refined services that enhance natural features through artistry, precision, and a deeply personal understanding of each client’s goals.',
       'As part of the 28 collective, Yulia Gerchik Studio gives clients access to beauty expertise that complements advanced skin health, smile aesthetics, and whole-person confidence.',
@@ -55,14 +55,17 @@ export const providers: Provider[] = [
       'True enhancement is quiet. Every service begins with the individual — their features, their proportions, their intentions — and works toward a result that looks like no one so much as themselves.',
     expertise: [
       {
-        title: 'Brow & Feature Design',
-        description:
-          'Considered brow shaping and definition that frames the face and honors natural symmetry.',
-      },
-      {
         title: 'Skin & Facial Treatments',
         description:
           'Refined facial treatments focused on clarity, texture, and a healthy, luminous finish.',
+      },
+      {
+        // NEEDS CLIENT CONFIRMATION — body treatments confirmed by the client
+        // as an offering, but no service list has been supplied. Kept
+        // deliberately non-specific until Yulia provides her body menu.
+        title: 'Body Treatments',
+        description:
+          'Considered body treatments delivered with the same precision, calm, and attention as the studio’s facial work.',
       },
       {
         title: 'Aesthetic Beauty Services',
@@ -71,13 +74,13 @@ export const providers: Provider[] = [
       },
     ],
     selectedServices: [
-      'Signature brow design',
       'Bespoke facial treatments',
       'Skin refinement rituals',
+      'Body treatments',
       'Personalized beauty consultation',
     ],
     heroImageNote:
-      'ART DIRECTION: Editorial beauty detail — brow/lash tools styled on linen and ceramic, warm natural light. No smiling-at-camera portraits. Reference the provided brow-tools inspiration image.',
+      'ART DIRECTION: Editorial beauty detail — refined treatment tools styled on linen and ceramic, warm natural light. No smiling-at-camera portraits. Reference the provided tools inspiration image.',
     image: '/images/yulia.png',
     bookingUrl: '', // NEEDS CLIENT CONFIRMATION
     referenceUrl: 'https://yuliagerchikstudio.com',
@@ -125,27 +128,22 @@ export const providers: Provider[] = [
     bookingUrl: '', // NEEDS CLIENT CONFIRMATION
   },
   {
-    slug: 'dr-avia-nano',
-    name: 'Dr. Avia Nano',
-    specialtyLabel: 'Advanced Skin Health',
-    discipline: 'Aesthetic medicine, dermatology, and longevity',
+    slug: 'dr-evia-nano',
+    name: 'Dr. Evia Nano',
+    specialtyLabel: 'Aesthetic & Wellness Medicine',
+    discipline: 'Medical aesthetics, wellness medicine, and longevity',
     headline: 'Advanced aesthetic medicine for skin, confidence, and longevity.',
     cardStatement:
-      'A medical aesthetics and dermatology provider focused on advanced skin health, aesthetic procedures, peptides, and regenerative wellness — not general medical care.',
+      'A medical aesthetics and wellness medicine provider focused on aesthetic procedures, peptides, weight loss, regenerative wellness, and IV infusions — not general medical care.',
     intro: [
-      'Dr. Avia Nano’s presence within 28 brings medical expertise to the world of aesthetics, skin health, and wellness optimization. Her practice is positioned around dermatology, injectables, peptides, regenerative treatments, and aesthetic procedures.',
+      'Dr. Evia Nano’s presence within 28 brings medical expertise to the world of aesthetics, skin health, and wellness optimization. Her practice is positioned around medical aesthetics and wellness medicine — aesthetic procedures, peptides, weight loss, regenerative wellness, and IV infusions.',
       'The experience is refined, intelligent, and deeply personal — balancing clinical credibility with the calm, luxury sensibility of the 28 collective.',
     ],
     philosophy:
       'Skin health is a long horizon. The most beautiful results come from prevention, precision, and restraint — protocols designed around the individual and maintained over time.',
     expertise: [
       {
-        title: 'Advanced Skin Health',
-        description:
-          'Dermatology-led assessment and treatment of skin quality, tone, and texture.',
-      },
-      {
-        title: 'Aesthetic Medicine',
+        title: 'Aesthetic Procedures',
         description:
           'Injectables and aesthetic procedures delivered with a natural, undetectable philosophy.',
       },
@@ -154,19 +152,35 @@ export const providers: Provider[] = [
         description:
           'Regenerative and longevity-focused protocols centered on prevention and maintenance.',
       },
+      {
+        title: 'Wellness Medicine',
+        description:
+          'Weight loss and IV infusion protocols focused on how you feel as much as how you look.',
+      },
     ],
+    // NEEDS CLIENT CONFIRMATION — category-level only. The client named
+    // specific treatments (Botox, fillers) in conversation, but individual
+    // service naming is held until Dr. Nano supplies and approves her own list.
     selectedServices: [
-      'Advanced skin health consultation',
-      'Injectable treatments',
-      'Peptide & regenerative protocols',
-      'Longevity-focused skin planning',
+      'Aesthetic procedures',
+      'Peptide therapy',
+      'Weight loss',
+      'Regenerative wellness',
+      'IV infusions',
     ],
     heroImageNote:
       'ART DIRECTION: Editorial skincare texture and refined tools — no cold clinical imagery. Warm, tactile, composed. Reference the travertine/ceramic inspiration images.',
+    // TODO: rename asset to /images/evia.png (or similar) — filename is a
+    // leftover from the incorrect dermatology positioning. Path left intact
+    // so the build doesn't break before the file itself is renamed.
     image: '/images/derm.png',
     bookingUrl: '', // NEEDS CLIENT CONFIRMATION
-    // Medical-accuracy note: present as aesthetic medicine / dermatology only.
-    // Do NOT imply general medical care. Verify credentials before publishing any.
+    // Medical-accuracy note: present as medical aesthetics / wellness medicine
+    // only — NOT dermatology, NOT general medical care. Confirmed by the client
+    // 2026-07-20. Weight loss, peptides, and IV infusions are regulated
+    // advertising categories in New York: route final wording through Dr. Nano
+    // and compliance review before publishing. Verify credentials before
+    // publishing any.
   },
 ];
 

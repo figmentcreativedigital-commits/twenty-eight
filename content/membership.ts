@@ -141,7 +141,7 @@ export const membershipFaqs: { q: string; a: string }[] = [
   },
   {
     q: 'Can membership be used across all three providers?',
-    a: 'Yes. Membership is designed to move with you across Yulia Gerchik Studio, New York City Dental Smiles, and Dr. Avia Nano, with a concierge to coordinate between them.',
+    a: 'Yes. Membership is designed to move with you across Yulia Gerchik Studio, New York City Dental Smiles, and Dr. Evia Nano, with a concierge to coordinate between them.',
   },
   {
     q: 'Is membership required to visit 28?',

@@ -8,7 +8,7 @@ import { providers } from '@/content/providers';
 export const metadata: Metadata = {
   title: 'The Collective',
   description:
-    'Three expert-led providers within 28 — Yulia Gerchik Studio, New York City Dental Smiles, and Dr. Avia Nano — highly specialized, deeply connected.',
+    'Three expert-led providers within 28 — Yulia Gerchik Studio, New York City Dental Smiles, and Dr. Evia Nano — highly specialized, deeply connected.',
   alternates: { canonical: '/collective' },
 };
 

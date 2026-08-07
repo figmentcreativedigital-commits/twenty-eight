@@ -2,9 +2,9 @@
 
 A production website for **28**, a luxury wellness & aesthetics collective in Tribeca, New York. 28 is the master brand uniting three independent providers under one address:
 
-- **Yulia Gerchik Studio** — beauty, brows, and skin
+- **Yulia Gerchik Studio** — beauty, skin, body, and aesthetic treatments
 - **New York City Dental Smiles** — cosmetic dentistry
-- **Dr. Avia Nano** — aesthetic medicine and dermatology
+- **Dr. Evia Nano** — medical aesthetics and wellness medicine
 
 Built with Next.js 14 (App Router), React 18, TypeScript, and Tailwind CSS.
 
@@ -121,7 +121,7 @@ The site was built to be launch-ready in structure, but the following contain **
 - [ ] `app/accessibility/page.tsx` — confirm the accessibility statement reflects actual practices.
 
 **Medical positioning**
-- [ ] Dr. Avia Nano is positioned as **aesthetic medicine / dermatology**, deliberately not general medical care. Confirm scope language with the provider.
+- [ ] Dr. Evia Nano is positioned as **medical aesthetics / wellness medicine**, deliberately not dermatology and not general medical care (client-confirmed 2026-07-20). Final wording is **owned by Dr. Nano** — she must approve her own copy before publication. Weight loss, peptides, and IV infusions require compliance review.
 
 ---
 

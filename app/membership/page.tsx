@@ -143,7 +143,7 @@ export default function MembershipPage() {
           </h2>
           <p className="mx-auto mt-6 max-w-xl font-sans leading-relaxed text-muted">
             Your account and benefits apply across Yulia Gerchik Studio, New York City Dental
-            Smiles, and Dr. Avia Nano — with a concierge to coordinate between them.
+            Smiles, and Dr. Evia Nano — with a concierge to coordinate between them.
           </p>
         </Reveal>
       </section>

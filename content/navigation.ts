@@ -17,7 +17,7 @@ export const primaryNav: NavLink[] = [
 export const providerNav: NavLink[] = [
   { label: 'Yulia Gerchik Studio', href: '/collective/yulia-gerchik-studio' },
   { label: 'NYC Dental Smiles', href: '/collective/nyc-dental-smiles' },
-  { label: 'Dr. Avia Nano', href: '/collective/dr-avia-nano' },
+  { label: 'Dr. Evia Nano', href: '/collective/dr-evia-nano' },
 ];
 
 export const footerNav: { heading: string; links: NavLink[] }[] = [

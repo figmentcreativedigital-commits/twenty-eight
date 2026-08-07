@@ -18,7 +18,7 @@ export const introducing28 = {
   eyebrow: 'Introducing 28',
   headline: 'A more considered approach to beauty and wellness.',
   body: [
-    '28 is a luxury wellness and aesthetics collective created for those who understand that beauty, health, and confidence are deeply connected. Located in Tribeca, 28 brings together three established leaders — Yulia Gerchik Studio, New York City Dental Smiles, and Dr. Avia Nano — to offer a more elevated, complete, and personalized approach to care.',
+    '28 is a luxury wellness and aesthetics collective created for those who understand that beauty, health, and confidence are deeply connected. Located in Tribeca, 28 brings together three established leaders — Yulia Gerchik Studio, New York City Dental Smiles, and Dr. Evia Nano — to offer a more elevated, complete, and personalized approach to care.',
     'From smile aesthetics and advanced skin health to beauty treatments, peptides, and regenerative wellness, every experience at 28 is designed to help clients look refined, feel confident, and invest in themselves with intention.',
   ],
 };
@@ -28,7 +28,7 @@ export const the28Difference = {
   headline: 'Most aesthetic experiences are fragmented. This one isn’t.',
   body: [
     'Skin is handled in one place. Dental care in another. Beauty services somewhere else entirely. 28 was created to bring those elements together in a more thoughtful way.',
-    'By combining expertise across dentistry, dermatology, wellness, and beauty, 28 makes it possible to build a personalized plan that considers the full picture — your smile, your skin, your features, your health, and the way you want to present yourself to the world.',
+    'By combining expertise across dentistry, aesthetic medicine, wellness, and beauty, 28 makes it possible to build a personalized plan that considers the full picture — your smile, your skin, your features, your health, and the way you want to present yourself to the world.',
   ],
 };
 
@@ -75,14 +75,16 @@ export const finalCta = {
 
 /** Interests offered in the consultation flow (also used to validate). */
 export const consultationInterests: string[] = [
-  'Beauty & brows',
+  'Beauty services',
   'Facial treatments',
+  'Body treatments',
   'Smile aesthetics',
   'Cosmetic dentistry',
   'Restorative dentistry',
   'Advanced skin health',
-  'Injectables',
+  'Aesthetic procedures & injectables',
   'Peptides & regenerative wellness',
+  'Weight loss & IV infusions',
   'Signature Experiences',
   'Membership',
   'Not sure yet',

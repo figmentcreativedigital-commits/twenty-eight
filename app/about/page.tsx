@@ -19,7 +19,7 @@ export default function AboutPage() {
       <Hero
         eyebrow="About 28"
         headline={'The future of\nbeauty lives here.'}
-        supporting="28 represents a new category in luxury health and beauty — a destination where dentistry, dermatology, wellness, and aesthetics intersect to create a more complete form of personal care."
+        supporting="28 represents a new category in luxury health and beauty — a destination where dentistry, aesthetic medicine, wellness, and beauty intersect to create a more complete form of personal care."
         primaryCta={{ label: 'Meet the Collective', href: '/collective' }}
         secondaryCta={{ label: 'Book a Consultation', href: '/consultation' }}
         imageAlt="A serene, architectural interior detail from 28's Tribeca destination in warm stone and plaster."
@@ -36,7 +36,7 @@ export default function AboutPage() {
             Positioning
           </p>
           <h2 className="text-balance font-serif text-display-md leading-tight text-ink">
-            28 unites leaders in dentistry, aesthetics, and dermatology to help clients look
+            28 unites leaders in dentistry, aesthetics, and wellness medicine to help clients look
             exceptional, feel confident, and age beautifully.
           </h2>
           <p className="mx-auto mt-8 max-w-2xl font-sans text-lg leading-relaxed text-muted">
