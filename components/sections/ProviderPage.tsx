@@ -168,7 +168,7 @@ export function ProviderPage({ provider }: { provider: Provider }) {
 
       <CtaBanner
         eyebrow="Begin"
-        headline={`Begin with ${provider.name.split(' ')[0]}.`}
+        headline={`Begin with ${provider.shortName}.`}
         body="Request a consultation and a member of our team will help you plan the right next step — with this provider, or across the collective."
         primaryCta={{ label: 'Request a Consultation', href: '/consultation' }}
         secondaryCta={{ label: 'Explore Membership', href: '/membership' }}

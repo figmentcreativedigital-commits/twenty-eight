@@ -58,7 +58,7 @@ export default function CollectivePage() {
           imageTone={tones[i % tones.length]}
           imageRatio="4/5"
           reverse={i % 2 === 1}
-          cta={{ label: `Visit ${provider.name.split(' ')[0]}`, href: `/collective/${provider.slug}` }}
+          cta={{ label: `Visit ${provider.shortName}`, href: `/collective/${provider.slug}` }}
           className={i % 2 === 1 ? 'bg-sand/40' : ''}
         />
       ))}

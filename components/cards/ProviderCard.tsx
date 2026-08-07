@@ -46,7 +46,7 @@ export function ProviderCard({
           {provider.cardStatement}
         </p>
         <span className="link-underline mt-6 self-start">
-          Visit {provider.name.split(' ')[0]}
+          Visit {provider.shortName}
         </span>
       </div>
     </Link>

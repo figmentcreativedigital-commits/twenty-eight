@@ -12,6 +12,8 @@
 export type Provider = {
   slug: string;
   name: string;
+  /** Short form used in inline CTAs, e.g. "Visit Dr. Nano", "Begin with Yulia." */
+  shortName: string;
   /** Short label used on cards, e.g. "Beauty & Skin". */
   specialtyLabel: string;
   /** One-line discipline descriptor. */
@@ -42,6 +44,7 @@ export const providers: Provider[] = [
   {
     slug: 'yulia-gerchik-studio',
     name: 'Yulia Gerchik Studio',
+    shortName: 'Yulia',
     specialtyLabel: 'Beauty & Skin',
     discipline: 'Refined beauty, skin, body, and aesthetic artistry',
     headline: 'Beauty, refined through artistry and expertise.',
@@ -88,6 +91,7 @@ export const providers: Provider[] = [
   {
     slug: 'nyc-dental-smiles',
     name: 'New York City Dental Smiles',
+    shortName: 'New York City Dental Smiles',
     specialtyLabel: 'Smile Aesthetics',
     discipline: 'Cosmetic, restorative, and smile-focused dentistry',
     headline: 'A healthier, more confident smile — designed with intention.',
@@ -130,6 +134,7 @@ export const providers: Provider[] = [
   {
     slug: 'dr-evia-nano',
     name: 'Dr. Evia Nano',
+    shortName: 'Dr. Nano',
     specialtyLabel: 'Aesthetic & Wellness Medicine',
     discipline: 'Medical aesthetics, wellness medicine, and longevity',
     headline: 'Advanced aesthetic medicine for skin, confidence, and longevity.',
