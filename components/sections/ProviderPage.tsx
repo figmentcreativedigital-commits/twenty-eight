@@ -148,7 +148,10 @@ export function ProviderPage({ provider }: { provider: Provider }) {
         </div>
 
         <div className="mt-12 flex flex-wrap gap-6">
-          <Button href="/signature-experiences" variant="secondary">
+          <Button href={`/service-menu#${provider.slug}`} variant="secondary">
+            View {provider.shortName}&rsquo;s Services
+          </Button>
+          <Button href="/signature-experiences" variant="quiet">
             View Signature Experiences
           </Button>
           <Button href="/collective" variant="quiet">

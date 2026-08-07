@@ -8,6 +8,7 @@ export type NavLink = {
 export const primaryNav: NavLink[] = [
   { label: 'About 28', href: '/about' },
   { label: 'The Collective', href: '/collective' },
+  { label: 'Service Menu', href: '/service-menu' },
   { label: 'Signature Experiences', href: '/signature-experiences' },
   { label: 'Membership', href: '/membership' },
   { label: 'The Space', href: '/the-space' },
@@ -26,6 +27,7 @@ export const footerNav: { heading: string; links: NavLink[] }[] = [
     links: [
       { label: 'About 28', href: '/about' },
       { label: 'The Collective', href: '/collective' },
+      { label: 'Service Menu', href: '/service-menu' },
       { label: 'Signature Experiences', href: '/signature-experiences' },
       { label: 'Membership', href: '/membership' },
       { label: 'The Space', href: '/the-space' },
