@@ -5,7 +5,7 @@ import { getProvider } from '@/content/providers';
 const provider = getProvider('yulia-gerchik-studio')!;
 
 export const metadata: Metadata = {
-  title: 'Yulia Gerchik Studio — Beauty & Skin',
+  title: 'Yulia Gerchik Studio - Beauty & Skin',
   description:
     'Refined beauty, skin, body, and aesthetic treatments within the 28 collective in Tribeca. Natural enhancement delivered with precision and an artist’s eye.',
   alternates: { canonical: '/collective/yulia-gerchik-studio' },
@@ -16,7 +16,7 @@ const jsonLd = {
   '@type': 'HealthAndBeautyBusiness',
   name: provider.name,
   description: provider.cardStatement,
-  parentOrganization: { '@type': 'Organization', name: '28 — Wellness & Aesthetics' },
+  parentOrganization: { '@type': 'Organization', name: '28 - Wellness & Aesthetics' },
   areaServed: 'New York, NY',
 };
 

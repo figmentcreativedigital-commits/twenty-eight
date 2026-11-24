@@ -10,9 +10,7 @@ export function MembershipTierCard({ tier }: { tier: MembershipTier }) {
     <div
       className={cn(
         'relative flex h-full flex-col border p-8 transition-transform duration-600 ease-editorial md:p-10',
-        tier.featured
-          ? 'border-gold bg-sand/40 lg:-translate-y-3'
-          : 'border-line bg-ivory'
+        tier.featured ? 'border-gold bg-sand/40 lg:-translate-y-3' : 'border-line bg-ivory'
       )}
     >
       {tier.featured ? (
@@ -22,19 +20,21 @@ export function MembershipTierCard({ tier }: { tier: MembershipTier }) {
       ) : null}
 
       <p className="eyebrow">{tier.name}</p>
-      <p className="mt-4 font-serif text-2xl text-ink">{tier.positioning}</p>
+      <p className="mt-4 font-serif text-2xl text-ink">{tier.title}</p>
+      <p className="mt-3 font-sans text-sm leading-relaxed text-muted">{tier.positioning}</p>
 
       <div className="mt-7 flex items-baseline gap-3 border-y border-line py-6">
-        <span className="font-serif text-4xl text-ink">
-          {formatCurrency(tier.balance)}
-        </span>
-        <span className="font-sans text-sm text-muted">account balance</span>
+        <span className="font-serif text-4xl text-ink">{formatCurrency(tier.balance)}</span>
+        <span className="font-sans text-sm text-muted">funded account balance</span>
       </div>
       <p className="mt-4 font-sans text-sm text-gold-deep">
-        {tier.savingsPct}% preferred savings on services &amp; retail
+        Proposed preferred savings: {tier.savingsPct}% on eligible services and retail
       </p>
 
-      <ul className="mt-7 flex-1 space-y-3">
+      <p className="mt-7 font-sans text-[0.7rem] uppercase tracking-wide text-muted">
+        Membership Benefits
+      </p>
+      <ul className="mt-3 flex-1 space-y-3">
         {tier.benefits.map((b) => (
           <li key={b} className="flex gap-3 font-sans text-sm leading-relaxed text-charcoal">
             <span aria-hidden="true" className="mt-2 h-px w-3 flex-shrink-0 bg-gold" />
@@ -53,12 +53,12 @@ export function MembershipTierCard({ tier }: { tier: MembershipTier }) {
             : 'border border-charcoal/40 text-charcoal hover:border-gold-deep hover:text-gold-deep'
         )}
       >
-        Request Information
+        Request {tier.name} Membership Information
       </Link>
 
       {tier.provisional ? (
         <p className="mt-4 font-sans text-[0.65rem] italic leading-snug text-muted/70">
-          Concept terms — subject to confirmation.
+          Concept terms - subject to confirmation.
         </p>
       ) : null}
     </div>

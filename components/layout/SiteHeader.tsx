@@ -3,10 +3,29 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { primaryNav, providerNav } from '@/content/navigation';
-import { Wordmark } from './Wordmark';
+import { primaryNav, providerNavShort } from '@/content/navigation';
+import { LogoMark } from './Wordmark';
 import { cn } from '@/lib/utils';
 import { track } from '@/lib/analytics';
+
+/**
+ * Routes that open on a full-bleed dark hero. The header starts transparent
+ * over these; every other route (consultation, booking hand-off, legal,
+ * 404) starts solid so the navigation is readable on ivory.
+ */
+const DARK_HERO_ROUTES = new Set([
+  '/',
+  '/about',
+  '/collective',
+  '/collective/yulia-gerchik-studio',
+  '/collective/nyc-dental-smiles',
+  '/collective/dr-evia-nano',
+  '/service-menu',
+  '/signature-experiences',
+  '/membership',
+  '/the-space',
+  '/booking',
+]);
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -42,7 +61,8 @@ export function SiteHeader() {
     };
   }, [menuOpen]);
 
-  const solid = scrolled || menuOpen;
+  const darkHero = DARK_HERO_ROUTES.has((pathname || '/').replace(/\/$/, '') || '/');
+  const solid = !darkHero || scrolled || menuOpen;
   const linkTone = solid ? 'text-charcoal' : 'text-ivory';
 
   return (
@@ -51,11 +71,11 @@ export function SiteHeader() {
       <div
         className={cn(
           'overflow-hidden bg-ink transition-all duration-600 ease-editorial',
-          scrolled ? 'max-h-0 opacity-0' : 'max-h-12 opacity-100'
+          solid ? 'max-h-0 opacity-0' : 'max-h-12 opacity-100'
         )}
       >
         <p className="mx-auto max-w-shell px-6 py-2.5 text-center font-sans text-[0.66rem] uppercase tracking-eyebrow text-ivory">
-          A new destination for beauty, wellness &amp; longevity — Tribeca, New York
+          A new destination for integrated health, wellness &amp; longevity - Tribeca, New York
         </p>
       </div>
 
@@ -74,26 +94,12 @@ export function SiteHeader() {
             solid ? 'py-3' : 'py-5'
           )}
         >
-          {/* Over the hero: the full vertical lockup, in ivory, with room to
-              breathe. Once the bar collapses to ivory, we swap to the
-              horizontal "28 | TRIBECA" lockup — it fits the short bar height
-              while keeping TRIBECA legible, which the vertical stack can't. */}
           <Link
             href="/"
-            aria-label="28 Tribeca — Wellness & Aesthetics. Return to homepage."
+            aria-label="28 - Wellness & Aesthetics. Return to homepage."
             className="inline-flex items-center focus-visible:outline-gold-deep"
           >
-            {solid ? (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
-                src="/logo/28-horizontal.png"
-                alt=""
-                aria-hidden="true"
-                className="h-9 w-auto select-none"
-              />
-            ) : (
-              <Wordmark variant="lockup" tone="ivory" asLink={false} className="h-16" />
-            )}
+            <LogoMark tone={solid ? 'ink' : 'ivory'} />
           </Link>
 
           {/* Desktop nav */}
@@ -168,7 +174,7 @@ export function SiteHeader() {
         className="fixed inset-0 top-0 z-40 flex flex-col bg-ivory lg:hidden"
       >
         <div className="flex items-center justify-between border-b border-line px-6 py-4">
-          <Wordmark variant="mark" tone="ink" className="h-9" />
+          <LogoMark tone="ink" size="lg" />
           <button
             ref={closeBtnRef}
             type="button"
@@ -198,7 +204,7 @@ export function SiteHeader() {
           ))}
 
           <p className="eyebrow mt-8 mb-3">The Collective</p>
-          {providerNav.map((item) => (
+          {providerNavShort.map((item) => (
             <Link
               key={item.href}
               href={item.href}

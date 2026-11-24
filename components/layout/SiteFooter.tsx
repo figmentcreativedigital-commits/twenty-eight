@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { footerNav } from '@/content/navigation';
 import { site } from '@/content/site';
-import { Wordmark } from './Wordmark';
+import { LogoMark } from './Wordmark';
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -12,7 +12,7 @@ export function SiteFooter() {
         {/* Top — brand + invitation */}
         <div className="flex flex-col gap-10 border-b border-ivory/10 pb-14 md:flex-row md:items-end md:justify-between">
           <div className="max-w-md">
-            <Wordmark variant="lockup" tone="ivory" asLink={false} className="h-40" />
+            <LogoMark tone="ivory" size="lg" />
             <p className="mt-8 font-serif text-2xl leading-snug text-ivory/90 md:text-3xl">
               {site.tagline}
             </p>
@@ -81,7 +81,7 @@ export function SiteFooter() {
         {/* Bottom — legal */}
         <div className="flex flex-col gap-4 border-t border-ivory/10 pt-8 text-ivory/45 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-sans text-xs">
-            © {year} 28 — Wellness &amp; Aesthetics. All rights reserved.
+            © {year} 28 - Wellness &amp; Aesthetics. All rights reserved.
           </p>
           <div className="flex gap-6 font-sans text-xs">
             <Link href="/privacy" className="transition-colors duration-400 hover:text-gold">

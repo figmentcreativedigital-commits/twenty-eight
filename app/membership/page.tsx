@@ -1,22 +1,26 @@
 import type { Metadata } from 'next';
 import { Hero } from '@/components/sections/Hero';
 import { CtaBanner } from '@/components/sections/CtaBanner';
-import { SectionHeading } from '@/components/ui/SectionHeading';
+import { BeginSection } from '@/components/sections/BeginSection';
 import { Reveal } from '@/components/ui/Reveal';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Accordion } from '@/components/ui/Accordion';
 import { MembershipTierCard } from '@/components/cards/MembershipTierCard';
 import {
   membershipIntro,
   howItWorks,
+  membershipTiersIntro,
   membershipTiers,
   membershipBenefits,
+  wellnessScore,
+  connectedExpertise,
   membershipFaqs,
 } from '@/content/membership';
 
 export const metadata: Metadata = {
   title: 'Membership',
   description:
-    'A private membership at 28 — preferred access, annual planning, and concierge coordination across the collective. A relationship, not a discount club.',
+    'Membership at 28 combines preferred access to exceptional services with an ongoing, personalized wellness relationship, coordinated by a dedicated concierge.',
   alternates: { canonical: '/membership' },
 };
 
@@ -39,31 +43,47 @@ export default function MembershipPage() {
       />
 
       <Hero
-        eyebrow="Membership"
-        headline={'A private membership,\nconsidered like an investment.'}
-        supporting="A relationship, not a transaction — an annual commitment to your own care, with preferred access across the collective and a concierge to coordinate it all."
-        primaryCta={{ label: 'Request Membership Information', href: '/consultation?interest=Membership' }}
+        eyebrow={membershipIntro.hero.eyebrow}
+        headline={membershipIntro.hero.headline}
+        supporting={membershipIntro.hero.supporting}
+        primaryCta={{
+          label: 'Request Membership Information',
+          href: '/consultation?interest=Membership',
+        }}
         secondaryCta={{ label: 'The Collective', href: '/collective' }}
         imageAlt="A refined 28 membership card in taupe and champagne gold, resting on linen with a silk ribbon."
-        imageCaption="ART DIRECTION: Membership card + materials — taupe, champagne foil, silk ribbon (reference provided packaging)."
         imageSrc="/images/membership.png"
-        size="tall"
       />
+
+      {/* Statement */}
+      <section className="shell py-section">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          {membershipIntro.statement.map((p, i) => (
+            <p
+              key={p}
+              className={`${i > 0 ? 'mt-6 ' : ''}font-sans text-lg leading-relaxed text-charcoal`}
+            >
+              {p}
+            </p>
+          ))}
+        </Reveal>
+      </section>
 
       {/* Philosophy */}
       <section className="shell py-section">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
           <Reveal>
-            <SectionHeading eyebrow="The Idea" title="Private access, planned across the year." />
+            <Eyebrow>{membershipIntro.philosophy.eyebrow}</Eyebrow>
+            <h2 className="text-balance font-serif text-display-md text-ink">
+              {membershipIntro.philosophy.headline}
+            </h2>
           </Reveal>
-          <Reveal delay={120}>
-            <div className="space-y-6">
-              {membershipIntro.philosophy.map((p, i) => (
-                <p key={i} className="max-w-prose font-sans text-lg leading-relaxed text-charcoal">
-                  {p}
-                </p>
-              ))}
-            </div>
+          <Reveal className="space-y-6">
+            {membershipIntro.philosophy.body.map((p) => (
+              <p key={p} className="max-w-prose font-sans text-lg leading-relaxed text-charcoal">
+                {p}
+              </p>
+            ))}
           </Reveal>
         </div>
       </section>
@@ -71,13 +91,18 @@ export default function MembershipPage() {
       {/* How it works */}
       <section className="bg-sand/50">
         <div className="shell py-section">
-          <SectionHeading eyebrow="How Membership Works" title="Three simple steps." className="mb-14 max-w-xl" />
+          <p className="eyebrow mb-4">{howItWorks.eyebrow}</p>
+          <h2 className="mb-14 max-w-xl font-serif text-display-sm text-ink">
+            {howItWorks.headline}
+          </h2>
           <div className="grid gap-x-10 gap-y-12 md:grid-cols-3">
-            {howItWorks.map((step, i) => (
-              <Reveal as="div" key={step.step} delay={i * 90}>
+            {howItWorks.steps.map((step, i) => (
+              <Reveal key={step.step} delay={i * 90}>
                 <span className="font-serif text-4xl text-gold">{step.step}</span>
                 <h3 className="mt-4 font-serif text-2xl text-ink">{step.title}</h3>
-                <p className="mt-3 font-sans text-sm leading-relaxed text-muted">{step.description}</p>
+                <p className="mt-3 font-sans text-sm leading-relaxed text-muted">
+                  {step.description}
+                </p>
               </Reveal>
             ))}
           </div>
@@ -86,17 +111,13 @@ export default function MembershipPage() {
 
       {/* Tiers */}
       <section className="shell py-section">
-        <SectionHeading
-          eyebrow="Membership Tiers"
-          title="Choose the level of access that fits."
-          lede="Members fund a personal 28 account applied toward any service or retail across the collective, with preferred benefits by tier."
-          className="mb-6 max-w-2xl"
-        />
-        <p className="mb-12 max-w-2xl font-sans text-xs italic leading-relaxed text-muted/80">
-          Note — the tier structure below reflects an early concept and is shown for
-          illustration. Balances, savings, and benefits are provisional and subject to
-          confirmation before launch.
-        </p>
+        <div className="mb-6 max-w-2xl">
+          <Eyebrow className="mb-5 inline-flex">{membershipTiersIntro.eyebrow}</Eyebrow>
+          <h2 className="text-balance font-serif text-display-md text-ink">
+            {membershipTiersIntro.headline}
+          </h2>
+          <p className="lede mt-6 max-w-prose">{membershipTiersIntro.lede}</p>
+        </div>
 
         <div className="grid gap-8 lg:grid-cols-3">
           {membershipTiers.map((tier) => (
@@ -105,6 +126,10 @@ export default function MembershipPage() {
             </Reveal>
           ))}
         </div>
+
+        <p className="mt-12 max-w-2xl font-sans text-xs italic leading-relaxed text-muted/80">
+          {membershipTiersIntro.disclaimer}
+        </p>
       </section>
 
       {/* Benefits */}
@@ -113,55 +138,100 @@ export default function MembershipPage() {
           <div className="mb-14 max-w-2xl">
             <p className="mb-6 inline-flex items-center gap-3 font-sans text-[0.72rem] uppercase tracking-eyebrow text-gold">
               <span className="h-px w-14 bg-gold" aria-hidden="true" />
-              Member Benefits
+              {membershipBenefits.eyebrow}
             </p>
             <h2 className="text-balance font-serif text-display-md text-ivory">
-              The advantages of a coordinated relationship.
+              {membershipBenefits.headline}
             </h2>
           </div>
           <div className="grid gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-4">
-            {membershipBenefits.map((b, i) => (
-              <Reveal as="div" key={b.title} delay={i * 80}>
+            {membershipBenefits.items.map((b, i) => (
+              <Reveal key={b.title} delay={(i % 4) * 80}>
                 <span className="mb-6 block h-px w-14 bg-gold" aria-hidden="true" />
                 <h3 className="font-serif text-2xl text-ivory">{b.title}</h3>
-                <p className="mt-4 font-sans text-sm leading-relaxed text-ivory/70">{b.description}</p>
+                <p className="mt-4 font-sans text-sm leading-relaxed text-ivory/70">
+                  {b.description}
+                </p>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Relationship to providers */}
+      {/* 28 Wellness Score */}
+      <section className="bg-sand/50">
+        <div className="shell py-section">
+          <div className="mb-14 max-w-2xl">
+            <Eyebrow className="mb-5 inline-flex">{wellnessScore.eyebrow}</Eyebrow>
+            <h2 className="text-balance font-serif text-display-md text-ink">
+              {wellnessScore.headline}
+            </h2>
+            <p className="mt-6 max-w-prose font-sans text-lg leading-relaxed text-charcoal">
+              {wellnessScore.intro}
+            </p>
+          </div>
+          <div className="grid gap-x-10 gap-y-10 md:grid-cols-2 lg:grid-cols-4">
+            {wellnessScore.dimensions.map((d, i) => (
+              <Reveal key={d} delay={i * 80}>
+                <span className="hairline-gold mb-6 block" aria-hidden="true" />
+                <h3 className="font-serif text-xl text-ink">{d}</h3>
+              </Reveal>
+            ))}
+          </div>
+          <div className="mt-12 max-w-prose space-y-5">
+            {wellnessScore.body.map((p) => (
+              <p key={p} className="font-sans leading-relaxed text-charcoal">
+                {p}
+              </p>
+            ))}
+            <p className="font-sans text-sm italic leading-relaxed text-muted/80">
+              {wellnessScore.disclaimer}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Connected expertise */}
       <section className="shell py-section">
         <Reveal className="mx-auto max-w-3xl text-center">
-          <p className="eyebrow mb-6 inline-flex items-center gap-3">
-            <span className="hairline-gold" aria-hidden="true" />
-            One Membership, the Whole Collective
-          </p>
+          <Eyebrow>{connectedExpertise.eyebrow}</Eyebrow>
           <h2 className="text-balance font-serif text-display-sm text-ink">
-            Membership moves with you across every provider.
+            {connectedExpertise.headline}
           </h2>
-          <p className="mx-auto mt-6 max-w-xl font-sans leading-relaxed text-muted">
-            Your account and benefits apply across Yulia Gerchik Studio, New York City Dental
-            Smiles, and Dr. Evia Nano — with a concierge to coordinate between them.
-          </p>
+          {connectedExpertise.body.map((p) => (
+            <p key={p} className="mx-auto mt-6 max-w-xl font-sans leading-relaxed text-muted">
+              {p}
+            </p>
+          ))}
         </Reveal>
       </section>
 
       {/* FAQ */}
       <section className="bg-sand/50">
         <div className="shell py-section">
-          <SectionHeading eyebrow="Questions" title="Membership, answered." className="mb-12 max-w-xl" />
+          <p className="eyebrow mb-4">Questions</p>
+          <h2 className="mb-12 max-w-xl font-serif text-display-sm text-ink">
+            Membership, Answered.
+          </h2>
           <Accordion items={membershipFaqs} />
         </div>
       </section>
 
+      <BeginSection
+        headline="Invest in Your Health. Prioritize Your Future."
+        body="Whether you are beginning a wellness journey or seeking a more coordinated approach to ongoing care, 28 offers a personalized membership experience designed around you. Discover how membership can support your health, well-being, and long-term goals."
+        primaryCta={{
+          label: 'Request Membership Information',
+          href: '/consultation?interest=Membership',
+        }}
+        secondaryCta={{ label: 'Explore Our Expertise', href: '/service-menu' }}
+      />
+
       <CtaBanner
-        eyebrow="Begin"
-        headline="Request membership information."
-        body="Tell us a little about your goals and a member of our team will walk you through the tiers and help determine the right fit."
-        primaryCta={{ label: 'Request Membership Information', href: '/consultation?interest=Membership' }}
-        secondaryCta={{ label: 'Explore the Collective', href: '/collective' }}
+        eyebrow="Begin Your Journey"
+        headline="A Lasting Commitment to Better Living."
+        body="Connected expertise. Personalized care. A healthier future."
+        primaryCta={{ label: 'Request a Consultation', href: '/consultation' }}
       />
     </>
   );

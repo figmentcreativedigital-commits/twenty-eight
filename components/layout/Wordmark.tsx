@@ -68,10 +68,44 @@ export function Wordmark({
   return (
     <Link
       href={href}
-      aria-label="28 Tribeca — Wellness & Aesthetics. Return to homepage."
+      aria-label="28 - Wellness & Aesthetics. Return to homepage."
       className="inline-flex items-center focus-visible:outline-gold-deep"
     >
       {art}
     </Link>
+  );
+}
+
+/**
+ * The "28" mark sized to match the staging theme's logo artwork, where the
+ * numerals fill ~85% of the box height with a hairline of side padding.
+ *  - `md` = 40px box (header)
+ *  - `lg` = 48px box (footer, mobile menu)
+ */
+export function LogoMark({
+  tone = 'ink',
+  size = 'md',
+  className,
+}: {
+  tone?: 'ink' | 'ivory';
+  size?: 'md' | 'lg';
+  className?: string;
+}) {
+  return (
+    <span
+      aria-hidden="true"
+      className={cn(
+        'inline-flex select-none items-center',
+        size === 'lg' ? 'h-12 px-[2.5px]' : 'h-10 px-[2px]',
+        className
+      )}
+    >
+      <Wordmark
+        variant="mark"
+        tone={tone}
+        asLink={false}
+        className={size === 'lg' ? 'h-[41px]' : 'h-[34px]'}
+      />
+    </span>
   );
 }

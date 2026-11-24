@@ -31,7 +31,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://28tribeca.com';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${site.name} — Wellness & Aesthetics | Tribeca, New York`,
+    default: `${site.name} - Wellness & Aesthetics | Tribeca, New York`,
     template: `%s · ${site.name}`,
   },
   description: site.metaDescription,
@@ -49,14 +49,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: site.fullName,
-    title: `${site.name} — Wellness & Aesthetics`,
+    title: `${site.name} - Wellness & Aesthetics`,
     description: site.metaDescription,
     url: siteUrl,
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${site.name} — Wellness & Aesthetics`,
+    title: `${site.name} - Wellness & Aesthetics`,
     description: site.metaDescription,
   },
   robots: {

@@ -21,19 +21,19 @@ export default function PrivacyPage() {
 
         <div className="mt-6 border border-line bg-sand/40 px-5 py-4 font-sans text-sm leading-relaxed text-muted">
           Template pending client and legal review. This page is a starting point and must be
-          replaced with a reviewed privacy policy before launch — including any obligations specific
+          replaced with a reviewed privacy policy before launch - including any obligations specific
           to health-adjacent services.
         </div>
 
         <div className="prose-28 mt-12 space-y-10">
           <Section title="What we collect">
             When you request a consultation or membership information, we collect the details you
-            provide — such as your name, email address, phone number, areas of interest, and any
+            provide - such as your name, email address, phone number, areas of interest, and any
             context you choose to share.
           </Section>
 
           <Section title="How we use it">
-            We use your information to respond to your request, coordinate care across the collective,
+            We use your information to respond to your request, coordinate care across the Collective,
             and communicate with you about your inquiry. We do not sell your personal information.
           </Section>
 

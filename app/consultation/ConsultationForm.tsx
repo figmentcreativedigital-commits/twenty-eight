@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { consultationInterests } from '@/content/home';
 import { providers } from '@/content/providers';
 import {
@@ -10,7 +9,6 @@ import {
   type FieldErrors,
 } from '@/lib/validation';
 import { track } from '@/lib/analytics';
-import { cn } from '@/lib/utils';
 
 const STORAGE_KEY = '28-consultation-draft';
 
@@ -21,28 +19,29 @@ const emptyForm: ConsultationPayload = {
   phone: '',
   interests: [],
   goals: '',
-  timeline: '',
+  timeline: 'As soon as possible',
   preferredProvider: '',
-  preferredContact: '',
+  preferredContact: 'Email',
   preferredTimes: '',
   consent: false,
   company: '',
 };
 
-const steps = ['Your details', 'Your interests', 'Your goals'] as const;
+const steps = ['Details', 'Interests', 'Goals'] as const;
 
-const inputClass =
-  'w-full border-b border-line bg-transparent py-3 font-sans text-charcoal placeholder:text-muted/50 transition-colors duration-400 focus:border-gold-deep focus:outline-none';
+const inputClass = 'w-full border border-line bg-ivory px-4 py-3 font-sans text-charcoal';
+
+const contactMethods = ['Email', 'Phone', 'Text'];
+const timelines = ['As soon as possible', 'Within 1–3 months', 'Just exploring'];
 
 export function ConsultationForm() {
-  const searchParams = useSearchParams();
   const [form, setForm] = useState<ConsultationPayload>(emptyForm);
   const [step, setStep] = useState(0);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [serverMessage, setServerMessage] = useState('');
   const startedRef = useRef(false);
-  const headingRef = useRef<HTMLHeadingElement>(null);
+  const headingRef = useRef<HTMLParagraphElement>(null);
 
   // Restore any saved draft + prefill interest from the query string.
   useEffect(() => {
@@ -53,7 +52,7 @@ export function ConsultationForm() {
     } catch {
       /* ignore */
     }
-    const interest = searchParams.get('interest');
+    const interest = new URLSearchParams(window.location.search).get('interest');
     if (interest && !restored.interests.includes(interest)) {
       const match = consultationInterests.includes(interest)
         ? interest
@@ -75,8 +74,14 @@ export function ConsultationForm() {
     }
   }, [form]);
 
-  // Move focus to the step heading on step change (screen-reader friendly).
+  // Move focus to the step label on step change (screen-reader friendly).
+  // Skipped on first render so the page doesn't jump to the form.
+  const firstRender = useRef(true);
   useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
     if (status === 'success') return;
     headingRef.current?.focus();
   }, [step, status]);
@@ -186,7 +191,7 @@ export function ConsultationForm() {
         </h2>
         <p className="mx-auto mt-6 max-w-md font-sans leading-relaxed text-muted">
           A member of our team will review your request and reach out to help determine the
-          most appropriate next step — with the right provider, or across the collective.
+          most appropriate next step - with the right provider, or across the Collective.
         </p>
         <a href="/" className="link-underline mt-10 inline-flex">
           Return home
@@ -195,246 +200,192 @@ export function ConsultationForm() {
     );
   }
 
-  const isLast = step === steps.length - 1;
+  const stepLabel = (i: number) => (
+    <p
+      ref={step === i ? headingRef : undefined}
+      tabIndex={-1}
+      className="eyebrow mb-8 focus:outline-none"
+    >
+      Step {i + 1} of {steps.length} - {steps[i]}
+    </p>
+  );
 
   return (
-    <div className="mx-auto max-w-2xl">
-      {/* Progress */}
-      <div className="mb-12">
-        <div className="mb-4 flex items-center justify-between">
-          <p className="font-sans text-xs uppercase tracking-wide text-muted">
-            Step {step + 1} of {steps.length}
-          </p>
-          <p className="font-sans text-xs uppercase tracking-wide text-gold-deep">
-            {steps[step]}
-          </p>
-        </div>
-        <ol className="flex gap-2" aria-label="Progress">
-          {steps.map((label, i) => (
-            <li key={label} className="h-0.5 flex-1 overflow-hidden bg-line">
-              <span
-                className={cn(
-                  'block h-full origin-left bg-gold-deep transition-transform duration-600 ease-editorial',
-                  i <= step ? 'scale-x-100' : 'scale-x-0'
-                )}
-              />
-            </li>
-          ))}
-        </ol>
-      </div>
-
+    <form
+      className="mx-auto max-w-2xl"
+      noValidate
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (step === steps.length - 1) submit();
+        else next();
+      }}
+    >
       {/* Honeypot (hidden from users, visible to bots) */}
       <div aria-hidden="true" className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden">
-        <label htmlFor="company">Company (leave blank)</label>
-        <input
-          id="company"
-          name="company"
-          type="text"
-          tabIndex={-1}
-          autoComplete="off"
-          value={form.company}
-          onChange={(e) => setForm((f) => ({ ...f, company: e.target.value }))}
-        />
+        <label>
+          Company
+          <input
+            name="company"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={form.company}
+            onChange={(e) => setForm((f) => ({ ...f, company: e.target.value }))}
+          />
+        </label>
       </div>
 
-      {/* Step 0 — details */}
-      {step === 0 && (
-        <fieldset>
-          <legend className="sr-only">Your details</legend>
-          <h2 ref={headingRef} tabIndex={-1} className="mb-2 font-serif text-2xl text-ink focus:outline-none">
-            Let us start with the essentials.
-          </h2>
-          <p className="mb-8 font-sans text-sm text-muted">All fields on this step are required.</p>
-
-          <div className="grid gap-7 sm:grid-cols-2">
-            <Field label="First name" required error={errors.firstName} htmlFor="firstName">
-              <input id="firstName" type="text" autoComplete="given-name" className={inputClass} value={form.firstName} onChange={(e) => update('firstName', e.target.value)} aria-invalid={!!errors.firstName} />
-            </Field>
-            <Field label="Last name" required error={errors.lastName} htmlFor="lastName">
-              <input id="lastName" type="text" autoComplete="family-name" className={inputClass} value={form.lastName} onChange={(e) => update('lastName', e.target.value)} aria-invalid={!!errors.lastName} />
-            </Field>
-            <Field label="Email" required error={errors.email} htmlFor="email">
-              <input id="email" type="email" autoComplete="email" className={inputClass} value={form.email} onChange={(e) => update('email', e.target.value)} aria-invalid={!!errors.email} />
-            </Field>
-            <Field label="Phone" required error={errors.phone} htmlFor="phone">
-              <input id="phone" type="tel" autoComplete="tel" className={inputClass} value={form.phone} onChange={(e) => update('phone', e.target.value)} aria-invalid={!!errors.phone} />
-            </Field>
-          </div>
-        </fieldset>
-      )}
-
-      {/* Step 1 — interests */}
-      {step === 1 && (
-        <fieldset>
-          <legend className="sr-only">Your interests</legend>
-          <h2 ref={headingRef} tabIndex={-1} className="mb-2 font-serif text-2xl text-ink focus:outline-none">
-            What would you like to explore?
-          </h2>
-          <p className="mb-8 font-sans text-sm text-muted">
-            Select any that apply — there are no wrong answers, and you can say &ldquo;not sure yet.&rdquo;
-          </p>
-
-          <div className="flex flex-wrap gap-3">
-            {consultationInterests.map((interest) => {
-              const active = form.interests.includes(interest);
-              return (
-                <button
-                  key={interest}
-                  type="button"
-                  aria-pressed={active}
-                  onClick={() => toggleInterest(interest)}
-                  className={cn(
-                    'border px-5 py-3 font-sans text-sm transition-all duration-400',
-                    active ? 'border-gold-deep bg-sand/60 text-ink' : 'border-line text-muted hover:border-gold hover:text-charcoal'
-                  )}
-                >
-                  {interest}
-                </button>
-              );
-            })}
-          </div>
-          {errors.interests ? (
-            <p className="mt-4 font-sans text-sm text-gold-deep" role="alert">
-              {errors.interests}
-            </p>
-          ) : null}
-        </fieldset>
-      )}
-
-      {/* Step 2 — goals */}
-      {step === 2 && (
-        <fieldset>
-          <legend className="sr-only">Your goals</legend>
-          <h2 ref={headingRef} tabIndex={-1} className="mb-2 font-serif text-2xl text-ink focus:outline-none">
-            Tell us a little more.
-          </h2>
-          <p className="mb-8 font-sans text-sm text-muted">
-            Everything here is optional — it simply helps us prepare.
-          </p>
-
-          <div className="space-y-7">
-            <Field label="What would you like to explore?" optional htmlFor="goals">
-              <textarea id="goals" rows={3} className={cn(inputClass, 'resize-none')} value={form.goals} onChange={(e) => update('goals', e.target.value)} placeholder="Share as much or as little as you like." />
-            </Field>
-
-            <Field label="A specific event or timeline?" optional htmlFor="timeline">
-              <input id="timeline" type="text" className={inputClass} value={form.timeline} onChange={(e) => update('timeline', e.target.value)} placeholder="e.g. a wedding in the spring" />
-            </Field>
-
-            <Field label="Preferred provider, if known" optional htmlFor="preferredProvider">
-              <select id="preferredProvider" className={cn(inputClass, 'appearance-none')} value={form.preferredProvider} onChange={(e) => update('preferredProvider', e.target.value)}>
-                <option value="">No preference</option>
-                {providers.map((p) => (
-                  <option key={p.slug} value={p.name}>
-                    {p.name}
-                  </option>
-                ))}
-                <option value="Not sure yet">Not sure yet</option>
-              </select>
-            </Field>
-
-            <div className="grid gap-7 sm:grid-cols-2">
-              <fieldset>
-                <legend className="mb-3 font-sans text-sm text-charcoal">
-                  Preferred contact method <span className="text-muted">(optional)</span>
-                </legend>
-                <div className="flex gap-5">
-                  {['Email', 'Phone', 'Either'].map((opt) => (
-                    <label key={opt} className="flex cursor-pointer items-center gap-2 font-sans text-sm text-charcoal">
-                      <input type="radio" name="preferredContact" value={opt} checked={form.preferredContact === opt} onChange={(e) => update('preferredContact', e.target.value)} className="accent-[color:var(--color-gold-deep)]" />
-                      {opt}
-                    </label>
-                  ))}
-                </div>
-              </fieldset>
-
-              <Field label="Preferred days or times" optional htmlFor="preferredTimes">
-                <input id="preferredTimes" type="text" className={inputClass} value={form.preferredTimes} onChange={(e) => update('preferredTimes', e.target.value)} placeholder="e.g. weekday mornings" />
-              </Field>
-            </div>
-
-            {/* Consent */}
-            <div className="border-t border-line pt-7">
-              <label className="flex cursor-pointer items-start gap-3 font-sans text-sm leading-relaxed text-charcoal">
-                <input type="checkbox" checked={form.consent} onChange={(e) => update('consent', e.target.checked)} aria-invalid={!!errors.consent} className="mt-1 h-4 w-4 accent-[color:var(--color-gold-deep)]" />
-                <span>
-                  I agree to be contacted by 28 regarding my request. <span className="text-muted">Required.</span>
-                </span>
-              </label>
-              {errors.consent ? (
-                <p className="mt-2 font-sans text-sm text-gold-deep" role="alert">
-                  {errors.consent}
-                </p>
-              ) : null}
-            </div>
-          </div>
-        </fieldset>
-      )}
-
-      {/* Server error */}
-      {status === 'error' && serverMessage ? (
-        <p className="mt-8 border border-gold-deep/40 bg-sand/50 px-4 py-3 font-sans text-sm text-charcoal" role="alert">
-          {serverMessage}
-        </p>
-      ) : null}
-
-      {/* Controls */}
-      <div className="mt-12 flex items-center justify-between gap-4">
-        <button
-          type="button"
-          onClick={back}
-          disabled={step === 0}
-          className={cn('font-sans text-sm uppercase tracking-wide transition-colors duration-400', step === 0 ? 'invisible' : 'text-muted hover:text-charcoal')}
-        >
-          &larr; Back
+      {/* Step 1 - details */}
+      <div className="form-step" hidden={step !== 0}>
+        {stepLabel(0)}
+        <div className="grid gap-6 sm:grid-cols-2">
+          <Field label="First name *" error={errors.firstName}>
+            <input name="firstName" type="text" required autoComplete="given-name" className={inputClass} value={form.firstName} onChange={(e) => update('firstName', e.target.value)} aria-invalid={!!errors.firstName} />
+          </Field>
+          <Field label="Last name *" error={errors.lastName}>
+            <input name="lastName" type="text" required autoComplete="family-name" className={inputClass} value={form.lastName} onChange={(e) => update('lastName', e.target.value)} aria-invalid={!!errors.lastName} />
+          </Field>
+          <Field label="Email *" error={errors.email}>
+            <input name="email" type="email" required autoComplete="email" className={inputClass} value={form.email} onChange={(e) => update('email', e.target.value)} aria-invalid={!!errors.email} />
+          </Field>
+          <Field label="Phone *" error={errors.phone}>
+            <input name="phone" type="tel" required autoComplete="tel" className={inputClass} value={form.phone} onChange={(e) => update('phone', e.target.value)} aria-invalid={!!errors.phone} />
+          </Field>
+          <Field label="Preferred provider">
+            <select name="preferredProvider" className={inputClass} value={form.preferredProvider} onChange={(e) => update('preferredProvider', e.target.value)}>
+              <option value="">No preference</option>
+              {providers.map((p) => (
+                <option key={p.slug} value={p.name}>
+                  {p.name}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Preferred contact method">
+            <select name="preferredContact" className={inputClass} value={form.preferredContact} onChange={(e) => update('preferredContact', e.target.value)}>
+              {contactMethods.map((m) => (
+                <option key={m} value={m}>
+                  {m}
+                </option>
+              ))}
+            </select>
+          </Field>
+        </div>
+        <button type="button" onClick={next} className="btn-secondary mt-10">
+          Continue
         </button>
+      </div>
 
-        {!isLast ? (
-          <button type="button" onClick={next} className="inline-flex items-center gap-2 bg-ink px-8 py-4 font-sans text-[0.8rem] uppercase tracking-wide text-ivory transition-colors duration-400 hover:bg-charcoal">
+      {/* Step 2 - interests */}
+      <div className="form-step" hidden={step !== 1}>
+        {stepLabel(1)}
+        <div className="grid gap-3 sm:grid-cols-2">
+          {consultationInterests.map((interest) => (
+            <label
+              key={interest}
+              className="flex items-center gap-3 border border-line px-4 py-3 font-sans text-sm text-charcoal"
+            >
+              <input
+                type="checkbox"
+                name="interests[]"
+                value={interest}
+                checked={form.interests.includes(interest)}
+                onChange={() => toggleInterest(interest)}
+              />
+              {interest}
+            </label>
+          ))}
+        </div>
+        {errors.interests ? (
+          <p className="mt-4 font-sans text-sm text-gold-deep" role="alert">
+            {errors.interests}
+          </p>
+        ) : null}
+        <div className="mt-10 flex gap-4">
+          <button type="button" onClick={back} className="btn-quiet">
+            Back
+          </button>
+          <button type="button" onClick={next} className="btn-secondary">
             Continue
           </button>
-        ) : (
-          <button type="button" onClick={submit} disabled={status === 'submitting'} className="inline-flex items-center gap-2 bg-ink px-8 py-4 font-sans text-[0.8rem] uppercase tracking-wide text-ivory transition-colors duration-400 hover:bg-charcoal disabled:opacity-60">
-            {status === 'submitting' ? 'Sending…' : 'Request Consultation'}
-          </button>
-        )}
+        </div>
       </div>
-    </div>
+
+      {/* Step 3 - goals */}
+      <div className="form-step" hidden={step !== 2}>
+        {stepLabel(2)}
+        <Field label="What are you hoping to achieve?" className="mb-6 block">
+          <textarea name="goals" rows={4} className={inputClass} value={form.goals} onChange={(e) => update('goals', e.target.value)} />
+        </Field>
+        <Field label="Timeline" className="mb-6 block">
+          <select name="timeline" className={inputClass} value={form.timeline} onChange={(e) => update('timeline', e.target.value)}>
+            {timelines.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
+        </Field>
+        <Field label="Preferred times" className="mb-6 block">
+          <input name="preferredTimes" type="text" className={inputClass} value={form.preferredTimes} onChange={(e) => update('preferredTimes', e.target.value)} />
+        </Field>
+        <label className="flex items-start gap-3 font-sans text-sm text-charcoal">
+          <input
+            type="checkbox"
+            name="consent"
+            required
+            className="mt-1"
+            checked={form.consent}
+            onChange={(e) => update('consent', e.target.checked)}
+            aria-invalid={!!errors.consent}
+          />
+          <span>I consent to be contacted by 28 about my request. *</span>
+        </label>
+        {errors.consent ? (
+          <p className="mt-2 font-sans text-sm text-gold-deep" role="alert">
+            {errors.consent}
+          </p>
+        ) : null}
+
+        {status === 'error' && serverMessage ? (
+          <p className="mt-8 border border-gold-deep/40 bg-sand/50 px-4 py-3 font-sans text-sm text-charcoal" role="alert">
+            {serverMessage}
+          </p>
+        ) : null}
+
+        <div className="mt-10 flex gap-4">
+          <button type="button" onClick={back} className="btn-quiet">
+            Back
+          </button>
+          <button type="submit" disabled={status === 'submitting'} className="btn-primary disabled:opacity-60">
+            {status === 'submitting' ? 'Sending…' : 'Request a Consultation'}
+          </button>
+        </div>
+      </div>
+    </form>
   );
 }
 
 function Field({
   label,
-  htmlFor,
-  required,
-  optional,
   error,
+  className = 'block',
   children,
 }: {
   label: string;
-  htmlFor: string;
-  required?: boolean;
-  optional?: boolean;
   error?: string;
+  className?: string;
   children: React.ReactNode;
 }) {
   return (
-    <div>
-      <label htmlFor={htmlFor} className="mb-2 block font-sans text-sm text-charcoal">
-        {label}{' '}
-        {required ? (
-          <span className="text-gold-deep" aria-hidden="true">
-            *
-          </span>
-        ) : null}
-        {optional ? <span className="text-muted">(optional)</span> : null}
-      </label>
+    <label className={className}>
+      <span className="mb-2 block font-sans text-sm text-charcoal">{label}</span>
       {children}
       {error ? (
-        <p className="mt-2 font-sans text-sm text-gold-deep" role="alert">
+        <span className="mt-2 block font-sans text-sm text-gold-deep" role="alert">
           {error}
-        </p>
+        </span>
       ) : null}
-    </div>
+    </label>
   );
 }

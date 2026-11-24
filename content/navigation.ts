@@ -8,17 +8,24 @@ export type NavLink = {
 export const primaryNav: NavLink[] = [
   { label: 'About 28', href: '/about' },
   { label: 'The Collective', href: '/collective' },
-  { label: 'Service Menu', href: '/service-menu' },
-  { label: 'Signature Experiences', href: '/signature-experiences' },
+  { label: 'Our Expertise', href: '/service-menu' },
+  { label: 'Personalized Programs', href: '/signature-experiences' },
   { label: 'Membership', href: '/membership' },
-  { label: 'The Space', href: '/the-space' },
+  { label: 'The Experience', href: '/the-space' },
 ];
 
-/** Provider quick-links surfaced in the mobile menu and footer. */
+/** Provider quick-links in the footer (full names). */
 export const providerNav: NavLink[] = [
   { label: 'Yulia Gerchik Studio', href: '/collective/yulia-gerchik-studio' },
-  { label: 'NYC Dental Smiles', href: '/collective/nyc-dental-smiles' },
+  { label: 'New York City Dental Smiles', href: '/collective/nyc-dental-smiles' },
   { label: 'Dr. Evia Nano', href: '/collective/dr-evia-nano' },
+];
+
+/** Provider quick-links in the mobile menu (short names). */
+export const providerNavShort: NavLink[] = [
+  { label: 'Yulia', href: '/collective/yulia-gerchik-studio' },
+  { label: 'New York City Dental Smiles', href: '/collective/nyc-dental-smiles' },
+  { label: 'Dr. Nano', href: '/collective/dr-evia-nano' },
 ];
 
 export const footerNav: { heading: string; links: NavLink[] }[] = [
@@ -27,10 +34,10 @@ export const footerNav: { heading: string; links: NavLink[] }[] = [
     links: [
       { label: 'About 28', href: '/about' },
       { label: 'The Collective', href: '/collective' },
-      { label: 'Service Menu', href: '/service-menu' },
-      { label: 'Signature Experiences', href: '/signature-experiences' },
+      { label: 'Our Expertise', href: '/service-menu' },
+      { label: 'Personalized Programs', href: '/signature-experiences' },
       { label: 'Membership', href: '/membership' },
-      { label: 'The Space', href: '/the-space' },
+      { label: 'The Experience', href: '/the-space' },
     ],
   },
   {

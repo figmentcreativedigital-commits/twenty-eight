@@ -9,6 +9,10 @@ type RevealProps = {
   /** Stagger in ms. */
   delay?: number;
   as?: 'div' | 'section' | 'li' | 'article' | 'span';
+  /** 'image' applies the settle-from-scale image reveal. */
+  variant?: 'default' | 'image';
+  style?: React.CSSProperties;
+  id?: string;
 };
 
 /**
@@ -17,7 +21,15 @@ type RevealProps = {
  * in the layout guarantees content is visible without JavaScript, and the
  * whole effect is disabled under prefers-reduced-motion.
  */
-export function Reveal({ children, className, delay = 0, as = 'div' }: RevealProps) {
+export function Reveal({
+  children,
+  className,
+  delay = 0,
+  as = 'div',
+  variant = 'default',
+  style,
+  id,
+}: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -56,9 +68,10 @@ export function Reveal({ children, className, delay = 0, as = 'div' }: RevealPro
   return (
     <Tag
       ref={ref as React.Ref<HTMLElement>}
-      data-reveal=""
+      id={id}
+      data-reveal={variant === 'image' ? 'image' : ''}
       className={cn(className)}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+      style={delay ? { ...style, transitionDelay: `${delay}ms` } : style}
     >
       {children}
     </Tag>

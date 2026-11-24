@@ -1,22 +1,23 @@
 import Link from 'next/link';
 import { Hero } from '@/components/sections/Hero';
-import { EditorialSplit } from '@/components/sections/EditorialSplit';
-import { CtaBanner } from '@/components/sections/CtaBanner';
-import { SectionHeading } from '@/components/ui/SectionHeading';
+import { BeginSection } from '@/components/sections/BeginSection';
+import { PrinciplesSection } from '@/components/sections/PrinciplesSection';
 import { Reveal } from '@/components/ui/Reveal';
 import { Button } from '@/components/ui/Button';
-import { ProviderCard } from '@/components/cards/ProviderCard';
+import { Eyebrow } from '@/components/ui/Eyebrow';
+import { Photo } from '@/components/ui/Photo';
 import { providers } from '@/content/providers';
 import { experiences } from '@/content/experiences';
 import {
   hero,
   introducing28,
   the28Difference,
-  pillars,
-  whyTribeca,
+  homeCollective,
+  homeExperiences,
+  homeMembership,
+  homeSpace,
   finalCta,
 } from '@/content/home';
-import { membershipIntro } from '@/content/membership';
 
 export default function HomePage() {
   return (
@@ -27,183 +28,153 @@ export default function HomePage() {
         supporting={hero.supporting}
         primaryCta={hero.primaryCta}
         secondaryCta={hero.secondaryCta}
-        imageAlt="A warm, softly lit treatment and consultation space in 28's Tribeca destination — stone, plaster, and natural light."
-        imageCaption={hero.imageNote}
-        imageSrc="/images/derm.png"
+        imageAlt={hero.imageAlt}
+        imageSrc={hero.imageSrc}
+        size="full"
       />
 
-      {/* Introducing 28 — centered editorial statement */}
-      <section className="shell py-section">
-        <Reveal className="mx-auto max-w-3xl text-center">
-          <p className="eyebrow mb-6 inline-flex items-center gap-3">
-            <span className="hairline-gold" aria-hidden="true" />
-            {introducing28.eyebrow}
-          </p>
-          <h2 className="text-balance font-serif text-display-md text-ink">
+      {/* Introducing 28 */}
+      <Reveal as="section" className="shell py-section">
+        <div className="mx-auto max-w-3xl text-center">
+          <Eyebrow>{introducing28.eyebrow}</Eyebrow>
+          <h2 className="text-balance font-serif text-display-md leading-tight text-ink">
             {introducing28.headline}
           </h2>
-          <div className="mx-auto mt-8 max-w-2xl space-y-6">
-            {introducing28.body.map((p, i) => (
-              <p key={i} className="font-sans text-lg leading-relaxed text-muted">
+          {introducing28.body.map((p) => (
+            <p
+              key={p}
+              className="mx-auto mt-6 max-w-2xl font-sans text-lg leading-relaxed text-muted"
+            >
+              {p}
+            </p>
+          ))}
+        </div>
+      </Reveal>
+
+      {/* 28 Difference */}
+      <section className="bg-sand/50">
+        <div className="shell grid gap-12 py-section lg:grid-cols-[1.1fr_1fr] lg:gap-20">
+          <Reveal>
+            <Eyebrow>{the28Difference.eyebrow}</Eyebrow>
+            <h2 className="text-balance font-serif text-display-sm leading-tight text-ink">
+              {the28Difference.headline}
+            </h2>
+            {the28Difference.body.map((p) => (
+              <p key={p} className="mt-6 max-w-prose font-sans leading-relaxed text-charcoal">
                 {p}
               </p>
             ))}
-          </div>
-        </Reveal>
+          </Reveal>
+          <Photo src="/images/yulia.png" ratio="4/5" reveal="image" />
+        </div>
       </section>
 
-      {/* The 28 Difference */}
-      <EditorialSplit
-        eyebrow={the28Difference.eyebrow}
-        title={the28Difference.headline}
-        body={the28Difference.body}
-        imageAlt="An editorial still life of refined materials — ceramics and skincare textures on warm stone."
-        imageCaption="ART DIRECTION: Editorial detail — ceramics, skincare texture, travertine, silk ribbon."
-        imageSrc="/images/yulia.png"
-        imageTone="sand"
-        imageRatio="4/5"
-      />
+      {/* What Sets 28 Apart */}
+      <PrinciplesSection />
 
-      {/* Pillars */}
+      {/* The Collective */}
       <section className="bg-sand/50">
-        <div className="shell py-section-sm">
-          <div className="grid gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-4">
-            {pillars.map((pillar, i) => (
-              <Reveal as="div" delay={i * 90} key={pillar.title}>
-                <span className="hairline-gold mb-6 block" aria-hidden="true" />
-                <h3 className="font-serif text-2xl text-ink">{pillar.title}</h3>
-                <p className="mt-4 font-sans text-sm leading-relaxed text-muted">
-                  {pillar.description}
-                </p>
+        <div className="shell py-section">
+          <p className="eyebrow mb-4">{homeCollective.eyebrow}</p>
+          <h2 className="mb-14 max-w-xl font-serif text-display-sm text-ink">
+            {homeCollective.headline}
+          </h2>
+          <div className="grid gap-8 md:grid-cols-3">
+            {providers.map((provider, i) => (
+              <Reveal key={provider.slug} delay={i * 90}>
+                <Link
+                  href={`/collective/${provider.slug}`}
+                  className="group block h-full border border-line bg-ivory transition-colors duration-400 hover:border-gold"
+                >
+                  <Photo
+                    src={provider.image}
+                    ratio="4/5"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="p-8">
+                    <p className="eyebrow mb-2">{provider.specialtyLabel}</p>
+                    <h3 className="font-serif text-2xl text-ink transition-colors duration-400 group-hover:text-gold-deep">
+                      {provider.name}
+                    </h3>
+                    <p className="mt-3 font-sans text-sm leading-relaxed text-muted">
+                      {provider.cardStatement}
+                    </p>
+                  </div>
+                </Link>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* The Collective */}
+      {/* Signature Experiences */}
       <section className="shell py-section">
-        <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <SectionHeading
-            eyebrow="The Collective"
-            title="Three leaders. One destination."
-            lede="Inside 28, three expert-led businesses come together to deliver an experience that is both highly specialized and deeply connected."
-            className="max-w-2xl"
-          />
-          <Button href="/collective" variant="quiet" className="mb-2">
-            Explore the Collective →
-          </Button>
-        </div>
-
-        <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-          {providers.map((provider, i) => (
-            <Reveal key={provider.slug} delay={i * 100}>
-              <ProviderCard provider={provider} index={i} />
+        <p className="eyebrow mb-4">{homeExperiences.eyebrow}</p>
+        <h2 className="mb-14 max-w-xl font-serif text-display-sm text-ink">
+          {homeExperiences.headline}
+        </h2>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {experiences.map((exp, i) => (
+            <Reveal key={exp.slug} delay={(i % 3) * 80}>
+              <Link
+                href={`/signature-experiences#${exp.slug}`}
+                className="group block h-full border border-line p-8 transition-colors duration-400 hover:border-gold"
+              >
+                <h3 className="font-serif text-xl text-ink transition-colors duration-400 group-hover:text-gold-deep">
+                  {exp.name}
+                </h3>
+                <p className="mt-3 font-sans text-sm leading-relaxed text-muted">{exp.summary}</p>
+              </Link>
             </Reveal>
           ))}
         </div>
+        <div className="mt-12">
+          <Button href={homeExperiences.cta.href} variant="secondary">
+            {homeExperiences.cta.label}
+          </Button>
+        </div>
       </section>
 
-      {/* Signature Experiences */}
+      {/* Membership */}
       <section className="bg-ink text-ivory">
-        <div className="shell py-section">
-          <div className="mb-8 max-w-2xl">
-            <p className="mb-6 inline-flex items-center gap-3 font-sans text-[0.72rem] uppercase tracking-eyebrow text-gold">
-              <span className="h-px w-14 bg-gold" aria-hidden="true" />
-              Signature Experiences
-            </p>
-            <h2 className="text-balance font-serif text-display-md text-ivory">
-              Curated experiences across the collective.
-            </h2>
-            <p className="mt-6 max-w-xl font-sans leading-relaxed text-ivory/75">
-              Not fixed bundles — personalized, coordinated experiences designed around
-              your goals, your timeline, and the moments that matter.
-            </p>
-          </div>
-
-          <div className="mt-6">
-            {experiences.slice(0, 5).map((exp, i) => (
-              <Link
-                key={exp.slug}
-                href={`/signature-experiences#${exp.slug}`}
-                className="group grid gap-4 border-t border-ivory/15 py-8 md:grid-cols-[auto_1fr_auto] md:items-baseline md:gap-10"
-              >
-                <span className="font-serif text-2xl text-gold">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <div>
-                  <h3 className="font-serif text-2xl text-ivory transition-colors duration-400 group-hover:text-gold md:text-[1.7rem]">
-                    {exp.name}
-                  </h3>
-                  <p className="mt-2 max-w-2xl font-sans text-sm leading-relaxed text-ivory/70">
-                    {exp.summary}
-                  </p>
-                </div>
-                <span className="hidden font-sans text-[0.7rem] uppercase tracking-wide text-ivory/60 transition-colors duration-400 group-hover:text-gold md:inline">
-                  Discover &rarr;
-                </span>
-              </Link>
-            ))}
-          </div>
-
-          <div className="mt-12">
-            <Button href="/signature-experiences" variant="ghost">
-              View All Signature Experiences
+        <div className="shell py-section text-center">
+          <p className="mb-6 font-sans text-[0.72rem] uppercase tracking-eyebrow text-gold">
+            {homeMembership.eyebrow}
+          </p>
+          <h2 className="mx-auto max-w-2xl text-balance font-serif text-display-sm text-ivory">
+            {homeMembership.headline}
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl font-sans leading-relaxed text-ivory/70">
+            {homeMembership.body}
+          </p>
+          <div className="mt-10">
+            <Button href={homeMembership.cta.href} variant="ghost">
+              {homeMembership.cta.label}
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Membership teaser */}
-      <EditorialSplit
-        eyebrow={membershipIntro.eyebrow}
-        title={membershipIntro.headline}
-        body={[membershipIntro.lede, membershipIntro.philosophy[0]]}
-        imageAlt="A refined membership card and appointment materials in taupe and champagne gold on linen."
-        imageCaption="ART DIRECTION: Membership materials — taupe cards, champagne foil, silk ribbon (reference the provided packaging images)."
-        imageSrc="/images/membership.png"
-        imageTone="taupe"
-        imageRatio="4/5"
-        reverse
-        cta={{ label: 'Explore Membership', href: '/membership' }}
-      />
-
       {/* The Space */}
-      <EditorialSplit
-        eyebrow="The Space — Tribeca"
-        title="An experience that begins the moment you arrive."
-        body={[
-          'The Tribeca location is designed to feel calm, refined, private, and elevated — more like a luxury hospitality experience than a traditional clinical environment.',
-          'Warm materials, soft light, and uncluttered rooms set the tone, with thoughtful transitions between providers and private spaces for every consultation.',
-        ]}
-        imageAlt="A serene treatment room with a sculptural chaise, sheer curtains, and warm plaster walls."
-        imageCaption="ART DIRECTION: Treatment room — sculptural chaise, sheer light, warm plaster (reference the provided interior image)."
-        imageSrc="/images/28-placeholder-f.jpeg"
-        imageTone="stone"
-        imageRatio="5/6"
-        cta={{ label: 'Plan Your Visit', href: '/the-space' }}
-      />
-
-      {/* Why Tribeca */}
-      <section className="bg-sand/50">
-        <div className="shell py-section-sm">
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <p className="eyebrow mb-6 inline-flex items-center gap-3">
-              <span className="hairline-gold" aria-hidden="true" />
-              {whyTribeca.eyebrow}
-            </p>
-            <h2 className="text-balance font-serif text-display-sm text-ink">
-              {whyTribeca.headline}
-            </h2>
-            <p className="mx-auto mt-6 max-w-xl font-sans leading-relaxed text-muted">
-              {whyTribeca.body[0]}
-            </p>
-          </Reveal>
+      <Reveal as="section" className="shell grid gap-12 py-section lg:grid-cols-2 lg:gap-20">
+        <Photo src={homeSpace.imageSrc} ratio="4/5" />
+        <div className="flex flex-col justify-center">
+          <Eyebrow>{homeSpace.eyebrow}</Eyebrow>
+          <h2 className="text-balance font-serif text-display-sm leading-tight text-ink">
+            {homeSpace.headline}
+          </h2>
+          <p className="mt-6 max-w-prose font-sans leading-relaxed text-charcoal">
+            {homeSpace.body}
+          </p>
+          <div className="mt-8">
+            <Button href={homeSpace.cta.href} variant="secondary">
+              {homeSpace.cta.label}
+            </Button>
+          </div>
         </div>
-      </section>
+      </Reveal>
 
-      {/* Final CTA */}
-      <CtaBanner
+      <BeginSection
         eyebrow={finalCta.eyebrow}
         headline={finalCta.headline}
         body={finalCta.body}

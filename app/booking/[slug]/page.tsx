@@ -11,7 +11,7 @@ import { providers, getProvider } from '@/content/providers';
  *
  * Booking at 28 is a REDIRECT, not an integration (client-confirmed
  * 2026-07-20). This page exists so the departure is a considered moment
- * rather than an abrupt jump to a third-party system — the client is told
+ * rather than an abrupt jump to a third-party system - the client is told
  * where they are going and what to expect before they leave.
  *
  * While `booking.url` is empty, the page degrades to a consultation request
@@ -67,7 +67,7 @@ export default function BookingHandoffPage({
             {provider.booking.note}
           </p>
 
-          {/* What to expect — sets expectations before leaving the site */}
+          {/* What to expect - sets expectations before leaving the site */}
           <div className="mt-12 border-y border-line py-8">
             <p className="eyebrow mb-6">What to expect</p>
             <ol className="space-y-5">

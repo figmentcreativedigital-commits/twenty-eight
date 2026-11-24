@@ -10,13 +10,13 @@
 
 export const site = {
   name: '28',
-  fullName: '28 — Wellness & Aesthetics',
-  tagline: 'Luxury health. Elevated beauty. One destination.',
+  fullName: '28 - Wellness & Aesthetics',
+  tagline: 'Integrated Care. Personalized Wellness. Healthy Longevity.',
   descriptor: 'A luxury wellness and aesthetics collective in Tribeca, New York.',
 
   // Default SEO description (kept natural, not keyword-stuffed)
   metaDescription:
-    'In the heart of Tribeca, 28 unites beauty expertise, smile aesthetics, and advanced skin health in one luxury wellness collective — a considered approach to looking and feeling exceptional.',
+    '28 represents a new era in integrated health and wellness - a destination in Tribeca where preventive medicine, dentistry, aesthetic care, and personalized wellness come together under one roof.',
 
   // NEEDS CLIENT CONFIRMATION — full address, suite, zip, phone, email, hours.
   contact: {
@@ -27,7 +27,7 @@ export const site = {
     phone: '',
     phoneDisplay: 'Available upon request',
     // Placeholder — confirm concierge email.
-    email: 'concierge@28tribeca.com',
+    email: 'concierge@the28.com',
     hoursNote: 'By appointment', // NEEDS CLIENT CONFIRMATION
   },
 

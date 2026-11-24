@@ -1,4 +1,4 @@
-import { ImageFrame } from '@/components/ui/ImageFrame';
+import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 
@@ -8,15 +8,16 @@ type HeroProps = {
   eyebrow?: string;
   /** Use \n to control line breaks in the display headline. */
   headline: string;
-  supporting?: string;
+  /** One or more supporting paragraphs. */
+  supporting?: string | string[];
   primaryCta?: Cta;
   secondaryCta?: Cta;
   imageAlt: string;
-  imageCaption?: string;
-  imageSrc?: string;
-  /** Compact hero for interior pages. */
-  size?: 'full' | 'tall' | 'compact';
-  align?: 'left' | 'center';
+  imageSrc: string;
+  /** full = 100svh (home, the experience); tall = 82svh (interior pages). */
+  size?: 'full' | 'tall';
+  /** Provider pages use the slightly smaller display size. */
+  headlineSize?: 'xl' | 'lg';
 };
 
 export function Hero({
@@ -26,32 +27,32 @@ export function Hero({
   primaryCta,
   secondaryCta,
   imageAlt,
-  imageCaption,
   imageSrc,
-  size = 'full',
-  align = 'left',
+  size = 'tall',
+  headlineSize = 'xl',
 }: HeroProps) {
-  const minH =
-    size === 'full'
-      ? 'min-h-[100svh]'
-      : size === 'tall'
-        ? 'min-h-[82svh]'
-        : 'min-h-[64svh]';
+  const paragraphs = supporting
+    ? Array.isArray(supporting)
+      ? supporting
+      : [supporting]
+    : [];
 
   return (
-    <section className={cn('relative isolate flex items-end overflow-hidden', minH)}>
-      {/* Background image slot */}
+    <section
+      className={cn(
+        'relative isolate flex items-end overflow-hidden',
+        size === 'full' ? 'min-h-[100svh]' : 'min-h-[82svh]'
+      )}
+    >
       <div className="absolute inset-0 -z-10">
-        <ImageFrame
-          alt={imageAlt}
-          caption={imageCaption}
+        <Image
           src={imageSrc}
-          tone="charcoal"
-          ratio="16/10"
-          className="h-full w-full"
+          alt={imageAlt}
+          fill
           priority
+          sizes="100vw"
+          className="h-full w-full object-cover"
         />
-        {/* legibility scrim */}
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/40 to-ink/25"
@@ -59,19 +60,19 @@ export function Hero({
       </div>
 
       <div className="mx-auto w-full max-w-shell px-6 pb-20 pt-40 sm:px-8 lg:px-12 lg:pb-28">
-        <div
-          className={cn(
-            'max-w-3xl',
-            align === 'center' && 'mx-auto text-center'
-          )}
-        >
+        <div className="max-w-5xl">
           {eyebrow ? (
             <p className="mb-6 font-sans text-[0.72rem] uppercase tracking-eyebrow text-ivory">
               {eyebrow}
             </p>
           ) : null}
 
-          <h1 className="text-balance font-serif text-display-xl text-ivory">
+          <h1
+            className={cn(
+              'text-balance font-serif text-ivory',
+              headlineSize === 'lg' ? 'text-display-lg' : 'text-display-xl'
+            )}
+          >
             {headline.split('\n').map((line, i) => (
               <span key={i} className="block">
                 {line}
@@ -79,24 +80,18 @@ export function Hero({
             ))}
           </h1>
 
-          {supporting ? (
-            <p
-              className={cn(
-                'mt-8 max-w-xl font-sans text-lg leading-relaxed text-ivory',
-                align === 'center' && 'mx-auto'
-              )}
-            >
-              {supporting}
-            </p>
+          {paragraphs.length > 0 ? (
+            <div className="mt-8 max-w-xl space-y-4">
+              {paragraphs.map((p, i) => (
+                <p key={i} className="font-sans text-lg leading-relaxed text-ivory">
+                  {p}
+                </p>
+              ))}
+            </div>
           ) : null}
 
           {(primaryCta || secondaryCta) && (
-            <div
-              className={cn(
-                'mt-11 flex flex-col gap-4 sm:flex-row sm:items-center',
-                align === 'center' && 'sm:justify-center'
-              )}
-            >
+            <div className="mt-11 flex flex-col gap-4 sm:flex-row sm:items-center">
               {primaryCta ? (
                 <Button
                   href={primaryCta.href}

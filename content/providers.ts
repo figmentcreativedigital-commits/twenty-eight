@@ -1,10 +1,10 @@
 /**
  * ────────────────────────────────────────────────────────────────
- * The Collective — three expert-led providers within 28.
+ * The Collective - three expert-led providers within 28.
  * ────────────────────────────────────────────────────────────────
  * Intro/headline copy is taken from the client copy document.
  * Service lists are illustrative of each discipline and are flagged
- * for confirmation — they are NOT a published menu and contain no
+ * for confirmation - they are NOT a published menu and contain no
  * pricing. Credentials, galleries, and testimonials are intentionally
  * omitted until the client supplies verified assets.
  */
@@ -26,9 +26,9 @@ export type Provider = {
   intro: string[];
   /** Provider philosophy statement. */
   philosophy: string;
-  /** Expertise areas — illustrative, pending client confirmation. */
+  /** Expertise areas - illustrative, pending client confirmation. */
   expertise: { title: string; description: string }[];
-  /** Selected services — illustrative only, no pricing. */
+  /** Selected services - illustrative only, no pricing. */
   selectedServices: string[];
   /** Art-direction note for the provider hero image slot. */
   heroImageNote: string;
@@ -45,7 +45,7 @@ export type Provider = {
   booking: {
     /** Platform name shown to the client before they leave the site. */
     platform: string;
-    /** Destination. EMPTY UNTIL SUPPLIED BY THE PROVIDER — never guess a URL. */
+    /** Destination. EMPTY UNTIL SUPPLIED BY THE PROVIDER - never guess a URL. */
     url: string;
     /** What to expect once they arrive. */
     note: string;
@@ -66,10 +66,10 @@ export const providers: Provider[] = [
       'A destination for refined beauty services, skin, body, and aesthetic treatments designed to enhance natural features with precision and artistry.',
     intro: [
       'Yulia Gerchik Studio brings an elevated beauty perspective to 28, offering refined services that enhance natural features through artistry, precision, and a deeply personal understanding of each client’s goals.',
-      'As part of the 28 collective, Yulia Gerchik Studio gives clients access to beauty expertise that complements advanced skin health, smile aesthetics, and whole-person confidence.',
+      'As part of 28 Collective, Yulia Gerchik Studio gives clients access to beauty expertise that complements advanced skin health, smile aesthetics, and whole-person confidence.',
     ],
     philosophy:
-      'True enhancement is quiet. Every service begins with the individual — their features, their proportions, their intentions — and works toward a result that looks like no one so much as themselves.',
+      'True enhancement is quiet. Every service begins with the individual - their features, their proportions, their intentions - and works toward a result that looks like no one so much as themselves.',
     expertise: [
       {
         title: 'Skin & Facial Treatments',
@@ -77,7 +77,7 @@ export const providers: Provider[] = [
           'Refined facial treatments focused on clarity, texture, and a healthy, luminous finish.',
       },
       {
-        // NEEDS CLIENT CONFIRMATION — body treatments confirmed by the client
+        // NEEDS CLIENT CONFIRMATION - body treatments confirmed by the client
         // as an offering, but no service list has been supplied. Kept
         // deliberately non-specific until Yulia provides her body menu.
         title: 'Body Treatments',
@@ -97,11 +97,11 @@ export const providers: Provider[] = [
       'Personalized beauty consultation',
     ],
     heroImageNote:
-      'ART DIRECTION: Editorial beauty detail — refined treatment tools styled on linen and ceramic, warm natural light. No smiling-at-camera portraits. Reference the provided tools inspiration image.',
+      'ART DIRECTION: Editorial beauty detail - refined treatment tools styled on linen and ceramic, warm natural light. No smiling-at-camera portraits. Reference the provided tools inspiration image.',
     image: '/images/yulia.png',
     booking: {
       platform: 'Mindbody',
-      url: '', // NEEDS CLIENT CONFIRMATION — Mindbody booking link
+      url: '', // NEEDS CLIENT CONFIRMATION - Mindbody booking link
       note: 'Booking for Yulia Gerchik Studio is handled through Mindbody, where you can choose a treatment, pick a time, and create a profile if it is your first visit.',
     },
     referenceUrl: 'https://yuliagerchikstudio.com',
@@ -112,15 +112,15 @@ export const providers: Provider[] = [
     shortName: 'New York City Dental Smiles',
     specialtyLabel: 'Smile Aesthetics',
     discipline: 'Cosmetic, restorative, and smile-focused dentistry',
-    headline: 'A healthier, more confident smile — designed with intention.',
+    headline: 'A healthier, more confident smile - designed with intention.',
     cardStatement:
       'A trusted cosmetic and restorative dental practice focused on healthy, confident, elevated smiles.',
     intro: [
-      'New York City Dental Smiles brings trusted dental expertise to the 28 collective, helping clients achieve smiles that are healthy, confident, and aligned with their overall aesthetic goals.',
-      'From cosmetic dentistry to restorative care and smile enhancement, the practice plays an essential role in the 28 experience by connecting oral health, facial harmony, and self-confidence.',
+      'New York City Dental Smiles brings trusted dental expertise to 28 Collective, helping clients achieve smiles that are healthy, confident, and aligned with their overall aesthetic goals.',
+      'From cosmetic dentistry to restorative care and smile enhancement, the practice plays an essential role in 28 experience by connecting oral health, facial harmony, and self-confidence.',
     ],
     philosophy:
-      'A smile is a feature of the face, not a set of teeth. Care here is planned with facial harmony and long-term health in mind — precise, unhurried, and quietly transformative.',
+      'A smile is a feature of the face, not a set of teeth. Care here is planned with facial harmony and long-term health in mind - precise, unhurried, and quietly transformative.',
     expertise: [
       {
         title: 'Cosmetic Dentistry',
@@ -135,7 +135,7 @@ export const providers: Provider[] = [
       {
         title: 'Smile & Facial Harmony',
         description:
-          'Treatment planned in the context of the whole face, in coordination with the 28 collective.',
+          'Treatment planned in the context of the whole face, in coordination with 28 Collective.',
       },
     ],
     selectedServices: [
@@ -145,11 +145,11 @@ export const providers: Provider[] = [
       'Comprehensive oral health assessment',
     ],
     heroImageNote:
-      'ART DIRECTION: Editorial, hospitality-led — no clinical blue, no tooth iconography. Warm treatment-room detail, refined materials, soft light. Reference the ceramic-dish inspiration image.',
+      'ART DIRECTION: Editorial, hospitality-led - no clinical blue, no tooth iconography. Warm treatment-room detail, refined materials, soft light. Reference the ceramic-dish inspiration image.',
     image: '/images/dental.png',
     booking: {
       platform: 'the practice scheduling system',
-      url: '', // NEEDS CLIENT CONFIRMATION — NDS platform not yet identified
+      url: '', // NEEDS CLIENT CONFIRMATION - NDS platform not yet identified
       note: 'Booking for New York City Dental Smiles is handled through the practice’s own scheduling system.',
     },
   },
@@ -161,13 +161,13 @@ export const providers: Provider[] = [
     discipline: 'Medical aesthetics, wellness medicine, and longevity',
     headline: 'Advanced aesthetic medicine for skin, confidence, and longevity.',
     cardStatement:
-      'A medical aesthetics and wellness medicine provider focused on aesthetic procedures, peptides, weight loss, regenerative wellness, and IV infusions — not general medical care.',
+      'A medical aesthetics and wellness medicine provider focused on aesthetic procedures, peptides, weight loss, regenerative wellness, and IV infusions - not general medical care.',
     intro: [
-      'Dr. Evia Nano’s presence within 28 brings medical expertise to the world of aesthetics, skin health, and wellness optimization. Her practice is positioned around medical aesthetics and wellness medicine — aesthetic procedures, peptides, weight loss, regenerative wellness, and IV infusions.',
-      'The experience is refined, intelligent, and deeply personal — balancing clinical credibility with the calm, luxury sensibility of the 28 collective.',
+      'Dr. Evia Nano’s presence within 28 brings medical expertise to the world of aesthetics, skin health, and wellness optimization. Her practice is positioned around medical aesthetics and wellness medicine - aesthetic procedures, peptides, weight loss, regenerative wellness, and IV infusions.',
+      'The experience is refined, intelligent, and deeply personal - balancing clinical credibility with the calm, luxury sensibility of 28 Collective.',
     ],
     philosophy:
-      'Skin health is a long horizon. The most beautiful results come from prevention, precision, and restraint — protocols designed around the individual and maintained over time.',
+      'Skin health is a long horizon. The most beautiful results come from prevention, precision, and restraint - protocols designed around the individual and maintained over time.',
     expertise: [
       {
         title: 'Aesthetic Procedures',
@@ -185,7 +185,7 @@ export const providers: Provider[] = [
           'Weight loss and IV infusion protocols focused on how you feel as much as how you look.',
       },
     ],
-    // NEEDS CLIENT CONFIRMATION — category-level only. The client named
+    // NEEDS CLIENT CONFIRMATION - category-level only. The client named
     // specific treatments (Botox, fillers) in conversation, but individual
     // service naming is held until Dr. Nano supplies and approves her own list.
     selectedServices: [
@@ -196,18 +196,18 @@ export const providers: Provider[] = [
       'IV infusions',
     ],
     heroImageNote:
-      'ART DIRECTION: Editorial skincare texture and refined tools — no cold clinical imagery. Warm, tactile, composed. Reference the travertine/ceramic inspiration images.',
-    // TODO: rename asset to /images/evia.png (or similar) — filename is a
+      'ART DIRECTION: Editorial skincare texture and refined tools - no cold clinical imagery. Warm, tactile, composed. Reference the travertine/ceramic inspiration images.',
+    // TODO: rename asset to /images/evia.png (or similar) - filename is a
     // leftover from the incorrect dermatology positioning. Path left intact
     // so the build doesn't break before the file itself is renamed.
     image: '/images/derm.png',
     booking: {
       platform: 'Eviaesthetics',
-      url: '', // NEEDS CLIENT CONFIRMATION — Dr. Nano's booking link
+      url: '', // NEEDS CLIENT CONFIRMATION - Dr. Nano's booking link
       note: 'Consultations with Dr. Nano are booked through her practice, Eviaesthetics. A private consultation is credited toward your first treatment.',
     },
     // Medical-accuracy note: present as medical aesthetics / wellness medicine
-    // only — NOT dermatology, NOT general medical care. Confirmed by the client
+    // only - NOT dermatology, NOT general medical care. Confirmed by the client
     // 2026-07-20. Weight loss, peptides, and IV infusions are regulated
     // advertising categories in New York: route final wording through Dr. Nano
     // and compliance review before publishing. Verify credentials before

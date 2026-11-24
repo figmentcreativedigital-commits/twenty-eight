@@ -1,18 +1,18 @@
 /**
  * ────────────────────────────────────────────────────────────────
- * Service Menu — all three providers, organised by provider.
+ * Service Menu - all three providers, organised by provider.
  * ────────────────────────────────────────────────────────────────
  * Client-confirmed (2026-07-20): the service menu lists individual
  * services with descriptions and NO PRICING. Yulia: "The prices will
  * not be there listed."
  *
- * Sources — each provider's own published menu:
+ * Sources - each provider's own published menu:
  *   Yulia Gerchik Studio  → yuliagerchikstudio.com/pages/services
  *   Dr. Evia Nano         → eviaesthetics.com/services.html
  *   NYC Dental Smiles     → supplied by the practice
  *
  * Descriptions are condensed into 28's editorial voice. No treatment,
- * duration, or capability has been invented — anything not published by
+ * duration, or capability has been invented - anything not published by
  * the provider is absent rather than assumed.
  *
  * ⚠️ DO NOT ADD PRICING to this file. All three providers publish prices
@@ -48,10 +48,12 @@ export type ProviderMenu = {
 };
 
 export const serviceMenuIntro = {
-  eyebrow: 'Service Menu',
-  headline: 'Every service, across the collective.',
-  lede:
-    'The full range of treatments available at 28, organised by provider. Services can be booked individually, or combined into a coordinated experience across the collective.',
+  eyebrow: 'Our Expertise',
+  headline: 'Specialized Expertise. Connected Care.',
+  lede: [
+    'At 28, we bring together expertise in dentistry, preventive medicine, nutrition, skin health, and aesthetics to offer a comprehensive approach to health and well-being.',
+    'Whether you seek an individual treatment or a personalized plan that integrates multiple disciplines, our specialists work collaboratively to deliver care tailored to your needs, goals, and long-term wellness.',
+  ],
   pricingNote:
     'Pricing is discussed during consultation, where treatment is matched to your goals, skin, and timeline.',
 };
@@ -66,7 +68,7 @@ export const serviceMenus: ProviderMenu[] = [
     intro:
       'Treatments are selected, customised, and adjusted to your particular skin and goals. The menu below is a reference for consultations and bookings, not a fixed prescription.',
     gapNote:
-      'Body treatments are offered and will be listed here once the full menu is confirmed.', // NEEDS CLIENT CONFIRMATION — body treatment list outstanding
+      'Body treatments are offered and will be listed here once the full menu is confirmed.', // NEEDS CLIENT CONFIRMATION - body treatment list outstanding
     groups: [
       {
         title: 'Signature Facials',
@@ -109,7 +111,7 @@ export const serviceMenus: ProviderMenu[] = [
           {
             name: 'JetPeel Facial',
             description:
-              'Jet stream technology delivering micro droplets beneath the dermis in three steps — lymphatic drainage, exfoliation, and infusion of bio-active nutrients. Needle-free, and suitable for all skin types including rosacea.',
+              'Jet stream technology delivering micro droplets beneath the dermis in three steps - lymphatic drainage, exfoliation, and infusion of bio-active nutrients. Needle-free, and suitable for all skin types including rosacea.',
             duration: '60 minutes',
           },
           {
@@ -121,7 +123,7 @@ export const serviceMenus: ProviderMenu[] = [
           {
             name: 'REVERSO Deep Fractional RF',
             description:
-              'Deep fractional radiofrequency for skin rejuvenation and remodelling — correcting texture and tone, addressing stretch marks, tightening loose skin, restoring firmness, and refining enlarged pores.',
+              'Deep fractional radiofrequency for skin rejuvenation and remodelling - correcting texture and tone, addressing stretch marks, tightening loose skin, restoring firmness, and refining enlarged pores.',
             duration: '60 minutes',
           },
           {
@@ -168,7 +170,7 @@ export const serviceMenus: ProviderMenu[] = [
           {
             name: 'Triple Lift Facial',
             description:
-              'Lifting, firming and plumping, using two Biologique Recherche boosters — Lift CVS and Restructurant Soin Lissant — with the remodelling face machine for a third and final lift.',
+              'Lifting, firming and plumping, using two Biologique Recherche boosters - Lift CVS and Restructurant Soin Lissant - with the remodelling face machine for a third and final lift.',
             duration: '120 minutes',
           },
           {
@@ -198,7 +200,7 @@ export const serviceMenus: ProviderMenu[] = [
           {
             name: 'Toleskin Facial',
             description:
-              'Developed for intolerant skin that no longer tolerates classic treatment. Calms reactivity and reduces sensitivity, itching and redness — ideal for intense sensitivity or post-procedure skin.',
+              'Developed for intolerant skin that no longer tolerates classic treatment. Calms reactivity and reduces sensitivity, itching and redness - ideal for intense sensitivity or post-procedure skin.',
             duration: '60 minutes',
           },
           {
@@ -272,7 +274,7 @@ export const serviceMenus: ProviderMenu[] = [
           {
             name: 'Profhilo',
             description:
-              'A skin-hydrating injectable rather than a traditional filler — deeply hydrates and improves firmness and elasticity for a healthier, more radiant complexion.',
+              'A skin-hydrating injectable rather than a traditional filler - deeply hydrates and improves firmness and elasticity for a healthier, more radiant complexion.',
           },
           {
             name: 'Radiesse',
@@ -282,7 +284,7 @@ export const serviceMenus: ProviderMenu[] = [
           {
             name: 'Sculptra',
             description:
-              'A collagen-stimulating injectable that gradually restores volume by encouraging the body to make its own collagen — subtle, natural fullness over months.',
+              'A collagen-stimulating injectable that gradually restores volume by encouraging the body to make its own collagen - subtle, natural fullness over months.',
           },
           {
             name: 'Skinvive',
@@ -375,7 +377,7 @@ export const serviceMenus: ProviderMenu[] = [
           {
             name: 'Comprehensive Care',
             description:
-              'Proactive, whole-mouth care — preventive hygiene and oral health maintenance, complete evaluations and treatment planning with digital imaging, and prompt emergency dentistry when it is needed.',
+              'Proactive, whole-mouth care - preventive hygiene and oral health maintenance, complete evaluations and treatment planning with digital imaging, and prompt emergency dentistry when it is needed.',
           },
           {
             name: 'Cosmetic Dentistry',
@@ -407,7 +409,7 @@ export const serviceMenus: ProviderMenu[] = [
       {
         title: 'Technology & In-House Capability',
         intro:
-          'The equipment and in-house lab behind the clinical work — not separately bookable.',
+          'The equipment and in-house lab behind the clinical work - not separately bookable.',
         items: [
           {
             name: 'In-House Ceramic Lab',
@@ -417,7 +419,7 @@ export const serviceMenus: ProviderMenu[] = [
           {
             name: '3D Cone Beam CT',
             description:
-              'High-resolution three-dimensional imaging of teeth, jaws, sinuses and surrounding structures, at lower radiation than traditional CT — allowing earlier detection and precise implant planning.',
+              'High-resolution three-dimensional imaging of teeth, jaws, sinuses and surrounding structures, at lower radiation than traditional CT - allowing earlier detection and precise implant planning.',
           },
           {
             name: 'Intraoral Scanner',

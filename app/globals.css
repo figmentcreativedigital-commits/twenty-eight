@@ -109,6 +109,44 @@ h1, h2, h3, h4 {
   .link-underline:hover {
     @apply text-gold-deep;
   }
+
+  /* Buttons — mirrors the staging theme's .btn-* classes exactly. */
+  .btn-primary,
+  .btn-ghost,
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-3 px-8 py-4 font-sans text-[0.78rem] uppercase tracking-wide transition-all duration-400;
+  }
+  .btn-primary {
+    @apply bg-ink text-ivory shadow-[0_1px_0_transparent];
+  }
+  .btn-primary:hover {
+    @apply -translate-y-0.5 bg-charcoal shadow-lift;
+  }
+  .btn-ghost {
+    @apply border border-ivory/40 text-ivory;
+  }
+  .btn-ghost:hover {
+    @apply border-gold bg-ivory/[0.06] text-gold;
+  }
+  .btn-secondary {
+    @apply border border-charcoal/30 text-charcoal;
+  }
+  .btn-secondary:hover {
+    @apply border-gold-deep bg-charcoal/[0.03] text-gold-deep;
+  }
+  .btn-quiet {
+    @apply relative inline-flex items-center gap-2 font-sans text-[0.78rem] uppercase tracking-wide text-charcoal transition-colors duration-400;
+  }
+  .btn-quiet::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 h-px w-full origin-right scale-x-0 bg-gold transition-transform duration-600 ease-editorial;
+  }
+  .btn-quiet:hover::after {
+    @apply origin-left scale-x-100;
+  }
+  .btn-quiet:hover {
+    @apply text-gold-deep;
+  }
 }
 
 /* Focus — visible, elegant, accessible */

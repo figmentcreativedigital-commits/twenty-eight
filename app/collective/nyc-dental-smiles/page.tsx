@@ -5,9 +5,9 @@ import { getProvider } from '@/content/providers';
 const provider = getProvider('nyc-dental-smiles')!;
 
 export const metadata: Metadata = {
-  title: 'New York City Dental Smiles — Smile Aesthetics',
+  title: 'New York City Dental Smiles - Smile Aesthetics',
   description:
-    'Cosmetic, restorative, and smile-focused dentistry within the 28 collective in Tribeca — where oral health, facial harmony, and confidence meet.',
+    'Cosmetic, restorative, and smile-focused dentistry within the 28 collective in Tribeca - where oral health, facial harmony, and confidence meet.',
   alternates: { canonical: '/collective/nyc-dental-smiles' },
 };
 
@@ -16,7 +16,7 @@ const jsonLd = {
   '@type': 'Dentist',
   name: provider.name,
   description: provider.cardStatement,
-  parentOrganization: { '@type': 'Organization', name: '28 — Wellness & Aesthetics' },
+  parentOrganization: { '@type': 'Organization', name: '28 - Wellness & Aesthetics' },
   areaServed: 'New York, NY',
 };
 
