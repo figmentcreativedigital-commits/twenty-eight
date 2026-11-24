@@ -17,9 +17,6 @@ const DARK_HERO_ROUTES = new Set([
   '/',
   '/about',
   '/collective',
-  '/collective/yulia-gerchik-studio',
-  '/collective/nyc-dental-smiles',
-  '/collective/dr-evia-nano',
   '/service-menu',
   '/signature-experiences',
   '/membership',
@@ -61,7 +58,9 @@ export function SiteHeader() {
     };
   }, [menuOpen]);
 
-  const darkHero = DARK_HERO_ROUTES.has((pathname || '/').replace(/\/$/, '') || '/');
+  const route = (pathname || '/').replace(/\/$/, '') || '/';
+  // Every provider page under /collective/ opens on a dark hero.
+  const darkHero = DARK_HERO_ROUTES.has(route) || route.startsWith('/collective/');
   const solid = !darkHero || scrolled || menuOpen;
   const linkTone = solid ? 'text-charcoal' : 'text-ivory';
 

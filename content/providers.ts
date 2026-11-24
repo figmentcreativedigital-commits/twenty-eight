@@ -58,6 +58,9 @@ export type Provider = {
   /** Selected services, illustrative. No pricing. */
   selectedServices: { title: string; note?: string }[];
   image: string;
+  /** Optional wide image for the provider-page hero when `image` is a portrait. */
+  heroImage?: string;
+  heroImageAlt?: string;
   /** Alt text when the image is a photo of the person rather than an editorial still. */
   imageAlt?: string;
   /** object-position for crops of the image, e.g. '50% 25%'. */
@@ -345,6 +348,9 @@ export const providers: Provider[] = [
     // no-pricing rule.
     selectedServices: [{ title: 'Nutrition Consultations', note: 'One-on-one sessions, 60 minutes.' }],
     image: '/images/alexandra.jpg',
+    // Her headshot is a vertical portrait, which crops badly in a wide hero.
+    heroImage: '/images/28-placeholder-e.jpeg',
+    heroImageAlt: 'A softly lit reception with a curved desk.',
     imageAlt: 'Alexandra Cerone in a teal dress, seated on a dock by a harbor at sunset',
     imagePosition: '50% 22%',
     booking: {

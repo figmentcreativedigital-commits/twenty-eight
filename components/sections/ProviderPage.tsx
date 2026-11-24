@@ -46,9 +46,11 @@ export function ProviderPage({ provider }: { provider: Provider }) {
         supporting={provider.heroSupporting}
         primaryCta={{ label: `Book with ${provider.shortName}`, href: `/booking/${provider.slug}` }}
         secondaryCta={{ label: 'Request a Consultation', href: '/consultation' }}
-        imageAlt={provider.imageAlt ?? `${provider.name} - ${provider.discipline}`}
-        imageSrc={provider.image}
-        imagePosition={provider.imagePosition}
+        imageAlt={
+          provider.heroImageAlt ?? provider.imageAlt ?? `${provider.name} - ${provider.discipline}`
+        }
+        imageSrc={provider.heroImage ?? provider.image}
+        imagePosition={provider.heroImage ? undefined : provider.imagePosition}
       />
 
       {/* Introduction */}
