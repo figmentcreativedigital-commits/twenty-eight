@@ -54,7 +54,7 @@ export function ProviderPage({ provider }: { provider: Provider }) {
       <section className="shell py-section">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
           <Reveal>
-            <Eyebrow>Within 28</Eyebrow>
+            <Eyebrow>{provider.introEyebrow ?? 'Within 28'}</Eyebrow>
             <div className="space-y-6">
               {provider.intro.map((p, i) => (
                 <p key={i} className="max-w-prose font-sans text-lg leading-relaxed text-charcoal">
@@ -65,6 +65,7 @@ export function ProviderPage({ provider }: { provider: Provider }) {
 
             {provider.introBlocks?.map((block) => (
               <div key={block.title} className="mt-10 border-t border-line pt-8">
+                {block.eyebrow ? <p className="eyebrow mb-3">{block.eyebrow}</p> : null}
                 <h3 className="font-serif text-2xl text-ink">{block.title}</h3>
                 <div className="mt-4 space-y-4">
                   {block.body.map((p, i) => (
@@ -120,19 +121,62 @@ export function ProviderPage({ provider }: { provider: Provider }) {
         </div>
       </section>
 
+      {/* Statement sections */}
+      {provider.sections?.map((sec) => (
+        <section key={sec.title} className="shell py-section">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <Eyebrow>{sec.eyebrow}</Eyebrow>
+            <h2 className="text-balance font-serif text-display-sm text-ink">{sec.title}</h2>
+            <div className="mt-6 space-y-6">
+              {sec.body.map((p, i) => (
+                <p key={i} className="font-sans text-lg leading-relaxed text-muted">
+                  {p}
+                </p>
+              ))}
+            </div>
+          </Reveal>
+        </section>
+      ))}
+
       {/* Philosophy */}
-      <section className="shell py-section">
-        <Reveal className="mx-auto max-w-4xl text-center">
-          <p className="eyebrow mb-8">Philosophy</p>
-          <blockquote className="text-balance font-serif text-display-sm leading-tight text-ink">
-            &ldquo;{provider.philosophy}&rdquo;
-          </blockquote>
-          {provider.philosophyAttribution ? (
-            <p className="mt-8 font-sans text-[0.72rem] uppercase tracking-eyebrow text-muted">
-              {provider.philosophyAttribution}
-            </p>
-          ) : null}
-        </Reveal>
+      <section className={cn(provider.sections?.length ? 'bg-sand/50' : '')}>
+        <div className="shell py-section">
+          <Reveal className="mx-auto max-w-4xl text-center">
+            <p className="eyebrow mb-8">Philosophy</p>
+            {provider.philosophyTitle ? (
+              <h2 className="text-balance font-serif text-display-sm text-ink">
+                {provider.philosophyTitle}
+              </h2>
+            ) : null}
+            {provider.philosophyIntro ? (
+              <div className="mx-auto mb-10 mt-6 max-w-2xl space-y-6">
+                {provider.philosophyIntro.map((p, i) => (
+                  <p key={i} className="font-sans text-lg leading-relaxed text-muted">
+                    {p}
+                  </p>
+                ))}
+              </div>
+            ) : null}
+            <blockquote
+              className={cn(
+                'text-balance font-serif leading-tight text-ink',
+                provider.philosophyTitle ? 'text-2xl italic md:text-3xl' : 'text-display-sm'
+              )}
+            >
+              &ldquo;{provider.philosophy}&rdquo;
+            </blockquote>
+            {provider.philosophyAttribution ? (
+              <p className="mt-8 font-sans text-[0.72rem] uppercase tracking-eyebrow text-muted">
+                {provider.philosophyAttribution}
+              </p>
+            ) : null}
+            {provider.philosophySignoff ? (
+              <p className="mt-3 font-serif text-xl italic text-charcoal">
+                {provider.philosophySignoff}
+              </p>
+            ) : null}
+          </Reveal>
+        </div>
       </section>
 
       {/* Selected services */}

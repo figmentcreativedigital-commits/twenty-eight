@@ -39,14 +39,18 @@ export type Provider = {
   discipline: string;
   /** Provider-page hero headline. */
   headline: string;
-  /** Line under the provider-page hero headline. */
-  heroSupporting: string;
+  /** Line(s) under the provider-page hero headline. */
+  heroSupporting: string | string[];
   /** Card teaser. */
   cardStatement: string;
+  /** Eyebrow over the intro. Defaults to "Within 28". */
+  introEyebrow?: string;
   /** Opening paragraphs for the provider page. */
   intro: string[];
   /** Additional titled text under the intro. */
-  introBlocks?: { title: string; body: string[] }[];
+  introBlocks?: { eyebrow?: string; title: string; body: string[] }[];
+  /** Centered statement sections after the expertise band. */
+  sections?: { eyebrow: string; title: string; body: string[] }[];
   /** Tag row under the intro, e.g. technology or clinical background. */
   tags?: { title: string; items: string[] };
   /** "Expertise" section heading and items. */
@@ -54,9 +58,14 @@ export type Provider = {
   expertise: ProviderItem[];
   /** Optional second group in the expertise band. */
   approach?: { title: string; items: ProviderItem[] };
+  /** Optional heading and paragraphs that lead into the pull quote. */
+  philosophyTitle?: string;
+  philosophyIntro?: string[];
   /** Pull quote. Stored without quotation marks. */
   philosophy: string;
   philosophyAttribution?: string;
+  /** Closing line under the attribution. */
+  philosophySignoff?: string;
   /** Selected services, illustrative. No pricing. */
   selectedServices: { title: string; note?: string }[];
   /** Wide editorial image for the provider-page hero. */
@@ -92,45 +101,81 @@ export const providers: Provider[] = [
     shortName: 'Yulia',
     specialtyLabel: 'Skin Health & Beauty',
     discipline: 'Where skin science meets health and beauty',
-    headline: 'Skin health is whole body health.',
+    // Copy below is Yulia's Nov 2026 update, verbatim except "At The 28" ->
+    // "At 28" (brand is "28").
+    headline: 'Skin Health Is Whole Body Health',
     heroSupporting: 'Where Skin Science Meets Health and Beauty',
     cardStatement:
       'Where skin science meets health and beauty: personalized facials, body treatments, and laser, guided by an assessment of your skin at every visit.',
+    introEyebrow: 'Yulia Gerchik Studio',
     intro: [
-      'At Yulia Gerchik Studio, beautiful skin begins with healthy skin, and healthy skin begins with understanding the body as a whole. As the body’s largest organ, the skin is a vital protective barrier, influenced by nutrition, hormones, lifestyle, aging, and overall well-being.',
-      'Within 28, Yulia Gerchik Studio complements medical, dental, nutritional, and wellness expertise through a shared commitment to prevention, personalized care, and long-term health. The focus is not only how your skin looks today, but its health, resilience, and vitality for years to come.',
+      'At Yulia Gerchik Studio, we believe that beautiful skin begins with healthy skin and healthy skin begins with understanding the body as a whole.',
+      'As the body’s largest organ, the skin is more than what we see on the surface. It is a vital protective barrier, influenced by nutrition, hormones, lifestyle, aging, and overall well-being.',
     ],
     introBlocks: [
       {
-        title: 'Understanding skin beyond the surface',
+        title: 'Our Philosophy of Skin Health',
         body: [
-          'Skin is constantly evolving, so it is assessed at every visit rather than treated as a fixed skin type. Advanced technologies, concentrated formulations, and carefully designed protocols support skin health, strengthen its protective barrier, and enhance natural beauty.',
+          'At 28, we believe that healthy skin is the foundation of lasting beauty. Our approach goes beyond traditional aesthetic treatments to understand the biology of the skin, preserve its natural functions, and support its long-term health.',
+          'Guided by science, precision, and individualized care, we focus on enhancing the skin’s natural vitality while respecting its unique characteristics.',
+          'We view skin health not in isolation, but as an integral part of overall health, wellness, and longevity.',
+        ],
+      },
+      {
+        eyebrow: 'Our Expertise',
+        title: 'Understanding Skin Beyond the Surface',
+        body: [
+          'Rooted in integrity and clinical expertise, our approach recognizes that skin is constantly evolving and should never be treated in isolation.',
+          'We assess the skin’s condition at each visit rather than relying on a fixed skin type.',
+          'Through advanced technologies, concentrated formulations, and carefully designed protocols, we support skin health, strengthen its protective barrier, and enhance natural beauty.',
         ],
       },
     ],
-    expertiseTitle: 'A three-step approach',
+    tags: {
+      title: 'Offerings',
+      items: ['Facials', 'Body Treatments', 'Laser', 'Advanced Aesthetics', 'Personalized Care'],
+    },
+    expertiseTitle: 'Our Three-Step Approach',
     expertise: [
       {
         label: 'Assessment',
-        title: 'Understanding your skin',
+        title: 'Understanding Your Skin',
         description:
-          'Every treatment begins with a personalized assessment of the skin’s current condition, individual concerns, and lifestyle influences.',
+          'Every treatment begins with a personalized assessment of the skin’s current condition, individual concerns, and lifestyle influences. We look beyond surface imperfections to understand its changing needs.',
       },
       {
         label: 'Preparation',
-        title: 'Creating the foundation for healthy skin',
+        title: 'Creating the Foundation for Healthy Skin',
         description:
-          'Precise cleansing, exfoliation, hydration, and balancing techniques prepare the skin while respecting its natural protective functions.',
+          'Through precise cleansing, exfoliation, hydration, and balancing techniques, we prepare the skin while respecting its natural protective functions.',
       },
       {
         label: 'Treatment',
-        title: 'Science meets personalized care',
+        title: 'Science Meets Personalized Care',
         description:
-          'Advanced aesthetic technologies, active formulations, and individualized techniques, designed to improve skin quality, restore balance, and enhance natural beauty.',
+          'Combining advanced aesthetic technologies, active formulations, and individualized techniques, we create treatments designed to improve skin quality, restore balance, and enhance natural beauty.',
       },
     ],
-    philosophy: 'Healthy skin is not separate from health. It is part of it.',
-    philosophyAttribution: 'Skin Health. Personalized Care. Timeless Confidence.',
+    sections: [
+      {
+        eyebrow: 'Our Role Within 28',
+        title: 'Different Expertise. One Shared Vision.',
+        body: [
+          'Skin health is an essential part of overall well-being.',
+          'Within 28, Yulia Gerchik Studio complements medical, dental, nutritional, and wellness expertise through a shared commitment to prevention, personalized care, and long-term health.',
+          'Our approach recognizes the connection between internal health and external appearance, creating a more complete perspective on individual wellness.',
+          'We care not only about how your skin looks today, but also about its health, resilience, and vitality for years to come.',
+        ],
+      },
+    ],
+    philosophyTitle: 'Beauty Is a Reflection of Health',
+    philosophyIntro: [
+      'We believe true beauty is not about changing who you are, but preserving what makes you unique.',
+      'At Yulia Gerchik Studio, science meets artistry, and personalized skincare becomes part of a lifelong commitment to health, confidence, and well-being.',
+    ],
+    philosophy: 'Because healthy skin is not separate from health. It is part of it.',
+    philosophyAttribution: 'Yulia Gerchik Studio at 28',
+    philosophySignoff: 'Skin Health. Personalized Care. Timeless Confidence.',
     selectedServices: [
       { title: 'The Atelier Signatures', note: 'Iconic facials. Individual results.' },
       { title: 'The Sculpting Collection', note: 'Lift. Tone. Redefine.' },
@@ -320,8 +365,10 @@ export const providers: Provider[] = [
     specialtyLabel: 'Nutrition & Metabolic Health',
     discipline: 'Clinical nutrition and metabolic health',
     headline: 'Nutrition. Behavior change. Follow-through.',
-    heroSupporting:
-      'MS, RDN, CDN, CSOWM. Registered Dietitian Nutritionist and Board-Certified Specialist in Obesity and Weight Management.',
+    heroSupporting: [
+      'Alexandra Cerone, MS, RDN, CDN, CSOWM',
+      'Registered Dietitian Nutritionist | Board-Certified Specialist in Obesity and Weight Management',
+    ],
     cardStatement:
       'A registered dietitian nutritionist and board-certified specialist in obesity and weight management, helping people turn nutrition knowledge into consistent, practical action.',
     intro: [

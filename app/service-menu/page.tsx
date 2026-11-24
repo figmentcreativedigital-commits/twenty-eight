@@ -6,7 +6,7 @@ import { Reveal } from '@/components/ui/Reveal';
 import { Button } from '@/components/ui/Button';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { providers } from '@/content/providers';
-import { serviceMenuIntro, serviceMenus } from '@/content/services';
+import { serviceMenuIntro, serviceMenus, type ServiceGroup } from '@/content/services';
 
 export const metadata: Metadata = {
   title: 'Our Expertise',
@@ -60,6 +60,11 @@ export default function ServiceMenuPage() {
                 <h2 className="text-balance font-serif text-display-md text-ink">
                   {provider.name}
                 </h2>
+                {menu?.tagline ? (
+                  <p className="mt-4 font-serif text-xl italic leading-snug text-charcoal">
+                    {menu.tagline}
+                  </p>
+                ) : null}
                 {menu?.intro ? (
                   <p className="mt-6 max-w-prose font-sans text-lg leading-relaxed text-muted">
                     {menu.intro}
@@ -75,6 +80,9 @@ export default function ServiceMenuPage() {
                 </div>
               </Reveal>
 
+              {menu?.showFullMenu ? (
+                <FullMenu groups={menu.groups} closing={menu.closing} />
+              ) : (
               <div className="border-t border-line pt-8">
                 <ul className="grid gap-x-12 gap-y-10 md:grid-cols-2">
                   {provider.selectedServices.map((s) => (
@@ -87,6 +95,7 @@ export default function ServiceMenuPage() {
                   ))}
                 </ul>
               </div>
+              )}
 
               {menu?.gapNote ? (
                 <p className="mt-12 max-w-prose font-sans text-sm italic leading-relaxed text-muted/80">
@@ -141,5 +150,92 @@ export default function ServiceMenuPage() {
         secondaryCta={{ label: 'Explore the Collective', href: '/collective' }}
       />
     </>
+  );
+}
+
+/** A provider's complete grouped menu: collections, treatments, durations. No pricing. */
+function FullMenu({ groups, closing }: { groups: ServiceGroup[]; closing?: string }) {
+  return (
+    <div className="space-y-16">
+      {groups.map((group, gi) => (
+        <Reveal key={group.title} delay={(gi % 2) * 60}>
+          <div className="mb-8 border-t border-line pt-8">
+            <p className="eyebrow mb-3">{String(gi + 1).padStart(2, '0')}</p>
+            <h3 className="font-serif text-2xl text-ink md:text-[1.7rem]">{group.title}</h3>
+            {group.tagline ? (
+              <p className="mt-2 font-sans text-[0.72rem] uppercase tracking-eyebrow text-muted">
+                {group.tagline}
+              </p>
+            ) : null}
+            {group.intro ? (
+              <p className="mt-4 max-w-prose font-sans text-sm leading-relaxed text-muted">
+                {group.intro}
+              </p>
+            ) : null}
+          </div>
+
+          {group.items ? (
+            <div className="grid gap-x-12 gap-y-10 md:grid-cols-2">
+              {group.items.map((item) => (
+                <div key={item.name}>
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                    <h4 className="font-serif text-xl text-ink">{item.name}</h4>
+                    {item.duration ? (
+                      <span className="font-sans text-[0.68rem] uppercase tracking-wide text-gold-deep">
+                        {item.duration}
+                      </span>
+                    ) : null}
+                  </div>
+                  <p className="mt-3 max-w-prose font-sans text-sm leading-relaxed text-muted">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          ) : null}
+
+          {group.simpleItems ? (
+            <ul className="grid gap-x-10 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+              {group.simpleItems.map((item) => (
+                <li key={item} className="flex items-baseline gap-3 font-sans text-sm text-charcoal">
+                  <span aria-hidden="true" className="h-px w-3 flex-shrink-0 translate-y-[-0.35em] bg-gold" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+
+          {group.lists ? (
+            <div className="grid gap-10 md:grid-cols-3">
+              {group.lists.map((list) => (
+                <div key={list.title}>
+                  <h4 className="font-serif text-xl text-ink">{list.title}</h4>
+                  <ul className="mt-4 space-y-2">
+                    {list.items.map((item) => (
+                      <li key={item} className="flex items-baseline gap-3 font-sans text-sm text-charcoal">
+                        <span aria-hidden="true" className="h-px w-3 flex-shrink-0 translate-y-[-0.35em] bg-gold" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ) : null}
+
+          {group.note ? (
+            <p className="mt-6 max-w-prose font-sans text-sm italic leading-relaxed text-muted/80">
+              {group.note}
+            </p>
+          ) : null}
+        </Reveal>
+      ))}
+
+      {closing ? (
+        <p className="border-t border-line pt-8 text-center font-sans text-[0.72rem] uppercase tracking-eyebrow text-muted">
+          {closing}
+        </p>
+      ) : null}
+    </div>
   );
 }

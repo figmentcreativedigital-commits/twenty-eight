@@ -28,7 +28,13 @@ export type ServiceItem = {
 
 export type ServiceGroup = {
   title: string;
+  /** Short line under the title, e.g. "Lift. Tone. Redefine." */
+  tagline?: string;
   intro?: string;
+  /** Named sub-lists, e.g. Enhancements: Specialty Masks, Technology... */
+  lists?: { title: string; items: string[] }[];
+  /** Italic note under the group. */
+  note?: string;
   /** Full entries with descriptions. */
   items?: ServiceItem[];
   /** Short add-on lists that don't warrant a description each. */
@@ -45,6 +51,12 @@ export type ProviderMenu = {
   groups: ServiceGroup[];
   /** Rendered as a quiet note when a provider's menu is incomplete. */
   gapNote?: string;
+  /** Menu tagline shown under the provider name. */
+  tagline?: string;
+  /** Closing line under the menu. */
+  closing?: string;
+  /** Render the full grouped menu on Our Expertise (otherwise the provider's selected services). */
+  showFullMenu?: boolean;
 };
 
 export const serviceMenuIntro = {
@@ -60,178 +72,252 @@ export const serviceMenuIntro = {
 
 export const serviceMenus: ProviderMenu[] = [
   /* ───────────────────────── Yulia Gerchik Studio ───────────────────────── */
+  // Source: "Skin Atelier at THE 28 by Yulia Gerchik" treatment menu, Nov 2026.
+  // Copy verbatim except "THE 28" -> "28". Durations only: NO PRICING.
   {
     slug: 'yulia-gerchik-studio',
     name: 'Yulia Gerchik Studio',
     shortName: 'Yulia',
     eyebrow: 'Skin Health & Beauty',
-    // Nov 2026: the studio's menu is now organized into collections (see
-    // selectedServices in providers.ts). The detailed groups below are the
-    // earlier menu and are no longer rendered.
+    tagline: 'Skin Atelier at 28 by Yulia Gerchik. The Art of Skin. The Science of Beauty.',
     intro:
-      'Every treatment begins with a personalized assessment of the skin’s current condition, individual concerns, and lifestyle influences. The menu below is a reference for consultations and bookings, not a fixed prescription.',
+      'At Skin Atelier at 28, skincare is an art form. Each treatment is thoughtfully designed to celebrate the individuality of your skin, combining expert touch, advanced technology, and exceptional formulations to deliver visible, lasting results.',
+    closing: 'Personalized Skincare. Advanced Aesthetics. Timeless Results.',
+    showFullMenu: true,
     groups: [
       {
-        title: 'Signature Facials',
+        title: 'The Atelier Signatures',
+        tagline: 'Iconic facials. Individual results.',
         items: [
           {
-            name: 'Haute Couture Facial',
+            name: 'Haute Couture',
+            duration: '120 min',
             description:
-              'A fully bespoke treatment built around individual requirements. Double cleanse, steam, gentle extraction, natural microdermabrasion, then mask, LED light and oxygen therapy with facial toning and personalised products.',
-            duration: '120 minutes',
+              'The ultimate bespoke facial. A comprehensive experience combining deep cleansing, extractions, microdermabrasion, sculpting, LED therapy, oxygen infusion and advanced toning for complete rejuvenation.',
           },
           {
-            name: 'Bespoke Facial',
+            name: 'The Bespoke',
+            duration: '90 min',
             description:
-              'Customised to target individual concerns, drawing on lymphatic drainage massage, peel, extractions, Biologique Recherche booster application and remodelling face machine for facial toning.',
-            duration: '90 minutes',
+              'A customized treatment featuring targeted Biologique Recherche boosters, lymphatic drainage, exfoliation and advanced technology for your skin’s unique needs.',
           },
           {
-            name: 'Signature Facial',
+            name: 'The Signature',
+            duration: '75 min',
             description:
-              'A targeted treatment: double cleanse, lymphatic drainage massage, and a Biologique Recherche booster, finished with a hyper-customized mask and skincare.',
-            duration: '75 minutes',
+              'The essence of Skin Atelier. Double cleansing, lymphatic drainage, personalized booster and customized mask to reveal healthy, radiant skin.',
           },
           {
-            name: 'European Facial',
+            name: 'The Essential',
+            duration: '50 min',
             description:
-              'Double cleansing and exfoliation with extractions, followed by a soothing, calming treatment and hyper-customized skincare.',
-            duration: '50 minutes',
-          },
-          {
-            name: 'Red Carpet Facial',
-            description:
-              'For an event or occasion. Lymphatic massage, mechanical microdermabrasion and oxygen infusion for a brighter complexion, finished with a medical-grade hyaluronic acid second-skin treatment and patches.',
-            duration: '90–120 minutes',
+              'A classic European-inspired facial with deep cleansing, gentle exfoliation, meticulous extractions and soothing hydration.',
           },
         ],
       },
       {
-        title: 'Advanced & Technology-Led',
+        title: 'The Sculpting Collection',
+        tagline: 'Lift. Tone. Redefine.',
         items: [
           {
-            name: 'JetPeel Facial',
+            name: 'The Triple Lift',
+            duration: '120 min',
             description:
-              'Jet stream technology delivering micro droplets beneath the dermis in three steps - lymphatic drainage, exfoliation, and infusion of bio-active nutrients. Needle-free, and suitable for all skin types including rosacea.',
-            duration: '60 minutes',
+              'Combines Lift CVS, Soin Restructurant et Lissant and the Remodeling Face Machine to visibly sculpt facial contours, improve firmness and elasticity.',
           },
           {
-            name: 'JetPeel Hair & Scalp Treatment',
+            name: 'The Contour',
+            duration: '45 min',
             description:
-              'FDA-approved technology resurfacing the skin with a two-phase stream. Treatment is delivered into the scalp to stimulate new hair growth, without the discomfort of repeated needling.',
-            duration: '45 minutes',
+              'Advanced facial toning using the Remodeling Face Machine to enhance firmness, definition and facial contours.',
           },
           {
-            name: 'REVERSO Deep Fractional RF',
+            name: 'The Lift',
+            duration: '75 min',
             description:
-              'Deep fractional radiofrequency for skin rejuvenation and remodelling - correcting texture and tone, addressing stretch marks, tightening loose skin, restoring firmness, and refining enlarged pores.',
-            duration: '60 minutes',
+              'Resurfacing and sculpting with Lift CVS for smoother texture, firmer appearance and enhanced luminosity.',
           },
           {
-            name: 'MBR Liquid Surgery Facial',
+            name: 'The Silk Sculpt',
+            duration: '75 min',
             description:
-              'Non-invasive treatment that plumps and restores volume and elasticity, using MBR Liquid Surgery Serum with the remodelling face machine, micro-needling and LED light therapy.',
-            duration: '90–120 minutes',
-          },
-          {
-            name: 'Biolift Facial',
-            description:
-              'A non-surgical facelift treatment using the remodelling face machine, combining electrical and high-frequency currents with Biologique Recherche products.',
-            duration: '45 minutes',
-          },
-          {
-            name: 'Lift CVS Microdermabrasion Facial',
-            description:
-              'Micro-crystalline algae, silk extracts and natural amino acids combined with modulating techniques and massage to redefine contours and firm the oval of the face.',
-            duration: '75 minutes',
+              'Hydrating and restorative treatment with Soin Restructurant et Lissant to replenish moisture and improve suppleness.',
           },
         ],
       },
       {
-        title: 'Targeted & Corrective',
+        title: 'The Radiance Collection',
+        tagline: 'Renew. Brighten. Glow.',
         items: [
           {
-            name: 'Brightening Facial',
+            name: 'The Luminosity',
+            duration: '60 min',
             description:
-              'Designed to correct pigmentation and prevent the formation of age spots, using the Biologique Recherche PIGM 400 line.',
-            duration: '60 minutes',
+              'Targeted brightening treatment with PIGM 400 to address uneven tone, pigmentation and dullness.',
           },
           {
-            name: 'Micro-Puncture Collagen Infusion Facial',
+            name: 'The Oxygen Ritual',
+            duration: '75 min',
             description:
-              'A face and neck treatment that boosts fibroblasts to produce collagen and elasticity, without numbing cream. Finished with a Biologique Recherche collagen mask for hydration.',
-            duration: '90 minutes',
+              'A revitalizing facial with VIP O2 to refresh fatigued, environmentally stressed skin.',
           },
           {
-            name: 'Micro-Puncture Classic',
+            name: 'The Polish',
+            duration: '60 min',
             description:
-              'Micro-stimulations remodel the deeper dermal layer for regeneration, resurfacing and firmness, while increasing penetration of regenerating vitamin and growth factor serum.',
-            duration: '60 minutes',
+              'Dermaplaning for instant smoothness and glow. Removes dead skin cells and fine facial hair.',
           },
           {
-            name: 'Triple Lift Facial',
+            name: 'The Red Carpet',
+            duration: '90–120 min',
             description:
-              'Lifting, firming and plumping, using two Biologique Recherche boosters - Lift CVS and Restructurant Soin Lissant - with the remodelling face machine for a third and final lift.',
-            duration: '120 minutes',
-          },
-          {
-            name: 'Re-Oxygenating Facial',
-            description:
-              'Biologique Recherche VIPO2 booster delivers oxygen through a unique application and targeted massage, helping asphyxiated skin restore a healthier, brighter complexion.',
-            duration: '75 minutes',
-          },
-          {
-            name: 'Seconde Peau Facial',
-            description:
-              'An electrospun mask strip of medical-origin hyaluronic acid for a regenerating action that stimulates collagen synthesis and reduces the depth of lines. Recommended alongside injectables or to support recovery after procedures.',
-            duration: '60 minutes',
-          },
-          {
-            name: 'Biovecteur Marin Facial',
-            description:
-              'Fine leaves of algae extract, custom-cut to the structure of the face and moistened with fluid and serums, finished with a cold mask to optimise the marine oligo-elements and minerals.',
-            duration: '75 minutes',
-          },
-          {
-            name: 'Soin Restructurant et Lissant Facial',
-            description:
-              'Hyaluronic acid with silk and royal jelly, applied with smoothing, sculpting and pulsing techniques to boost repair capacity for sensitive, stressed skin.',
-            duration: '75 minutes',
-          },
-          {
-            name: 'Toleskin Facial',
-            description:
-              'Developed for intolerant skin that no longer tolerates classic treatment. Calms reactivity and reduces sensitivity, itching and redness - ideal for intense sensitivity or post-procedure skin.',
-            duration: '60 minutes',
-          },
-          {
-            name: 'Dermaplaning Facial',
-            description:
-              'A medical-grade blade removes the outermost layer of skin along with unwanted hair for a smooth, radiant finish. Can be added to any facial.',
-            duration: '60 minutes',
+              'Pre-event treatment for luminous, camera-ready skin with microdermabrasion, oxygen infusion and intensive hyaluronic acid therapy.',
           },
         ],
+      },
+      {
+        title: 'The Renewal Collection',
+        tagline: 'Regenerate. Restore. Transform.',
+        items: [
+          {
+            name: 'The Collagen Infusion',
+            duration: '90 min',
+            description:
+              'Advanced micro-puncture treatment with regenerative serums and Féerie Visage collagen mask.',
+          },
+          {
+            name: 'The Skin Renewal',
+            duration: '60 min',
+            description:
+              'Precision micro-stimulation with Cocktail d’Actifs Régénérants to support natural collagen renewal.',
+          },
+          {
+            name: 'The Second Skin',
+            duration: '60 min',
+            description:
+              'Intensive hyaluronic acid treatment with Seconde Peau for visible plumping and firming.',
+          },
+          {
+            name: 'The Liquid Rejuvenation',
+            duration: '90–120 min',
+            description:
+              'High-performance age-defying treatment with MBR Liquid Surgery Serum, facial toning, microneedling and LED (as appropriate).',
+          },
+        ],
+      },
+      {
+        title: 'The Restoration Collection',
+        tagline: 'Soothe. Strengthen. Revitalize.',
+        items: [
+          {
+            name: 'The Calm',
+            duration: '60 min',
+            description:
+              'A sanctuary for sensitive skin with Toleskin to reduce the appearance of redness and irritation.',
+          },
+          {
+            name: 'The Marine Ritual',
+            duration: '75 min',
+            description:
+              'Mineral-rich algae sheets and cooling mask to replenish hydration and revitalize tired, lackluster skin.',
+          },
+        ],
+      },
+      {
+        title: 'Body Treatments',
+        tagline: 'Sculpt. Drain. Detox. Renew.',
+        items: [
+          {
+            name: 'Endosphere Therapy',
+            duration: '60 min',
+            description:
+              'Advanced compression microvibration therapy to reduce cellulite, improve circulation, drain lymphatic system and contour the body.',
+          },
+          {
+            name: 'Sculpt & Tone',
+            duration: '60 min',
+            description:
+              'Targets stubborn areas, improves skin tightness and enhances body definition.',
+          },
+          {
+            name: 'Detox Body Wrap',
+            duration: '60 min',
+            description:
+              'A detoxifying and revitalizing treatment to eliminate toxins, reduce water retention and improve skin texture.',
+          },
+          {
+            name: 'Firming Body Treatment',
+            duration: '60 min',
+            description:
+              'A restorative treatment to enhance skin elasticity, tone and hydration.',
+          },
+          {
+            name: 'Custom Body Program',
+            duration: 'Consultation',
+            description:
+              'A personalized plan combining Endosphere, body wraps and targeted treatments for your goals.',
+          },
+        ],
+      },
+      {
+        title: 'Laser Hair Removal',
+        tagline: 'Smooth. Confident. Effortless.',
+        intro:
+          'Advanced laser technology for safe, effective and long-lasting hair reduction. Suitable for all skin types.',
+        simpleItems: [
+          'Full Face',
+          'Upper Lip',
+          'Chin',
+          'Underarms',
+          'Half Arms',
+          'Full Arms',
+          'Bikini',
+          'Brazilian',
+          'Half Legs',
+          'Full Legs',
+          'Back',
+          'Chest',
+          'Stomach',
+          'Custom Areas (by consultation)',
+        ],
+        note: 'A personalized treatment plan is created based on your skin type, hair type and goals.',
       },
       {
         title: 'Enhancements',
-        intro: 'Added to any facial, selected in consultation.',
-        simpleItems: [
-          'Collagen Mask',
-          'Caviar Mask',
-          'Brightening PIGM 400 Mask',
-          'Anti-Crises Toleskin Mask',
-          'Platysma Chin Mask',
-          'Micro-needling',
-          'Microcurrent',
-          'Dermaplaning',
-          'LED Light Therapy',
-          'Oxygen Therapy',
-          'Peel',
-          'Eye Treatment',
-          'Hand Treatment',
-          'Leg Treatment',
-          'Detox Body Wrap',
+        tagline: 'Customize your treatment.',
+        lists: [
+          {
+            title: 'Specialty Masks',
+            items: [
+              'Collagen Veil',
+              'Caviar Infusion',
+              'PIGM 400 Brightening Veil',
+              'Toleskin Recovery Mask',
+              'Chin & Neck Sculpting Mask',
+            ],
+          },
+          {
+            title: 'Technology Enhancements',
+            items: [
+              'Microneedling',
+              'Microcurrent Sculpting',
+              'LED Light Therapy',
+              'Oxygen Infusion',
+              'Dermaplaning',
+            ],
+          },
+          {
+            title: 'Targeted Treatments',
+            items: [
+              'Customized Chemical Peel',
+              'Eye Renewal Treatment',
+              'Hand Rejuvenation Treatment',
+              'Leg Revitalization Treatment',
+              'Detoxifying Body Wrap',
+            ],
+          },
         ],
+        note: 'Enhancements are offered according to treatment compatibility and skin suitability. Some services require a separate appointment.',
       },
     ],
   },
