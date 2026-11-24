@@ -8,7 +8,7 @@ import { providers } from '@/content/providers';
 export const metadata: Metadata = {
   title: 'Book an Appointment',
   description:
-    'Book directly with a provider at 28 (Yulia Gerchik Studio, New York City Dental Smiles, or Dr. Evia Nano) or request a consultation across the Collective.',
+    'Book directly with a provider at 28 (Yulia Gerchik Studio, New York City Dental Smiles, Dr. Evia Nano, or Alexandra Cerone) or request a consultation across the Collective.',
   alternates: { canonical: '/booking' },
 };
 
@@ -36,7 +36,7 @@ export default function BookingPage() {
           </p>
         </Reveal>
 
-        <div className="grid gap-8 lg:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
           {providers.map((provider, i) => (
             <Reveal key={provider.slug} delay={i * 90}>
               <Link

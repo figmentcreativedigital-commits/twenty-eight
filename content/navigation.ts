@@ -19,6 +19,7 @@ export const providerNav: NavLink[] = [
   { label: 'Yulia Gerchik Studio', href: '/collective/yulia-gerchik-studio' },
   { label: 'New York City Dental Smiles', href: '/collective/nyc-dental-smiles' },
   { label: 'Dr. Evia Nano', href: '/collective/dr-evia-nano' },
+  { label: 'Alexandra Cerone', href: '/collective/alexandra-cerone' },
 ];
 
 /** Provider quick-links in the mobile menu (short names). */
@@ -26,6 +27,7 @@ export const providerNavShort: NavLink[] = [
   { label: 'Yulia', href: '/collective/yulia-gerchik-studio' },
   { label: 'New York City Dental Smiles', href: '/collective/nyc-dental-smiles' },
   { label: 'Dr. Nano', href: '/collective/dr-evia-nano' },
+  { label: 'Alexandra', href: '/collective/alexandra-cerone' },
 ];
 
 export const footerNav: { heading: string; links: NavLink[] }[] = [

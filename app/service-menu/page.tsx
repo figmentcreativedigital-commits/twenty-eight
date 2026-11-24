@@ -24,7 +24,7 @@ export default function ServiceMenuPage() {
         supporting={serviceMenuIntro.lede}
         primaryCta={{ label: 'Request a Consultation', href: '/consultation' }}
         secondaryCta={{ label: 'The Collective', href: '/collective' }}
-        imageAlt="An editorial arrangement of refined treatment tools and materials across the three disciplines of 28."
+        imageAlt="An editorial arrangement of refined treatment tools and materials across the disciplines of 28."
         imageSrc="/images/28-placeholder-g.jpeg"
       />
 
@@ -78,8 +78,11 @@ export default function ServiceMenuPage() {
               <div className="border-t border-line pt-8">
                 <ul className="grid gap-x-12 gap-y-10 md:grid-cols-2">
                   {provider.selectedServices.map((s) => (
-                    <li key={s}>
-                      <h4 className="font-serif text-xl text-ink">{s}</h4>
+                    <li key={s.title}>
+                      <h4 className="font-serif text-xl text-ink">{s.title}</h4>
+                      {s.note ? (
+                        <p className="mt-2 font-sans text-sm leading-relaxed text-muted">{s.note}</p>
+                      ) : null}
                     </li>
                   ))}
                 </ul>

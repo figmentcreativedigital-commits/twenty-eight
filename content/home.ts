@@ -14,13 +14,17 @@ export const hero = {
   imageAlt: 'A serene Tribeca interior in stone, plaster, and soft light.',
 };
 
+/** Per Dr. El Chaar's Nov 2026 revisions, as used on the landing page. */
 export const introducing28 = {
   eyebrow: 'Introducing 28',
-  headline: 'A more considered approach to beauty and wellness.',
+  headline: 'A more considered approach to beauty, wellness & longevity.',
   body: [
-    '28 is a luxury wellness and aesthetics collective created for those who understand that beauty, health, and confidence are deeply connected. Located in Tribeca, 28 brings together three established leaders - Yulia Gerchik Studio, New York City Dental Smiles, and Dr. Evia Nano - to offer a more elevated, complete, and personalized approach to care.',
-    'From smile aesthetics and advanced skin health to beauty treatments, peptides, and regenerative wellness, every experience at 28 is designed to help clients look refined, feel confident, and invest in themselves with intention.',
+    'Born from the vision of Dr. Edgard El Chaar, 28 is a luxury beauty and wellness destination founded on the belief that health, beauty, and confidence are deeply connected.',
+    'Located in the heart of Tribeca, 28 brings together distinguished professionals across dentistry, aesthetic medicine, advanced skin health, nutrition, and wellness. Each has been invited to contribute their expertise to a collective built on collaboration, scientific excellence, and a shared commitment to personalized care.',
+    'From smile aesthetics and advanced skin health to aesthetic medicine, nutrition, and regenerative wellness, 28 offers a thoughtfully coordinated approach to helping individuals look exceptional, feel confident, and embrace healthier longevity.',
   ],
+  statement:
+    'As the collective evolves, its vision remains constant: bringing together exceptional expertise to care for the whole person.',
 };
 
 export const the28Difference = {
@@ -62,7 +66,10 @@ export const principles = {
 
 export const homeCollective = {
   eyebrow: 'The Collective',
-  headline: 'Three disciplines. One elevated destination.',
+  headline: 'One vision. A collective of expertise.',
+  tagline: 'One Vision. Exceptional Expertise. A Collective Without Boundaries.',
+  intro:
+    'What began as one vision is evolving into a collective of distinguished experts, united by a shared commitment to science, prevention, aesthetics, and healthy longevity. As 28 grows, so will its collective, bringing together new perspectives and specialties while remaining grounded in one guiding philosophy: helping people look their best, feel their best, and live healthier, longer lives.',
 };
 
 export const homeExperiences = {
@@ -107,6 +114,7 @@ export const consultationInterests: string[] = [
   'Aesthetic procedures & injectables',
   'Peptides & regenerative wellness',
   'Weight loss & IV infusions',
+  'Nutrition & metabolic health',
   'Signature Experiences',
   'Membership',
   'Not sure yet',

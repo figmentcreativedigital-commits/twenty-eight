@@ -12,6 +12,8 @@ type PhotoProps = {
   reveal?: false | 'default' | 'image';
   sizes?: string;
   priority?: boolean;
+  /** CSS object-position for the crop, e.g. '50% 25%'. */
+  position?: string;
 };
 
 /**
@@ -26,6 +28,7 @@ export function Photo({
   reveal = false,
   sizes = '(max-width: 1024px) 100vw, 50vw',
   priority = false,
+  position,
 }: PhotoProps) {
   const img = (
     <Image
@@ -35,6 +38,7 @@ export function Photo({
       sizes={sizes}
       priority={priority}
       className="h-full w-full object-cover"
+      style={position ? { objectPosition: position } : undefined}
     />
   );
   const classes = cn('relative overflow-hidden', className);

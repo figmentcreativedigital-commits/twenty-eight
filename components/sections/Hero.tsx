@@ -14,6 +14,8 @@ type HeroProps = {
   secondaryCta?: Cta;
   imageAlt: string;
   imageSrc: string;
+  /** CSS object-position for the background crop. */
+  imagePosition?: string;
   /** full = 100svh (home, the experience); tall = 82svh (interior pages). */
   size?: 'full' | 'tall';
   /** Provider pages use the slightly smaller display size. */
@@ -28,6 +30,7 @@ export function Hero({
   secondaryCta,
   imageAlt,
   imageSrc,
+  imagePosition,
   size = 'tall',
   headlineSize = 'xl',
 }: HeroProps) {
@@ -52,6 +55,7 @@ export function Hero({
           priority
           sizes="100vw"
           className="h-full w-full object-cover"
+          style={imagePosition ? { objectPosition: imagePosition } : undefined}
         />
         <div
           aria-hidden="true"

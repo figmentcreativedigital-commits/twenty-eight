@@ -7,7 +7,7 @@ const provider = getProvider('dr-evia-nano')!;
 export const metadata: Metadata = {
   title: 'Dr. Evia Nano - Aesthetic & Wellness Medicine',
   description:
-    'Medical aesthetics and wellness medicine within the 28 collective in Tribeca - aesthetic procedures, peptides, weight loss, regenerative wellness, and IV infusions. Not general medical care.',
+    'Dr. Evia Nano, board-certified physician, at 28 in Tribeca. Two decades of aesthetic medicine known for subtle, natural results. Medical aesthetics and wellness medicine, not general medical care.',
   alternates: { canonical: '/collective/dr-evia-nano' },
 };
 

@@ -5,7 +5,34 @@ import { Reveal } from '@/components/ui/Reveal';
 import { Button } from '@/components/ui/Button';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Photo } from '@/components/ui/Photo';
-import { providers, type Provider } from '@/content/providers';
+import { providers, type Provider, type ProviderItem } from '@/content/providers';
+import { cn } from '@/lib/utils';
+
+/** 3 items sit in three columns; 4 items go 2-up, then 4-up on large screens. */
+function gridCols(count: number) {
+  return count === 4 ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-3';
+}
+
+function ItemGrid({ items }: { items: ProviderItem[] }) {
+  return (
+    <div className={cn('grid gap-x-10 gap-y-12', gridCols(items.length))}>
+      {items.map((item, i) => (
+        <Reveal key={item.title} delay={i * 90}>
+          <span className="hairline-gold mb-6 block" aria-hidden="true" />
+          {item.label ? (
+            <p className="eyebrow mb-3">
+              {String(i + 1).padStart(2, '0')} | {item.label}
+            </p>
+          ) : null}
+          <h3 className="font-serif text-2xl text-ink">{item.title}</h3>
+          {item.description ? (
+            <p className="mt-4 font-sans text-sm leading-relaxed text-muted">{item.description}</p>
+          ) : null}
+        </Reveal>
+      ))}
+    </div>
+  );
+}
 
 export function ProviderPage({ provider }: { provider: Provider }) {
   const others = providers.filter((p) => p.slug !== provider.slug);
@@ -16,11 +43,12 @@ export function ProviderPage({ provider }: { provider: Provider }) {
         eyebrow={`The Collective - ${provider.specialtyLabel}`}
         headline={provider.headline}
         headlineSize="lg"
-        supporting={provider.discipline}
+        supporting={provider.heroSupporting}
         primaryCta={{ label: `Book with ${provider.shortName}`, href: `/booking/${provider.slug}` }}
         secondaryCta={{ label: 'Request a Consultation', href: '/consultation' }}
-        imageAlt={`${provider.name} - ${provider.discipline}`}
+        imageAlt={provider.imageAlt ?? `${provider.name} - ${provider.discipline}`}
         imageSrc={provider.image}
+        imagePosition={provider.imagePosition}
       />
 
       {/* Introduction */}
@@ -35,12 +63,42 @@ export function ProviderPage({ provider }: { provider: Provider }) {
                 </p>
               ))}
             </div>
+
+            {provider.introBlocks?.map((block) => (
+              <div key={block.title} className="mt-10 border-t border-line pt-8">
+                <h3 className="font-serif text-2xl text-ink">{block.title}</h3>
+                <div className="mt-4 space-y-4">
+                  {block.body.map((p, i) => (
+                    <p key={i} className="max-w-prose font-sans leading-relaxed text-muted">
+                      {p}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            {provider.tags ? (
+              <div className="mt-10 border-t border-line pt-8">
+                <p className="eyebrow mb-4">{provider.tags.title}</p>
+                <ul className="flex flex-wrap gap-2">
+                  {provider.tags.items.map((t) => (
+                    <li
+                      key={t}
+                      className="border border-line px-3 py-1 font-sans text-[0.68rem] uppercase tracking-wide text-muted"
+                    >
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
           </Reveal>
           <Photo
             src={provider.image}
-            alt={`Editorial detail for ${provider.name}`}
+            alt={provider.imageAlt ?? `Editorial detail for ${provider.name}`}
             ratio="4/5"
             reveal="image"
+            position={provider.imagePosition}
           />
         </div>
       </section>
@@ -49,18 +107,19 @@ export function ProviderPage({ provider }: { provider: Provider }) {
       <section className="bg-sand/50">
         <div className="shell py-section">
           <p className="eyebrow mb-4">Expertise</p>
-          <h2 className="mb-14 max-w-2xl font-serif text-display-sm text-ink">Areas of focus</h2>
-          <div className="grid gap-x-10 gap-y-12 md:grid-cols-3">
-            {provider.expertise.map((area, i) => (
-              <Reveal key={area.title} delay={i * 90}>
-                <span className="hairline-gold mb-6 block" aria-hidden="true" />
-                <h3 className="font-serif text-2xl text-ink">{area.title}</h3>
-                <p className="mt-4 font-sans text-sm leading-relaxed text-muted">
-                  {area.description}
-                </p>
-              </Reveal>
-            ))}
-          </div>
+          <h2 className="mb-14 max-w-2xl font-serif text-display-sm text-ink">
+            {provider.expertiseTitle}
+          </h2>
+          <ItemGrid items={provider.expertise} />
+
+          {provider.approach ? (
+            <div className="mt-20 border-t border-line pt-14">
+              <h2 className="mb-14 max-w-2xl font-serif text-display-sm text-ink">
+                {provider.approach.title}
+              </h2>
+              <ItemGrid items={provider.approach.items} />
+            </div>
+          ) : null}
         </div>
       </section>
 
@@ -71,6 +130,11 @@ export function ProviderPage({ provider }: { provider: Provider }) {
           <blockquote className="text-balance font-serif text-display-sm leading-tight text-ink">
             &ldquo;{provider.philosophy}&rdquo;
           </blockquote>
+          {provider.philosophyAttribution ? (
+            <p className="mt-8 font-sans text-[0.72rem] uppercase tracking-eyebrow text-muted">
+              {provider.philosophyAttribution}
+            </p>
+          ) : null}
         </Reveal>
       </section>
 
@@ -93,13 +157,17 @@ export function ProviderPage({ provider }: { provider: Provider }) {
           <ul className="grid content-start gap-0 self-center">
             {provider.selectedServices.map((s) => (
               <li
-                key={s}
-                className="flex items-center justify-between border-b border-ivory/15 py-5 font-sans text-ivory/90"
+                key={s.title}
+                className="flex items-baseline justify-between gap-6 border-b border-ivory/15 py-5 font-sans text-ivory/90"
               >
-                <span>{s}</span>
-                <span aria-hidden="true" className="text-gold">
-                  &mdash;
-                </span>
+                <span>{s.title}</span>
+                {s.note ? (
+                  <span className="text-right text-sm text-ivory/60">{s.note}</span>
+                ) : (
+                  <span aria-hidden="true" className="text-gold">
+                    &mdash;
+                  </span>
+                )}
               </li>
             ))}
           </ul>
@@ -113,10 +181,11 @@ export function ProviderPage({ provider }: { provider: Provider }) {
           Part of something more complete.
         </h2>
         <p className="mb-14 max-w-2xl font-sans text-lg leading-relaxed text-muted">
-          As part of 28, {provider.name} connects with beauty, smile aesthetics, and advanced skin
-          health - so your care can be coordinated into a single, personalized plan.
+          As part of 28, {provider.name} works alongside expertise in dentistry, aesthetic medicine,
+          skin health, and nutrition - so your care can be coordinated into a single, personalized
+          plan.
         </p>
-        <div className="grid gap-8 sm:grid-cols-2">
+        <div className={cn('grid gap-8', others.length === 3 ? 'md:grid-cols-3' : 'sm:grid-cols-2')}>
           {others.map((o) => (
             <Reveal key={o.slug}>
               <Link

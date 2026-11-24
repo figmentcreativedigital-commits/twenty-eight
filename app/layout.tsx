@@ -89,6 +89,7 @@ const orgJsonLd = {
     { '@type': 'HealthAndBeautyBusiness', name: 'Yulia Gerchik Studio' },
     { '@type': 'Dentist', name: 'New York City Dental Smiles' },
     { '@type': 'MedicalBusiness', name: 'Dr. Evia Nano' },
+    { '@type': 'MedicalBusiness', name: 'Alexandra Cerone, MS, RDN, CDN, CSOWM' },
   ],
 };
 

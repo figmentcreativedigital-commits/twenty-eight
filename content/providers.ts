@@ -1,43 +1,70 @@
 /**
  * ────────────────────────────────────────────────────────────────
- * The Collective - three expert-led providers within 28.
+ * The Collective: the experts within 28.
  * ────────────────────────────────────────────────────────────────
- * Intro/headline copy is taken from the client copy document.
- * Service lists are illustrative of each discipline and are flagged
- * for confirmation - they are NOT a published menu and contain no
- * pricing. Credentials, galleries, and testimonials are intentionally
- * omitted until the client supplies verified assets.
+ * Profile copy matches the pre-launch landing page (the28-landing,
+ * Nov 2026), which draws on each provider's own material:
+ *   Yulia Gerchik Studio   → studio's Nov 2026 positioning doc
+ *   NYC Dental Smiles      → nycdentalsmiles.com (Why NYCDS, About, Services)
+ *   Dr. Evia Nano          → eviaesthetics.com
+ *   Alexandra Cerone       → client bio + alendryx.com
+ *
+ * Positioning per Dr. El Chaar's Nov 2026 revisions: 28 is born from his
+ * vision and the providers are invited experts, not co-founders.
+ *
+ * NO PRICING on the site. Alexandra's consultation rate was supplied but is
+ * deliberately not published. Galleries and testimonials stay omitted until
+ * the client supplies verified assets.
  */
+
+export type ProviderItem = {
+  title: string;
+  description?: string;
+  /** Optional small label, e.g. a step name. */
+  label?: string;
+};
 
 export type Provider = {
   slug: string;
   name: string;
   /** Short form used in inline CTAs, e.g. "Visit Dr. Nano", "Begin with Yulia." */
   shortName: string;
-  /** Short label used on cards, e.g. "Beauty & Skin". */
+  /** Post-nominals or byline shown under the name. */
+  credentials?: string;
+  /** Short label used on cards, e.g. "Skin Health & Beauty". */
   specialtyLabel: string;
-  /** One-line discipline descriptor. */
+  /** One-line discipline descriptor (booking cards, image alt text). */
   discipline: string;
-  /** Provider-page hero headline (from copy doc). */
+  /** Provider-page hero headline. */
   headline: string;
-  /** Card teaser (from copy doc). */
+  /** Line under the provider-page hero headline. */
+  heroSupporting: string;
+  /** Card teaser. */
   cardStatement: string;
-  /** Longer positioning paragraph(s) for the provider page. */
+  /** Opening paragraphs for the provider page. */
   intro: string[];
-  /** Provider philosophy statement. */
+  /** Additional titled text under the intro. */
+  introBlocks?: { title: string; body: string[] }[];
+  /** Tag row under the intro, e.g. technology or clinical background. */
+  tags?: { title: string; items: string[] };
+  /** "Expertise" section heading and items. */
+  expertiseTitle: string;
+  expertise: ProviderItem[];
+  /** Optional second group in the expertise band. */
+  approach?: { title: string; items: ProviderItem[] };
+  /** Pull quote. Stored without quotation marks. */
   philosophy: string;
-  /** Expertise areas - illustrative, pending client confirmation. */
-  expertise: { title: string; description: string }[];
-  /** Selected services - illustrative only, no pricing. */
-  selectedServices: string[];
-  /** Art-direction note for the provider hero image slot. */
-  heroImageNote: string;
-  /** Placeholder photography. Swap for final commissioned images. */
+  philosophyAttribution?: string;
+  /** Selected services, illustrative. No pricing. */
+  selectedServices: { title: string; note?: string }[];
   image: string;
+  /** Alt text when the image is a photo of the person rather than an editorial still. */
+  imageAlt?: string;
+  /** object-position for crops of the image, e.g. '50% 25%'. */
+  imagePosition?: string;
   /**
    * Booking hand-off. Confirmed 2026-07-20: booking is a REDIRECT to each
    * provider's own platform, not an on-site or integrated booking system.
-   * Yulia: "when they click on booking, it's gonna be sent to another site."
    *
    * `url` empty = platform not yet supplied. The UI degrades to a consultation
    * request rather than rendering a dead link.
@@ -45,7 +72,7 @@ export type Provider = {
   booking: {
     /** Platform name shown to the client before they leave the site. */
     platform: string;
-    /** Destination. EMPTY UNTIL SUPPLIED BY THE PROVIDER - never guess a URL. */
+    /** Destination. EMPTY UNTIL SUPPLIED BY THE PROVIDER. Never guess a URL. */
     url: string;
     /** What to expect once they arrive. */
     note: string;
@@ -59,49 +86,61 @@ export const providers: Provider[] = [
     slug: 'yulia-gerchik-studio',
     name: 'Yulia Gerchik Studio',
     shortName: 'Yulia',
-    specialtyLabel: 'Beauty & Skin',
-    discipline: 'Refined beauty, skin, body, and aesthetic artistry',
-    headline: 'Beauty, refined through artistry and expertise.',
+    specialtyLabel: 'Skin Health & Beauty',
+    discipline: 'Where skin science meets health and beauty',
+    headline: 'Skin health is whole body health.',
+    heroSupporting: 'Where Skin Science Meets Health and Beauty',
     cardStatement:
-      'A destination for refined beauty services, skin, body, and aesthetic treatments designed to enhance natural features with precision and artistry.',
+      'Where skin science meets health and beauty: personalized facials, body treatments, and laser, guided by an assessment of your skin at every visit.',
     intro: [
-      'Yulia Gerchik Studio brings an elevated beauty perspective to 28, offering refined services that enhance natural features through artistry, precision, and a deeply personal understanding of each client’s goals.',
-      'As part of 28 Collective, Yulia Gerchik Studio gives clients access to beauty expertise that complements advanced skin health, smile aesthetics, and whole-person confidence.',
+      'At Yulia Gerchik Studio, beautiful skin begins with healthy skin, and healthy skin begins with understanding the body as a whole. As the body’s largest organ, the skin is a vital protective barrier, influenced by nutrition, hormones, lifestyle, aging, and overall well-being.',
+      'Within 28, Yulia Gerchik Studio complements medical, dental, nutritional, and wellness expertise through a shared commitment to prevention, personalized care, and long-term health. The focus is not only how your skin looks today, but its health, resilience, and vitality for years to come.',
     ],
-    philosophy:
-      'True enhancement is quiet. Every service begins with the individual - their features, their proportions, their intentions - and works toward a result that looks like no one so much as themselves.',
+    introBlocks: [
+      {
+        title: 'Understanding skin beyond the surface',
+        body: [
+          'Skin is constantly evolving, so it is assessed at every visit rather than treated as a fixed skin type. Advanced technologies, concentrated formulations, and carefully designed protocols support skin health, strengthen its protective barrier, and enhance natural beauty.',
+        ],
+      },
+    ],
+    expertiseTitle: 'A three-step approach',
     expertise: [
       {
-        title: 'Skin & Facial Treatments',
+        label: 'Assessment',
+        title: 'Understanding your skin',
         description:
-          'Refined facial treatments focused on clarity, texture, and a healthy, luminous finish.',
+          'Every treatment begins with a personalized assessment of the skin’s current condition, individual concerns, and lifestyle influences.',
       },
       {
-        // NEEDS CLIENT CONFIRMATION - body treatments confirmed by the client
-        // as an offering, but no service list has been supplied. Kept
-        // deliberately non-specific until Yulia provides her body menu.
-        title: 'Body Treatments',
+        label: 'Preparation',
+        title: 'Creating the foundation for healthy skin',
         description:
-          'Considered body treatments delivered with the same precision, calm, and attention as the studio’s facial work.',
+          'Precise cleansing, exfoliation, hydration, and balancing techniques prepare the skin while respecting its natural protective functions.',
       },
       {
-        title: 'Aesthetic Beauty Services',
+        label: 'Treatment',
+        title: 'Science meets personalized care',
         description:
-          'Precise, personalized beauty services delivered with an artist’s eye and a studio’s calm.',
+          'Advanced aesthetic technologies, active formulations, and individualized techniques, designed to improve skin quality, restore balance, and enhance natural beauty.',
       },
     ],
+    philosophy: 'Healthy skin is not separate from health. It is part of it.',
+    philosophyAttribution: 'Skin Health. Personalized Care. Timeless Confidence.',
     selectedServices: [
-      'Bespoke facial treatments',
-      'Skin refinement rituals',
-      'Body treatments',
-      'Personalized beauty consultation',
+      { title: 'The Atelier Signatures', note: 'Iconic facials. Individual results.' },
+      { title: 'The Sculpting Collection', note: 'Lift. Tone. Redefine.' },
+      { title: 'The Radiance Collection', note: 'Renew. Brighten. Glow.' },
+      { title: 'The Renewal Collection', note: 'Regenerate. Restore. Transform.' },
+      { title: 'The Restoration Collection', note: 'Soothe. Strengthen. Revitalize.' },
+      { title: 'Body Treatments', note: 'Sculpt. Drain. Detox. Renew.' },
+      { title: 'Laser Hair Removal', note: 'Smooth. Confident. Effortless.' },
+      { title: 'Enhancements', note: 'Customize your treatment.' },
     ],
-    heroImageNote:
-      'ART DIRECTION: Editorial beauty detail - refined treatment tools styled on linen and ceramic, warm natural light. No smiling-at-camera portraits. Reference the provided tools inspiration image.',
     image: '/images/yulia.png',
     booking: {
       platform: 'Mindbody',
-      url: '', // NEEDS CLIENT CONFIRMATION - Mindbody booking link
+      url: '', // NEEDS CLIENT CONFIRMATION: Mindbody booking link
       note: 'Booking for Yulia Gerchik Studio is handled through Mindbody, where you can choose a treatment, pick a time, and create a profile if it is your first visit.',
     },
     referenceUrl: 'https://yuliagerchikstudio.com',
@@ -110,108 +149,210 @@ export const providers: Provider[] = [
     slug: 'nyc-dental-smiles',
     name: 'New York City Dental Smiles',
     shortName: 'New York City Dental Smiles',
-    specialtyLabel: 'Smile Aesthetics',
-    discipline: 'Cosmetic, restorative, and smile-focused dentistry',
-    headline: 'A healthier, more confident smile - designed with intention.',
+    credentials: 'By Dr. Edgard El Chaar',
+    specialtyLabel: 'Dentistry & Smile Aesthetics',
+    discipline: 'Comprehensive, medically informed dentistry',
+    headline: 'Empowering, perfecting, and protecting smiles.',
+    heroSupporting: 'By Dr. Edgard El Chaar, Clinical Professor in Periodontics, Penn Dental Medicine',
     cardStatement:
-      'A trusted cosmetic and restorative dental practice focused on healthy, confident, elevated smiles.',
+      'Comprehensive, medically informed dentistry, from cosmetic smile design to implant and restorative care, built on the belief that oral health is inseparable from overall health.',
     intro: [
-      'New York City Dental Smiles brings trusted dental expertise to 28 Collective, helping clients achieve smiles that are healthy, confident, and aligned with their overall aesthetic goals.',
-      'From cosmetic dentistry to restorative care and smile enhancement, the practice plays an essential role in 28 experience by connecting oral health, facial harmony, and self-confidence.',
+      'Founded by Dr. Edgard El Chaar, New York City Dental Smiles was created to redefine what dentistry can be: comprehensive, medically informed, and delivered with the highest standards of clinical excellence.',
+      'Its team brings together expertise in cosmetic, restorative, implant, and preventive dentistry, united by one philosophy: oral health is inseparable from overall health. The same belief sits at the heart of 28.',
     ],
-    philosophy:
-      'A smile is a feature of the face, not a set of teeth. Care here is planned with facial harmony and long-term health in mind - precise, unhurried, and quietly transformative.',
+    introBlocks: [
+      {
+        title: 'The Edgard El Chaar standard of care',
+        body: [
+          'An evidence-driven, ethics-first approach: precise treatment planning, uncompromising quality, and compassionate care. Dr. El Chaar is a Clinical Professor in Periodontics at Penn Dental Medicine and previously led advanced training at NYU.',
+          'He is also a published author and educator. His book, Practical Techniques in Periodontics and Implant Dentistry, is used by clinicians around the world, and he hosts a podcast on oral health for patients and peers.',
+        ],
+      },
+    ],
+    tags: {
+      title: 'Technology',
+      items: ['In-house ceramic lab', '3D cone beam imaging', 'Intraoral scanning', '3D printing', 'Digital X-rays'],
+    },
+    expertiseTitle: 'Areas of expertise',
     expertise: [
       {
         title: 'Cosmetic Dentistry',
         description:
-          'Smile design, whitening, and refinements that read as natural, balanced, and confident.',
+          'Porcelain veneers, professional whitening, and smile design you approve before anything is permanent.',
       },
       {
-        title: 'Restorative Care',
-        description:
-          'Considered restorative treatment that protects long-term oral health and function.',
+        title: 'Restorative & Implant Dentistry',
+        description: 'Crowns, bridges, implant restorations, and full-mouth rehabilitation.',
       },
+      { title: 'Orthodontics', description: 'Including Invisalign clear aligners.' },
       {
-        title: 'Smile & Facial Harmony',
-        description:
-          'Treatment planned in the context of the whole face, in coordination with 28 Collective.',
+        title: 'Comprehensive Care',
+        description: 'Preventive care, complete evaluations, and same-day emergency care.',
       },
     ],
+    philosophy: 'We don’t just treat smiles. We elevate health, confidence, and quality of life.',
+    philosophyAttribution: 'New York City Dental Smiles by Dr. Edgard El Chaar',
     selectedServices: [
-      'Cosmetic smile design',
-      'Professional whitening',
-      'Restorative dentistry',
-      'Comprehensive oral health assessment',
+      { title: 'Porcelain veneers' },
+      { title: 'Professional whitening' },
+      { title: 'Smile design' },
+      { title: 'Implant restorations' },
+      { title: 'Crowns and bridges' },
+      { title: 'Full-mouth rehabilitation' },
+      { title: 'Invisalign clear aligners' },
+      { title: 'Same-day emergency care' },
     ],
-    heroImageNote:
-      'ART DIRECTION: Editorial, hospitality-led - no clinical blue, no tooth iconography. Warm treatment-room detail, refined materials, soft light. Reference the ceramic-dish inspiration image.',
     image: '/images/dental.png',
     booking: {
       platform: 'the practice scheduling system',
-      url: '', // NEEDS CLIENT CONFIRMATION - NDS platform not yet identified
+      url: '', // NEEDS CLIENT CONFIRMATION: NDS platform not yet identified
       note: 'Booking for New York City Dental Smiles is handled through the practice’s own scheduling system.',
     },
+    referenceUrl: 'https://nycdentalsmiles.com',
   },
   {
     slug: 'dr-evia-nano',
     name: 'Dr. Evia Nano',
     shortName: 'Dr. Nano',
+    credentials: 'Board-Certified Physician',
     specialtyLabel: 'Aesthetic & Wellness Medicine',
-    discipline: 'Medical aesthetics, wellness medicine, and longevity',
-    headline: 'Advanced aesthetic medicine for skin, confidence, and longevity.',
+    discipline: 'Medical aesthetics and wellness medicine',
+    headline: 'The art of subtle transformation.',
+    heroSupporting:
+      'Medical Director, Eviaesthetics. Medical aesthetics and wellness medicine, not general medical care.',
+    // Mirrors eviaesthetics.com at category level: no drug names, prices,
+    // ratings, or results claims. NY medical-advertising review is still open
+    // for weight management and IV therapy: remove those items to hold them back.
     cardStatement:
-      'A medical aesthetics and wellness medicine provider focused on aesthetic procedures, peptides, weight loss, regenerative wellness, and IV infusions - not general medical care.',
+      'Two decades of aesthetic medicine, known for subtle, natural results across injectables, advanced skin treatments, and physician-led wellness.',
     intro: [
-      'Dr. Evia Nano’s presence within 28 brings medical expertise to the world of aesthetics, skin health, and wellness optimization. Her practice is positioned around medical aesthetics and wellness medicine - aesthetic procedures, peptides, weight loss, regenerative wellness, and IV infusions.',
-      'The experience is refined, intelligent, and deeply personal - balancing clinical credibility with the calm, luxury sensibility of 28 Collective.',
+      'For two decades, Dr. Evia Nano has practiced aesthetic medicine on a single principle: results that never announce themselves. Her clients leave looking like themselves, only rested, radiant, and at ease.',
+      'Every face is studied and every plan is individual. Each treatment is physician-led and performed by Dr. Nano herself.',
     ],
-    philosophy:
-      'Skin health is a long horizon. The most beautiful results come from prevention, precision, and restraint - protocols designed around the individual and maintained over time.',
+    expertiseTitle: 'Areas of expertise',
     expertise: [
       {
-        title: 'Aesthetic Procedures',
+        title: 'Injectables',
         description:
-          'Injectables and aesthetic procedures delivered with a natural, undetectable philosophy.',
+          'Neurotoxin and dermal fillers, with natural-looking results that respect your anatomy.',
       },
       {
-        title: 'Peptides & Regenerative Wellness',
-        description:
-          'Regenerative and longevity-focused protocols centered on prevention and maintenance.',
+        title: 'Advanced Skin Treatments',
+        description: 'Microneedling, PRP, and medical-grade chemical peels.',
       },
       {
-        title: 'Wellness Medicine',
-        description:
-          'Weight loss and IV infusion protocols focused on how you feel as much as how you look.',
+        title: 'Physician-Led Weight Management',
+        description: 'Personalized programs with medical monitoring from start to finish.',
+      },
+      {
+        title: 'NAD+ and IV Therapy',
+        description: 'Custom infusion protocols, designed around the individual.',
       },
     ],
-    // NEEDS CLIENT CONFIRMATION - category-level only. The client named
-    // specific treatments (Botox, fillers) in conversation, but individual
-    // service naming is held until Dr. Nano supplies and approves her own list.
+    approach: {
+      title: 'Her approach',
+      items: [
+        {
+          title: 'Medical Precision',
+          description:
+            'Board-certified expertise and two decades of clinical judgment behind every procedure.',
+        },
+        {
+          title: 'Artistic Eye',
+          description: 'An intuitive sense of facial proportion, harmony, and balance.',
+        },
+        {
+          title: 'Individual Devotion',
+          description:
+            'No templates. Every plan is designed for one person and refined over time.',
+        },
+      ],
+    },
+    philosophy:
+      'I believe the finest work is the work no one can name, only sense. Every face is singular. My role is to reveal it, never to rewrite it.',
+    philosophyAttribution: 'Dr. Evia A. Nano, MD',
     selectedServices: [
-      'Aesthetic procedures',
-      'Peptide therapy',
-      'Weight loss',
-      'Regenerative wellness',
-      'IV infusions',
+      { title: 'Neurotoxin and dermal fillers' },
+      { title: 'Microneedling' },
+      { title: 'PRP' },
+      { title: 'Medical-grade chemical peels' },
+      { title: 'Physician-led weight management' },
+      { title: 'NAD+ and IV therapy' },
     ],
-    heroImageNote:
-      'ART DIRECTION: Editorial skincare texture and refined tools - no cold clinical imagery. Warm, tactile, composed. Reference the travertine/ceramic inspiration images.',
-    // TODO: rename asset to /images/evia.png (or similar) - filename is a
-    // leftover from the incorrect dermatology positioning. Path left intact
-    // so the build doesn't break before the file itself is renamed.
+    // TODO: rename asset to /images/evia.png (or similar). The filename is a
+    // leftover from the incorrect dermatology positioning.
     image: '/images/derm.png',
     booking: {
       platform: 'Eviaesthetics',
-      url: '', // NEEDS CLIENT CONFIRMATION - Dr. Nano's booking link
+      url: '', // NEEDS CLIENT CONFIRMATION: Dr. Nano's booking link
       note: 'Consultations with Dr. Nano are booked through her practice, Eviaesthetics. A private consultation is credited toward your first treatment.',
     },
-    // Medical-accuracy note: present as medical aesthetics / wellness medicine
-    // only - NOT dermatology, NOT general medical care. Confirmed by the client
-    // 2026-07-20. Weight loss, peptides, and IV infusions are regulated
-    // advertising categories in New York: route final wording through Dr. Nano
-    // and compliance review before publishing. Verify credentials before
-    // publishing any.
+    referenceUrl: 'https://eviaesthetics.com',
+    // Medical-accuracy note: medical aesthetics / wellness medicine only.
+    // NOT dermatology, NOT general medical care. Weight management and IV
+    // therapy are regulated advertising categories in New York: route final
+    // wording through Dr. Nano and compliance review before launch.
+  },
+  {
+    slug: 'alexandra-cerone',
+    name: 'Alexandra Cerone',
+    shortName: 'Alexandra',
+    credentials: 'MS, RDN, CDN, CSOWM',
+    specialtyLabel: 'Nutrition & Metabolic Health',
+    discipline: 'Clinical nutrition and metabolic health',
+    headline: 'Nutrition. Behavior change. Follow-through.',
+    heroSupporting:
+      'MS, RDN, CDN, CSOWM. Registered Dietitian Nutritionist and Board-Certified Specialist in Obesity and Weight Management.',
+    cardStatement:
+      'A registered dietitian nutritionist and board-certified specialist in obesity and weight management, helping people turn nutrition knowledge into consistent, practical action.',
+    intro: [
+      'Alexandra Cerone is a Registered Dietitian Nutritionist with a diverse clinical background spanning oncology, chronic disease management, metabolic health, and behavioral nutrition. Her experience includes caring for medically complex patients and first responders facing unique physical and psychological health challenges.',
+      'With a Master of Science in Speech-Language Pathology and advanced certification in obesity and weight management, Alexandra brings an interdisciplinary perspective to care. She combines evidence-based nutrition with an understanding of human behavior to develop personalized, practical strategies that support lasting health and well-being.',
+    ],
+    tags: {
+      title: 'Clinical background',
+      items: [
+        'Oncology',
+        'Chronic disease management',
+        'Metabolic health',
+        'Behavioral nutrition',
+        'Trauma-informed care',
+      ],
+    },
+    expertiseTitle: 'A practical approach to lasting change',
+    expertise: [
+      {
+        title: 'Evidence-Informed',
+        description: 'Grounded in nutrition science and established behavior-change principles.',
+      },
+      {
+        title: 'Individualized',
+        description: 'Strategies built around your goals, circumstances, and needs.',
+      },
+      {
+        title: 'Action-Oriented',
+        description: 'Information turned into specific, realistic next steps.',
+      },
+      {
+        title: 'Flexible',
+        description: 'Plans are reviewed and adjusted when circumstances change.',
+      },
+    ],
+    philosophy:
+      'Knowing what to do is only part of the work. The goal is to build strategies people can actually follow through on.',
+    philosophyAttribution: 'Alexandra Cerone, MS, RDN, CDN, CSOWM',
+    // Rate supplied by the client ($250 / 60 min) is NOT published, per the
+    // no-pricing rule.
+    selectedServices: [{ title: 'Nutrition Consultations', note: 'One-on-one sessions, 60 minutes.' }],
+    image: '/images/alexandra.jpg',
+    imageAlt: 'Alexandra Cerone in a teal dress, seated on a dock by a harbor at sunset',
+    imagePosition: '50% 22%',
+    booking: {
+      platform: 'Alendryx Metabolic Health',
+      url: '', // NEEDS CLIENT CONFIRMATION: Alexandra's booking link
+      note: 'Nutrition consultations with Alexandra Cerone are one-on-one, 60-minute sessions.',
+    },
+    referenceUrl: 'https://alendryx.com',
   },
 ];
 

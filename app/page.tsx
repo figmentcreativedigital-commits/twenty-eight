@@ -48,6 +48,9 @@ export default function HomePage() {
               {p}
             </p>
           ))}
+          <p className="mx-auto mt-8 max-w-2xl font-serif text-xl leading-snug text-ink">
+            {introducing28.statement}
+          </p>
         </div>
       </Reveal>
 
@@ -76,10 +79,13 @@ export default function HomePage() {
       <section className="bg-sand/50">
         <div className="shell py-section">
           <p className="eyebrow mb-4">{homeCollective.eyebrow}</p>
-          <h2 className="mb-14 max-w-xl font-serif text-display-sm text-ink">
+          <h2 className="max-w-xl font-serif text-display-sm text-ink">
             {homeCollective.headline}
           </h2>
-          <div className="grid gap-8 md:grid-cols-3">
+          <p className="mb-14 mt-4 max-w-2xl font-serif text-xl italic leading-snug text-charcoal">
+            {homeCollective.tagline}
+          </p>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {providers.map((provider, i) => (
               <Reveal key={provider.slug} delay={i * 90}>
                 <Link
@@ -89,13 +95,19 @@ export default function HomePage() {
                   <Photo
                     src={provider.image}
                     ratio="4/5"
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    position={provider.imagePosition}
                   />
                   <div className="p-8">
                     <p className="eyebrow mb-2">{provider.specialtyLabel}</p>
                     <h3 className="font-serif text-2xl text-ink transition-colors duration-400 group-hover:text-gold-deep">
                       {provider.name}
                     </h3>
+                    {provider.credentials ? (
+                      <p className="mt-1.5 font-sans text-[0.66rem] uppercase tracking-wide text-muted">
+                        {provider.credentials}
+                      </p>
+                    ) : null}
                     <p className="mt-3 font-sans text-sm leading-relaxed text-muted">
                       {provider.cardStatement}
                     </p>

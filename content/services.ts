@@ -1,6 +1,6 @@
 /**
  * ────────────────────────────────────────────────────────────────
- * Service Menu - all three providers, organised by provider.
+ * Our Expertise (route: /service-menu): every provider, organized by provider.
  * ────────────────────────────────────────────────────────────────
  * Client-confirmed (2026-07-20): the service menu lists individual
  * services with descriptions and NO PRICING. Yulia: "The prices will
@@ -15,7 +15,7 @@
  * duration, or capability has been invented - anything not published by
  * the provider is absent rather than assumed.
  *
- * ⚠️ DO NOT ADD PRICING to this file. All three providers publish prices
+ * ⚠️ DO NOT ADD PRICING to this file. The providers publish prices
  * on their own sites; 28 deliberately does not.
  */
 
@@ -64,11 +64,12 @@ export const serviceMenus: ProviderMenu[] = [
     slug: 'yulia-gerchik-studio',
     name: 'Yulia Gerchik Studio',
     shortName: 'Yulia',
-    eyebrow: 'Beauty & Skin',
+    eyebrow: 'Skin Health & Beauty',
+    // Nov 2026: the studio's menu is now organized into collections (see
+    // selectedServices in providers.ts). The detailed groups below are the
+    // earlier menu and are no longer rendered.
     intro:
-      'Treatments are selected, customised, and adjusted to your particular skin and goals. The menu below is a reference for consultations and bookings, not a fixed prescription.',
-    gapNote:
-      'Body treatments are offered and will be listed here once the full menu is confirmed.', // NEEDS CLIENT CONFIRMATION - body treatment list outstanding
+      'Every treatment begins with a personalized assessment of the skin’s current condition, individual concerns, and lifestyle influences. The menu below is a reference for consultations and bookings, not a fixed prescription.',
     groups: [
       {
         title: 'Signature Facials',
@@ -88,13 +89,13 @@ export const serviceMenus: ProviderMenu[] = [
           {
             name: 'Signature Facial',
             description:
-              'A targeted treatment: double cleanse, lymphatic drainage massage, and a Biologique Recherche booster, finished with a hyper-customised mask and skincare.',
+              'A targeted treatment: double cleanse, lymphatic drainage massage, and a Biologique Recherche booster, finished with a hyper-customized mask and skincare.',
             duration: '75 minutes',
           },
           {
             name: 'European Facial',
             description:
-              'Double cleansing and exfoliation with extractions, followed by a soothing, calming treatment and hyper-customised skincare.',
+              'Double cleansing and exfoliation with extractions, followed by a soothing, calming treatment and hyper-customized skincare.',
             duration: '50 minutes',
           },
           {
@@ -454,6 +455,16 @@ export const serviceMenus: ProviderMenu[] = [
         ],
       },
     ],
+  },
+  /* ───────────────────────── Alexandra Cerone ───────────────────────── */
+  {
+    slug: 'alexandra-cerone',
+    name: 'Alexandra Cerone',
+    shortName: 'Alexandra',
+    eyebrow: 'Nutrition & Metabolic Health',
+    intro:
+      'One-on-one nutrition consultations with a registered dietitian nutritionist and board-certified specialist in obesity and weight management, built around your goals, circumstances, and needs.',
+    groups: [],
   },
 ];
 

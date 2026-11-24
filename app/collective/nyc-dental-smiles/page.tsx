@@ -5,9 +5,9 @@ import { getProvider } from '@/content/providers';
 const provider = getProvider('nyc-dental-smiles')!;
 
 export const metadata: Metadata = {
-  title: 'New York City Dental Smiles - Smile Aesthetics',
+  title: 'New York City Dental Smiles - Dentistry & Smile Aesthetics',
   description:
-    'Cosmetic, restorative, and smile-focused dentistry within the 28 collective in Tribeca - where oral health, facial harmony, and confidence meet.',
+    'New York City Dental Smiles by Dr. Edgard El Chaar at 28 in Tribeca. Cosmetic, restorative, implant, and preventive dentistry, built on the belief that oral health is inseparable from overall health.',
   alternates: { canonical: '/collective/nyc-dental-smiles' },
 };
 

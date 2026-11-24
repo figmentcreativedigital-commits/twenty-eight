@@ -203,7 +203,7 @@ export const connectedExpertise = {
   eyebrow: 'One Membership. Connected Expertise.',
   headline: 'Different Disciplines. One Shared Commitment to You.',
   body: [
-    'Membership at 28 connects you with the complementary expertise of our founding practices, bringing dentistry, preventive medicine, nutrition, skin health, and aesthetics into a more coordinated experience.',
+    'Membership at 28 connects you with the complementary expertise of our collective, bringing dentistry, preventive medicine, nutrition, skin health, and aesthetics into a more coordinated experience.',
     'Each provider maintains independent professional judgment and responsibility for clinical care. Our concierge team helps coordinate appointments and communication, with appropriate consent, creating a more seamless experience centered around your individual needs.',
   ],
 };
@@ -214,8 +214,8 @@ export const membershipFaqs: { q: string; a: string }[] = [
     a: 'Members fund a personal account balance according to their selected tier. That balance can be applied toward eligible services and retail products offered by participating providers, subject to the final membership terms. Each tier also includes designated access, coordination, and wellness planning benefits.',
   },
   {
-    q: 'Can membership be used across all three founding practices?',
-    a: 'The membership is intended to provide coordinated access to participating services offered by Yulia Gerchik Studio, New York City Dental Smiles, and Dr. Evia Nano. Eligible services, account redemption, and provider-specific terms will be confirmed before launch.',
+    q: 'Can membership be used across all participating practices?',
+    a: 'The membership is intended to provide coordinated access to participating services offered by Yulia Gerchik Studio, New York City Dental Smiles, Dr. Evia Nano, and Alexandra Cerone. Eligible services, account redemption, and provider-specific terms will be confirmed before launch.',
   },
   {
     q: 'Is membership required to visit 28?',
