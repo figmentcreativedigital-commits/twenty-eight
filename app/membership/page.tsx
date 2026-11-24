@@ -231,7 +231,7 @@ export default function MembershipPage() {
         eyebrow="Begin Your Journey"
         headline="A Lasting Commitment to Better Living."
         body="Connected expertise. Personalized care. A healthier future."
-        primaryCta={{ label: 'Request a Consultation', href: '/consultation' }}
+        primaryCta={{ label: 'Request a Consultation', href: '/consultation?interest=Membership' }}
       />
     </>
   );
