@@ -110,8 +110,7 @@ export function SiteHeader() {
                 href={item.href}
                 className={cn(
                   'relative font-sans text-[0.78rem] uppercase tracking-wide transition-colors duration-400 hover:text-gold',
-                  linkTone,
-                  pathname === item.href && 'text-gold'
+                  linkTone
                 )}
               >
                 {item.label}
