@@ -6,6 +6,7 @@ import { Reveal } from '@/components/ui/Reveal';
 import { Button } from '@/components/ui/Button';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Photo } from '@/components/ui/Photo';
+import { ProviderPortrait } from '@/components/ui/ProviderPortrait';
 import { providers } from '@/content/providers';
 import { experiences } from '@/content/experiences';
 import {
@@ -92,12 +93,7 @@ export default function HomePage() {
                   href={`/collective/${provider.slug}`}
                   className="group block h-full border border-line bg-ivory transition-colors duration-400 hover:border-gold"
                 >
-                  <Photo
-                    src={provider.image}
-                    ratio="4/5"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    position={provider.imagePosition}
-                  />
+                  <ProviderPortrait provider={provider} zoomOnHover />
                   <div className="p-8">
                     <p className="eyebrow mb-2">{provider.specialtyLabel}</p>
                     <h3 className="font-serif text-2xl text-ink transition-colors duration-400 group-hover:text-gold-deep">

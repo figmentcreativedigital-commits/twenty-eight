@@ -17,6 +17,8 @@
  * the client supplies verified assets.
  */
 
+import type { MonogramId } from '@/components/ui/Monogram';
+
 export type ProviderItem = {
   title: string;
   description?: string;
@@ -57,14 +59,13 @@ export type Provider = {
   philosophyAttribution?: string;
   /** Selected services, illustrative. No pricing. */
   selectedServices: { title: string; note?: string }[];
+  /** Wide editorial image for the provider-page hero. */
   image: string;
-  /** Optional wide image for the provider-page hero when `image` is a portrait. */
-  heroImage?: string;
-  heroImageAlt?: string;
-  /** Alt text when the image is a photo of the person rather than an editorial still. */
-  imageAlt?: string;
-  /** object-position for crops of the image, e.g. '50% 25%'. */
-  imagePosition?: string;
+  /** Provider portrait, from the landing page (cards, Collective, provider intro). */
+  portrait: { src: string; alt: string; position?: string };
+  /** Vector monogram over the portrait. Without one, `initials` show in its place. */
+  monogram?: MonogramId;
+  initials?: string;
   /**
    * Booking hand-off. Confirmed 2026-07-20: booking is a REDIRECT to each
    * provider's own platform, not an on-site or integrated booking system.
@@ -141,6 +142,11 @@ export const providers: Provider[] = [
       { title: 'Enhancements', note: 'Customize your treatment.' },
     ],
     image: '/images/yulia.png',
+    portrait: {
+      src: '/images/portrait-yulia.jpg',
+      alt: 'Yulia Gerchik, seated in a cream silk shirt in her studio',
+    },
+    monogram: 'yg',
     booking: {
       platform: 'Mindbody',
       url: '', // NEEDS CLIENT CONFIRMATION: Mindbody booking link
@@ -206,6 +212,11 @@ export const providers: Provider[] = [
       { title: 'Same-day emergency care' },
     ],
     image: '/images/dental.png',
+    portrait: {
+      src: '/images/portrait-el-chaar.jpg',
+      alt: 'Dr. Edgard El Chaar in a white coat on a tree-lined Manhattan street',
+    },
+    monogram: 'nds',
     booking: {
       platform: 'the practice scheduling system',
       url: '', // NEEDS CLIENT CONFIRMATION: NDS platform not yet identified
@@ -285,6 +296,11 @@ export const providers: Provider[] = [
     // TODO: rename asset to /images/evia.png (or similar). The filename is a
     // leftover from the incorrect dermatology positioning.
     image: '/images/derm.png',
+    portrait: {
+      src: '/images/portrait-nano.jpg',
+      alt: 'Dr. Evia Nano in a white coat, smiling',
+    },
+    monogram: 'en',
     booking: {
       platform: 'Eviaesthetics',
       url: '', // NEEDS CLIENT CONFIRMATION: Dr. Nano's booking link
@@ -347,12 +363,13 @@ export const providers: Provider[] = [
     // Rate supplied by the client ($250 / 60 min) is NOT published, per the
     // no-pricing rule.
     selectedServices: [{ title: 'Nutrition Consultations', note: 'One-on-one sessions, 60 minutes.' }],
-    image: '/images/alexandra.jpg',
-    // Her headshot is a vertical portrait, which crops badly in a wide hero.
-    heroImage: '/images/28-placeholder-e.jpeg',
-    heroImageAlt: 'A softly lit reception with a curved desk.',
-    imageAlt: 'Alexandra Cerone in a teal dress, seated on a dock by a harbor at sunset',
-    imagePosition: '50% 22%',
+    image: '/images/28-placeholder-e.jpeg',
+    portrait: {
+      src: '/images/portrait-alexandra.jpg',
+      alt: 'Alexandra Cerone in a teal dress, seated on a dock by a harbor at sunset',
+    },
+    // NEEDS ASSET: a designed monogram to match the others. Initials until then.
+    initials: 'AC',
     booking: {
       platform: 'Alendryx Metabolic Health',
       url: '', // NEEDS CLIENT CONFIRMATION: Alexandra's booking link

@@ -27,6 +27,7 @@ const config: Config = {
         gold: 'rgb(var(--color-gold) / <alpha-value>)',
         'gold-deep': 'rgb(var(--color-gold-deep) / <alpha-value>)',
         eyebrow: 'rgb(var(--color-eyebrow) / <alpha-value>)',
+        tint: 'rgb(var(--color-tint) / <alpha-value>)',
       },
       fontFamily: {
         serif: ['var(--font-serif)', 'Georgia', 'Cambria', 'serif'],

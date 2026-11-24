@@ -4,7 +4,7 @@ import { CtaBanner } from '@/components/sections/CtaBanner';
 import { Reveal } from '@/components/ui/Reveal';
 import { Button } from '@/components/ui/Button';
 import { Eyebrow } from '@/components/ui/Eyebrow';
-import { Photo } from '@/components/ui/Photo';
+import { ProviderPortrait } from '@/components/ui/ProviderPortrait';
 import { providers } from '@/content/providers';
 import { homeCollective, introducing28 } from '@/content/home';
 import { cn } from '@/lib/utils';
@@ -51,12 +51,10 @@ export default function CollectivePage() {
         return (
           <section key={provider.slug} className={cn('py-section', reverse && 'bg-sand/40')}>
             <div className="shell grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-              <Photo
-                src={provider.image}
-                alt={provider.imageAlt ?? `${provider.name} - ${provider.discipline}`}
-                ratio="4/5"
+              <ProviderPortrait
+                provider={provider}
                 reveal="default"
-                position={provider.imagePosition}
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className={cn(reverse && 'lg:order-2')}
               />
               <Reveal className={cn(reverse && 'lg:order-1')}>

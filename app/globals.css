@@ -19,6 +19,7 @@
   --color-gold: 180 155 108; /* brushed champagne — accents/lines only */
   --color-gold-deep: 156 131 83; /* gold hover / active on dark or as line */
   --color-eyebrow: 124 100 48; /* deep bronze — small eyebrow text on LIGHT bg (5.15:1, AA) */
+  --color-tint: 125 102 76; /* warm multiply over provider portraits, used at 25% */
 
   /* --font-serif / --font-sans are injected on <html> by next/font/local
      (see app/layout.tsx). Generic fallbacks are applied below. */

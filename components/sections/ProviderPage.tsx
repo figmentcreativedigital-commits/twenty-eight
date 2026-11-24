@@ -4,7 +4,7 @@ import { BeginSection } from '@/components/sections/BeginSection';
 import { Reveal } from '@/components/ui/Reveal';
 import { Button } from '@/components/ui/Button';
 import { Eyebrow } from '@/components/ui/Eyebrow';
-import { Photo } from '@/components/ui/Photo';
+import { ProviderPortrait } from '@/components/ui/ProviderPortrait';
 import { providers, type Provider, type ProviderItem } from '@/content/providers';
 import { cn } from '@/lib/utils';
 
@@ -46,11 +46,8 @@ export function ProviderPage({ provider }: { provider: Provider }) {
         supporting={provider.heroSupporting}
         primaryCta={{ label: `Book with ${provider.shortName}`, href: `/booking/${provider.slug}` }}
         secondaryCta={{ label: 'Request a Consultation', href: '/consultation' }}
-        imageAlt={
-          provider.heroImageAlt ?? provider.imageAlt ?? `${provider.name} - ${provider.discipline}`
-        }
-        imageSrc={provider.heroImage ?? provider.image}
-        imagePosition={provider.heroImage ? undefined : provider.imagePosition}
+        imageAlt={`${provider.name} - ${provider.discipline}`}
+        imageSrc={provider.image}
       />
 
       {/* Introduction */}
@@ -95,12 +92,10 @@ export function ProviderPage({ provider }: { provider: Provider }) {
               </div>
             ) : null}
           </Reveal>
-          <Photo
-            src={provider.image}
-            alt={provider.imageAlt ?? `Editorial detail for ${provider.name}`}
-            ratio="4/5"
+          <ProviderPortrait
+            provider={provider}
             reveal="image"
-            position={provider.imagePosition}
+            sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </div>
       </section>
